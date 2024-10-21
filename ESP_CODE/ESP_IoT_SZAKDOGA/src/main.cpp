@@ -1,18 +1,17 @@
 #include <Arduino.h>
-
-// put function declarations here:
-int myFunction(int, int);
-
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+#include <WiFi.h>
+const char *ssid = "ESP_32_IoT";
+void setup()
+{
+    Serial.begin(9600);
+    Serial.println("Configuring access point...");
+    WiFi.softAP(ssid);
+    IPAddress myIP = WiFi.softAPIP();
+    Serial.print("AP IP address: ");
+    Serial.println(myIP);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void loop()
+{
+    NULL;
 }
