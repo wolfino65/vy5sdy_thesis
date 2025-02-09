@@ -79,6 +79,18 @@ w.active(True )
 w.ifconfig(('192.168.0.5','255.255.255.0','192.168.0.1','8.8.8.8'))
 print(w.ifconfig())
 app.run(port=60)
+#runs after microdot server shuts down
 print('continues')
 w.active(False)
+w=network.WLAN(network.STA_IF)
+conf = open("conf.txt","r")
+ssid= conf.readline().strip()
+password= conf.readline().strip()
+conf.close()
+w.active(True )
+w.connect(ssid,password)
+print("connecting",end="")
+while not w.isconnected():
+    print('.',end="")
+print('\nsuccesfull connection')
 
