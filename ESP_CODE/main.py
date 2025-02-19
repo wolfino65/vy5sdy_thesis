@@ -1,5 +1,8 @@
 import network
+import os
 from microdot import Microdot
+import neopixel,machine,time
+npxl = neopixel.NeoPixel(machine.Pin(38),1)
 app= Microdot()
 @app.route("/")
 def start (request):
@@ -78,7 +81,11 @@ w.config(ssid="test")
 w.active(True )
 w.ifconfig(('192.168.0.5','255.255.255.0','192.168.0.1','8.8.8.8'))
 print(w.ifconfig())
-app.run(port=60)
+dev_cont=os.listdir()
+if 'conf.txt' not in dev_cont:
+    npxl[0]=(0,0,255)
+    npxl.write()
+    app.run(port=60)
 #runs after microdot server shuts down
 print('continues')
 w.active(False)
@@ -90,7 +97,20 @@ conf.close()
 w.active(True )
 w.connect(ssid,password)
 print("connecting",end="")
+led_index=0
+led_index_flag=True  
 while not w.isconnected():
+    if led_index >= 240 or led_index <=0:
+        led_index_flag = not led_index_flag
+    npxl[0]=(0,led_index,0)
+    npxl.write()
+    time.sleep_ms(50)
+    if led_index_flag == False :
+        led_index += 20
+    else:
+        led_index -= 20
     print('.',end="")
 print('\nsuccesfull connection')
-
+print(w.ifconfig())
+npxl[0]=(0,32,0)
+npxl.write()
