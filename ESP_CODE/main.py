@@ -1,4 +1,7 @@
 print("switch to main")
+#----------------------
+populated=[False,False,False,False] #module connections
+#----------------------
 import urequests
 FILE_ID = "1F5GJ0k45eJiRC3-XUQ_f74drGBJRwOTh"
 API_KEY = "AIzaSyCof7aLYawxMevJrPAwpgYt9fUxYXMrdZE"
