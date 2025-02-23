@@ -65,14 +65,36 @@ def write_state(populated_in, ids_in):
                     f.write('')
                 else:
                     f.write(ids_in[i])
-                
+
+def deselect_circuit(pin):
+    machine.Pin(pin,machine.Pin.OUT).value(0)
+def select_circuit(pin):
+    machine.Pin(pin,machine.Pin.OUT).value(1)
+    
+def runa (params,pin):
+    select_circuit(pin)
+    a.run(params)
+    deselect_circuit(pin)
+def runb (params,pin):
+    select_circuit(pin)
+    b.run(params)
+    deselect_circuit(pin)
+def runc (params,pin):
+    select_circuit(pin)
+    c.run(params)
+    deselect_circuit(pin)
+def rund (params,pin):
+    select_circuit(pin)
+    d.run(params)
+    deselect_circuit(pin)
 #----------------------
 populated=read_state()#module connections
 
 con_check_pins=[1,2,3,4]
+circuit_controller_pins=[1,2,3,4]
 file_ids=read_fids()#[None,None,None,None]
 #write_state([False,False,False,False],file_ids)
 module_controlfile_names = ["a.py","b.py","c.py","d.py"]
 #----------------------
-connect_new_module(FILE_ID)
-b.set_to_red()
+#connect_new_module(FILE_ID)
+#b.set_to_red()
