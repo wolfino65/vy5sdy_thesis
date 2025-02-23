@@ -3,14 +3,7 @@ import os
 from microdot import Microdot
 import neopixel,machine,time
 npxl = neopixel.NeoPixel(machine.Pin(38),1)
-network_active_flag=False
-global w
-def set_to_ap():
-    w=network.WLAN(network.WLAN.IF_AP)
-    w.config(ssid="test")
-    w.active(True )
-    w.ifconfig(('192.168.0.5','255.255.255.0','192.168.0.1','8.8.8.8'))
-    print(w.ifconfig())
+    
 def configuration():
     npxl[0]=(0,0,255)
     npxl.write()
@@ -87,46 +80,50 @@ def configuration():
         f.close()
         app.shutdown()
         w.active(False)
-
-    set_to_ap()
-    w.active(False )
+    
+    w=network.WLAN(network.WLAN.IF_AP)
+    w.config(ssid="test")
+    w.active(True )
+    w.ifconfig(('192.168.0.5','255.255.255.0','192.168.0.1','8.8.8.8'))
+    print(w.ifconfig())
     app.run(port=60)
+
+def init_net():
+    w=network.WLAN(network.STA_IF)
+    conf = open("conf.txt","r")
+    ssid= conf.readline().strip()
+    password= conf.readline().strip()
+    conf.close()
+    w.active(True)
+    w.connect(ssid,password)
+    print("connecting",end="")
+    led_index=0
+    led_index_flag=True
+    connection_start_time= time.time()
+    while not w.isconnected():
+        if time.time() - connection_start_time >20:
+            os.remove("conf.txt")
+            w.disconnect()
+            w.active(False)
+            machine.reset()  
+        if led_index >= 240 or led_index <=0:
+            led_index_flag = not led_index_flag
+        npxl[0]=(0,led_index,0)
+        npxl.write()
+        time.sleep_ms(50)
+        if led_index_flag == False :
+            led_index += 20
+        else:
+            led_index -= 20
+        print('.',end="")
+    print('\nsuccesfull connection')
+    print(w.ifconfig())
+    npxl[0]=(0,32,0)
+    npxl.write()
+    return True 
+
 
 dev_cont=os.listdir()
 if 'conf.txt' not in dev_cont:
-    if network_active_flag == True :
-        w.active(False )
     configuration()
-
-w=network.WLAN(network.STA_IF)
-conf = open("conf.txt","r")
-ssid= conf.readline().strip()
-password= conf.readline().strip()
-conf.close()
-w.active(True )
-w.connect(ssid,password)
-print("connecting",end="")
-led_index=0
-led_index_flag=True
-connection_start_time= time.time()
-while not w.isconnected():
-    if time.time() - connection_start_time >20:
-        os.remove("conf.txt")
-        network_active_flag = not network_active_flag
-        w.active(False)
-        configuration()
-        break 
-    if led_index >= 240 or led_index <=0:
-        led_index_flag = not led_index_flag
-    npxl[0]=(0,led_index,0)
-    npxl.write()
-    time.sleep_ms(50)
-    if led_index_flag == False :
-        led_index += 20
-    else:
-        led_index -= 20
-    print('.',end="")
-print('\nsuccesfull connection')
-print(w.ifconfig())
-npxl[0]=(0,32,0)
-npxl.write()
+init_net()
