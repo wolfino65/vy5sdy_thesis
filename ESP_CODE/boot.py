@@ -2,6 +2,7 @@ import network
 import os
 from microdot import Microdot
 import neopixel,machine,time
+
 npxl = neopixel.NeoPixel(machine.Pin(38),1)
     
 def configuration():
