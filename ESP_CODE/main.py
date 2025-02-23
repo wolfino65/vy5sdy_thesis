@@ -32,16 +32,24 @@ def connect_new_module(fid):
                 populated[i]=True
                 file_ids[i]=fid
                 download_file_from_google_drive(fid,API_KEY,module_controlfile_names[i])
-                write_state(populated)
+                write_state(populated,file_ids)
                 return 
 def read_state():
     temp=[]
     with open("state.txt","r") as f:
-            line=f.readline().strip()
-            for i in line.split(','):
-                temp.append(True if i=="True" else False)
+        line=f.readline().strip()
+        for i in line.split(','):
+            temp.append(True if i=="True" else False)
     return temp
-def write_state(populated_in):
+def read_fids():
+    temp=[]
+    with open("state.txt","r") as f:
+        line=f.readline()
+        line=f.readline().strip()
+        for i in line.split(','):
+            temp.append(None if i=='' else i)
+    return temp 
+def write_state(populated_in, ids_in):
     with open("state.txt","w") as f:
             for i in range(0,len(populated_in)):
                 if i == len(populated_in)-1:
@@ -49,12 +57,22 @@ def write_state(populated_in):
                 else:
                     f.write("True" if populated_in[i] else "False")
                     f.write(",")
+            f.write("\n")
+            for i in range(0,len(ids_in)):
+                if i !=0:
+                    f.write(',')
+                if ids_in[i] == None:
+                    f.write('')
+                else:
+                    f.write(ids_in[i])
+                
 #----------------------
 populated=read_state()#module connections
-#write_state(populated)
+
 con_check_pins=[1,2,3,4]
-file_ids=[None,None,None,None]
+file_ids=read_fids()#[None,None,None,None]
+#write_state([False,False,False,False],file_ids)
 module_controlfile_names = ["a.py","b.py","c.py","d.py"]
 #----------------------
-#connect_new_module(FILE_ID)
+connect_new_module(FILE_ID)
 b.set_to_red()
