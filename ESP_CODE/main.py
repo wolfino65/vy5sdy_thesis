@@ -87,9 +87,25 @@ def rund (params,pin):
     select_circuit(pin)
     d.run(params)
     deselect_circuit(pin)
+def create_identification(id):
+    with open('ident.txt','w') as f:
+        f.write(id)
+def read_identification():
+    id=""
+    with open('ident.txt','r') as f:
+        if=f.readline().strip()
+    return id
+def disconnect_module():
+    while True :
+        for i in range(0,len(con_check_pins)):
+            p= machine.Pin(con_check_pins[i],machine.Pin.IN)
+            if p.value() == 0 and populated[i] == True:
+                populated[i] = False
+                file_ids[i]= None
+                return 
 #----------------------
 populated=read_state()#module connections
-
+ID=read_identification()
 con_check_pins=[1,2,3,4]
 circuit_controller_pins=[1,2,3,4]
 file_ids=read_fids()#[None,None,None,None]
