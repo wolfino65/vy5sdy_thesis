@@ -1,0 +1,23 @@
+{
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: [
+                "owner",
+                "location",
+                "device_name"
+            ],
+            properties: {
+                owner: {
+                    bsonType: "string"
+                },
+                location: {
+                    bsonType: "string"
+                },
+                device_name: {
+                    bsonType: "string"
+                }
+            }
+        }
+    }
+}

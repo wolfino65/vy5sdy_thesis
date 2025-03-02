@@ -1,0 +1,27 @@
+{
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: [
+                "device_id",
+                "user_id",
+                "module_id",
+                "module_params"
+            ],
+            properties: {
+                device_id: {
+                    bsonType: "string"
+                },
+                module_id: {
+                    bsonType: "string"
+                },
+                user_id: {
+                    bsonType: "string"
+                },
+                modul_params: {
+                    bsonType: "object"
+                }
+            }
+        }
+    }
+}

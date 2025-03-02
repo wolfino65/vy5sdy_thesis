@@ -1,0 +1,19 @@
+{
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: [
+                "py_id",
+                "front_id"
+            ],
+            properties: {
+                py_id: {
+                    bsonType: "string"
+                },
+                front_id: {
+                    bsonType: "string"
+                }
+            }
+        }
+    }
+}

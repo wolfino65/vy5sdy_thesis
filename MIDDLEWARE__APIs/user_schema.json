@@ -1,0 +1,27 @@
+{
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: [
+                "username",
+                "email",
+                "password"
+            ],
+            properties: {
+                username: {
+                    bsonType: "string",
+                    description: "Only String type is allowed!"
+                },
+                email: {
+                    bsonType: "string",
+                    pattern:"^[0-9a-z-]+@[0-9a-z-]+\.[a-z]+$",
+                    description: "Invalid email adress or data type is not string!"
+                },
+                password: {
+                    bsonType: "string",
+                    description: "Only String type is allowed!"
+                }
+            }
+        }
+    }
+}
