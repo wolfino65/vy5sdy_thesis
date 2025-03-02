@@ -1,10 +1,13 @@
-const { MongoClient } = require("mongodb");
+import { MongoClient } from "mongodb"
 
-const client = new MongoClient(process.env.MONGO_CON_URI);
+const client = new MongoClient("mongodb+srv://wolfino6565:Dell25L65!@szakdolgozat.uqwvi.mongodb.net/?retryWrites=true&w=majority&appName=szakdolgozat");
 try {
     await client.connect();
 }
 catch (e) {
     console.log(e);
 }
-export default client;
+let db = client.db("szakd");
+console.log( await db.listCollections())
+
+export default db;
