@@ -1,4 +1,5 @@
 import db from "../DB/dbCon.js"
+import { ObjectId } from "mongodb"
 
 async function addDevice(owner, aditionalInfo) {
     return await db.collection('devices').insertOne({
@@ -10,8 +11,9 @@ async function addDevice(owner, aditionalInfo) {
 }
 
 async function getDeviceById(dev_id) {
+    const oid= new ObjectId(dev_id)
     return await db.collection('devices').findOne({
-        "_id": dev_id
+        "_id": oid
     })
 }
 
@@ -22,15 +24,19 @@ async function getDeviceByOwner(owner) {
 }
 
 async function updateDevice(dev_id, newInfo) {
+    const oid= new ObjectId(dev_id)
     return db.collection('devices').updateOne({
-        "_id": dev_id
+        "_id": oid
     }, {
         $set: newInfo
     })
 }
 
 async function deleteDevice(dev_id) {
+    const oid= new ObjectId(dev_id)
     return await db.collection('devices').deleteOne({
-        "_id": dev_id
+        "_id": oid
     })
 }
+
+export { getDeviceById, getDeviceByOwner, addDevice, updateDevice, deleteDevice }
