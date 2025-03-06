@@ -1,4 +1,5 @@
 import db from "../DB/dbCon.js"
+import { ObjectId } from "mongodb"
 
 async function addTask(dev_id, module_id, user_id, params,aditionalInfo) {
     return await db.collection('tasks').insertOne({
@@ -17,7 +18,10 @@ async function getTasksByDeviceId(dev_id) {
 }
 
 async function  deleteTask(task_id) {
+    const oid = new ObjectId(task_id)
     return await db.collection('tasks').deleteOne({
-        "_id": task_id
+        "_id": oid
     })
 }
+
+export { addTask, getTasksByDeviceId, deleteTask }
