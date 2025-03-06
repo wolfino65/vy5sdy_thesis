@@ -1,4 +1,5 @@
 import db from "../DB/dbCon.js"
+import  {ObjectId}  from "mongodb"
 
 async function registerUser(username, password, email) {
     return await db.collection('users').insertOne({
@@ -16,8 +17,9 @@ async function login(email, password) {
 }
 
 async function getUserById(user_id) {
+    const oid= new ObjectId(user_id);
     return await db.collection('users').findOne({
-        "_id": user_id
+        "_id": oid
     })
 }
 
@@ -28,11 +30,17 @@ async function getUserByEmail(email) {
 }
 
 async function updateUser(user_id, newInfo) {
+    const oid= new ObjectId(user_id);
     return await db.collection('users').updateOne({
-        "_id": user_id
+        "_id": oid
     }, {
         $set: newInfo
     })
 }
-
-export { registerUser, login, getUserById, getUserByEmail, updateUser }
+async function deleteUser(user_id) {
+    const oid= new ObjectId(user_id);
+    return await db.collection('users').deleteOne({
+        "_id": oid
+    })
+}
+export { registerUser, login, getUserById, getUserByEmail, updateUser, deleteUser }
