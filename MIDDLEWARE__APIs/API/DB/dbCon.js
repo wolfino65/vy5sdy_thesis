@@ -8,6 +8,6 @@ catch (e) {
     console.log(e);
 }
 let db = client.db("szakd");
-console.log( await db.listCollections())
+//console.log( await db.listCollections())
 
 export default db;

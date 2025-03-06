@@ -34,3 +34,5 @@ async function updateUser(user_id, newInfo) {
         $set: newInfo
     })
 }
+
+export { registerUser, login, getUserById, getUserByEmail, updateUser }
