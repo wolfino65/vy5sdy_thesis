@@ -1,3 +1,4 @@
 https://www.youtube.com/watch?v=QPFlGswpyJY
 https://www.mongodb.com/developer/languages/javascript/node-connect-mongodb/
 https://www.mongodb.com/developer/languages/javascript/node-crud-tutorial-3-3-2/
+https://javascript.info/long-polling     ---    https://medium.com/@ignatovich.dm/implementing-long-polling-with-express-and-react-2cb965203128 -----https://stackoverflow.com/questions/45853418/how-to-use-long-polling-in-native-javascript-and-node-js
