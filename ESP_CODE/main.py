@@ -16,7 +16,6 @@ def download_file_from_google_drive(file_id, api_key,file):
         with open(file, "wb") as f:
             f.write(response.content)
         print("File downloaded successfully")
-        machine.reset()
     else:
         print("Failed to download file")
         print("Status Code:", response.status_code)
@@ -121,6 +120,7 @@ serverip="192.168.1.82"
 def D(s):
     print("DEBUG: "+s)
 #-------------------------------------------------------------------------
+new_file_flag=False
 while True :
     D("in while")
     response=urequests.get("http://"+serverip+":4500/task/getTasksByDeviceId",headers={'dev_id':ID}).json()
@@ -128,6 +128,7 @@ while True :
         if resp["aditionalInfo"]["method"] == "add_new":
             module_resp=urequests.get("http://"+serverip+":4500/module/getModuleById",headers={'module_id':resp['module_id']}).json()
             connect_new_module(module_resp['py_id'])
+            new_file_flag=True
         elif resp["aditionalInfo"]["method"] == "remove":
                 disconnect_module()
         elif resp["aditionalInfo"]["method"] == "disown":
@@ -157,3 +158,5 @@ while True :
         urequests.delete("http://"+serverip+":4500/task/deleteTask",headers={'task_id':resp['_id']})
         D("after del")
     response.close()
+    if new_file_flag == True:
+        machine.reset()
