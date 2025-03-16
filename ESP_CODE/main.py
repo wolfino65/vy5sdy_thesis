@@ -93,7 +93,7 @@ def create_identification(id):
 def read_identification():
     id=""
     with open('ident.txt','r') as f:
-        if=f.readline().strip()
+        id=f.readline().strip()
     return id
 def disconnect_module():
     while True :

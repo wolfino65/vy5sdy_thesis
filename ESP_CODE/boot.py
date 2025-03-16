@@ -2,6 +2,8 @@ import network
 import os
 from microdot import Microdot
 import neopixel,machine,time
+import urequests
+import ujson
 
 npxl = neopixel.NeoPixel(machine.Pin(38),1)
     
@@ -79,6 +81,8 @@ def configuration():
         f.write(request.form.get('ssid')+"\n")
         f.write(request.form.get('password'))
         f.close()
+        with open('owner.txt','w') as f:
+            f.write("owner") #will be replaced with data form request
         app.shutdown()
         w.active(False)
     
@@ -122,9 +126,16 @@ def init_net():
     npxl[0]=(0,32,0)
     npxl.write()
     return True 
-
+serverip="192.168.1.82"
+def getIdent():
+    js=ujson.dumps({'owner':'testOwner','aditionalInfo':{'asd':'bb'}})
+    resp=urequests.post("http://"+serverip+":4500/device/addDevice",data=js,headers = {'content-type': 'application/json'}).json()
+    with open("ident.txt","w") as f:
+        f.write(resp['insertedId'])
 
 dev_cont=os.listdir()
 if 'conf.txt' not in dev_cont:
     configuration()
 init_net()
+if 'ident.txt' not in dev_cont:
+    getIdent()
