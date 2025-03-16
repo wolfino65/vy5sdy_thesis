@@ -5,12 +5,12 @@ import c
 import d
 import machine
 import urequests
+import os
 FILE_ID = "1F5GJ0k45eJiRC3-XUQ_f74drGBJRwOTh"
 API_KEY = "AIzaSyCof7aLYawxMevJrPAwpgYt9fUxYXMrdZE"
 def download_file_from_google_drive(file_id, api_key,file):
     url = f"https://www.googleapis.com/drive/v3/files/{file_id}?alt=media&key={api_key}"
     response = urequests.get(url)
-    
     if response.status_code == 200:
         with open(file, "wb") as f:
             f.write(response.content)
@@ -66,30 +66,27 @@ def write_state(populated_in, ids_in):
                 else:
                     f.write(ids_in[i])
 
-def deselect_circuit(pin):
-    machine.Pin(pin,machine.Pin.OUT).value(0)
-def select_circuit(pin):
-    machine.Pin(pin,machine.Pin.OUT).value(1)
+def selector(f):
+    def wraper(params,pin):
+        machine.Pin(pin,machine.Pin.OUT).value(0)
+        f(params,pin)
+        machine.Pin(pin,machine.Pin.OUT).value(1)
+    return wraper
     
+@selector    
 def runa (params,pin):
-    select_circuit(pin)
     a.run(params)
-    deselect_circuit(pin)
+@selector
 def runb (params,pin):
-    select_circuit(pin)
     b.run(params)
-    deselect_circuit(pin)
+@selector
 def runc (params,pin):
-    select_circuit(pin)
     c.run(params)
-    deselect_circuit(pin)
+@selector
 def rund (params,pin):
-    select_circuit(pin)
     d.run(params)
-    deselect_circuit(pin)
-def create_identification(id):
-    with open('ident.txt','w') as f:
-        f.write(id)
+
+
 def read_identification():
     id=""
     with open('ident.txt','r') as f:
@@ -102,15 +99,49 @@ def disconnect_module():
             if p.value() == 0 and populated[i] == True:
                 populated[i] = False
                 file_ids[i]= None
-                return 
+                return
+
+def reset_state():
+    with open('state.txt','w') as f:
+        f.write('False,False,False,False\n,,,')
+
 #----------------------
 populated=read_state()#module connections
 ID=read_identification()
 con_check_pins=[1,2,3,4]
 circuit_controller_pins=[1,2,3,4]
-file_ids=read_fids()#[None,None,None,None]
-#write_state([False,False,False,False],file_ids)
+file_ids=read_fids()
 module_controlfile_names = ["a.py","b.py","c.py","d.py"]
 #----------------------
 #connect_new_module(FILE_ID)
 #b.set_to_red()
+serverip="192.168.1.82"
+#-------------------------------------------------------------------------
+while True :
+    resp=urequests.get("http://"+serverip+":4500/task/getTasksByDeviceId",headers={'dev_id':ID}).json()
+    if resp["module_params"]["method"] == "add_new":
+        module_resp=urequests.get("http://"+serverip+":4500/module/getModuleById",headers={'module_id':resp['module_id']}).json()
+        connect_new_module(module_resp['py_id'])
+    elif resp["module_params"]["method"] == "remove":
+            disconnect_module()
+    elif resp["module_params"]["method"] == "disown":
+        os.remove('ident.txt')
+        os.remove('conf.txt')
+        reset_state()
+    elif resp["module_params"]["method"] == "network_reset":
+        os.remove('conf.txt')
+    elif resp["module_params"]["method"] == "module_reset":
+        reset_state()
+    elif resp["module_params"]["method"] == "run":
+        module_resp=urequests.get("http://"+serverip+":4500/module/getModuleById",headers={'module_id':resp['module_id']}).json()
+        for i in range (0,len(file_ids)):
+            if file_ids[i] == module_resp['py_id']:
+                if module_controlfile_names[i]=="a.py":
+                    a.run(resp['module_params'])
+                elif module_controlfile_names[i]=="b.py":
+                    b.run(resp['module_params'])
+                elif module_controlfile_names[i]=="c.py":
+                    c.run(resp['module_params'])
+                elif module_controlfile_names[i]=="d.py":
+                    d.run(resp['module_params'])
+        urequests.delete("http://"+serverip+":4500/task/deleteTask",headers={'task_id':resp['_id']})
