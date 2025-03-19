@@ -6,6 +6,7 @@ import d
 import machine
 import urequests
 import os
+import neopixel
 
 FILE_ID = "1F5GJ0k45eJiRC3-XUQ_f74drGBJRwOTh"
 API_KEY = "AIzaSyCof7aLYawxMevJrPAwpgYt9fUxYXMrdZE"
@@ -105,7 +106,7 @@ def disconnect_module():
 def reset_state():
     with open('state.txt','w') as f:
         f.write('False,False,False,False\n,,,')
-
+npxl = neopixel.NeoPixel(machine.Pin(38),1)
 #----------------------
 populated=read_state()#module connections
 ID=read_identification()
@@ -157,6 +158,8 @@ while True :
         D("before del")
         urequests.delete("http://"+serverip+":4500/task/deleteTask",headers={'task_id':resp['_id']})
         D("after del")
-    response.close()
+        
+    npxl[0]=(0,32,0)
+    npxl.write()
     if new_file_flag == True:
         machine.reset()
