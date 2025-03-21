@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  21 MAR 2025 12:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  21 MAR 2025 12:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -672,8 +672,8 @@ Package rerunfilecheck Info: File `Szakdolgozat_vy5sdy.out' has not changed.
 (rerunfilecheck)             Checksum: F6E40FB163DC6D0AF23FB4C0ADA1A3BE;2317.
  ) 
 Here is how much of TeX's memory you used:
- 15601 strings out of 473578
- 246279 string characters out of 5732242
+ 15600 strings out of 473578
+ 246268 string characters out of 5732242
  678748 words of memory out of 5000000
  38195 multiletter control sequences out of 15000+600000
  627441 words of font info for 94 fonts, out of 8000000 for 9000
@@ -686,10 +686,10 @@ r12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/
 2024/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2024/texmf-dist/font
 s/type1/public/lm/lmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
 tt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Szakdolgozat_vy5sdy.pdf (13 pages, 3201759 bytes).
+Output written on Szakdolgozat_vy5sdy.pdf (13 pages, 3200789 bytes).
 PDF statistics:
- 260 PDF objects out of 1000 (max. 8388607)
- 219 compressed objects within 3 object streams
- 60 named destinations out of 1000 (max. 500000)
+ 258 PDF objects out of 1000 (max. 8388607)
+ 217 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
  141 words of extra memory for PDF output out of 10000 (max. 10000000)
 
