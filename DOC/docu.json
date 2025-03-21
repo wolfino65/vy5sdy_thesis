@@ -1,0 +1,13 @@
+{
+    "_id": {
+        "$oid": "67d6c6e5e3c0cb995623d001"
+    },
+    "owner": "testOwner",
+    "location": "Unknown",
+    "device_name": "Unnamed",
+    "aditionalInfo": {
+        "canBeControlledBy": [
+            "testOwner2"
+        ]
+    }
+}

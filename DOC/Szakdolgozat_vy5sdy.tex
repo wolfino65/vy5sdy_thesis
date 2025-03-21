@@ -2,14 +2,35 @@
 \usepackage[T1]{fontenc}
 \PassOptionsToPackage{defaults=hu-min}{magyar.ldf}
 \usepackage[magyar]{babel}
-\usepackage{amssymb,amsthm,pdfpages}
+\usepackage{amssymb,amsthm,pdfpages,listingsutf8}
 \footnotestyle{rule=fourth}
-
+\usepackage[dvipsnames]{xcolor}
 \newtheorem{tetel}{Tétel}[chapter]
 \theoremstyle{definition}
 \newtheorem{definicio}[tetel]{Definíció}
 \theoremstyle{remark}
 \newtheorem{megjegyzes}[tetel]{Megjegyzés}
+
+
+\lstdefinestyle{json}{
+	backgroundcolor=\color{gray!20},
+	stringstyle=\color{red},
+	keywordstyle=\color{blue},
+	keywordstyle=\color{purple},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	frame=single,
+	rulecolor=\color{black},
+	tabsize=2,
+	breaklines=true,
+	breakatwhitespace=true,
+	captionpos=b
+}
 
 \begin{document}
 	
@@ -32,9 +53,67 @@
 	
 	Az eszköz önmagában nem képes sok mindenre, azonban a hozzá kapcsolódó ,,buta'' modulok használatával lehetőség nyílik arra, hogy egy eszköz négy modult, azaz működésében különálló okos eszközt kezeljen.
 	A fejlesztés idejében az eszköz négy modult képes befogadni, azonban ez áramkör és program módosítással növelhető.
+	
+	Számomra fontos volt még az általam nem ismert, vagy nem használt technológiák használata, így próbáltam minél több számomra új technológiát használni, ezekről a technológiákról bővebben a \ref{ch_tech}.~fejezetben olvashatnak.
 	\chapter{Technológiák}
+	\label{ch_tech}
+	\section{Eszköz oldal}
+	\subsection{Programozási nyelv}
+	Ahogy később a \aref{ch_esp}.~fejezet \aref{se_espB}.~szekciójában olvashatja az ESP32 eszközöket C/C++ nyelveken lehet főképp programozni, ezek mellett script nyelveket is lehet használni.
+	
+	A megoldásban első sorban C++ nyelvet akartam használni, azonban ez a megközelítés felvetett számos problémát a megvalósítás közben (ezekről bővebben a \aref{sub_fejlESP}.~alszekcióban olvashat). A problémák hatására elhagytam a C++ programozási nyelvet és MicroPython-ra váltottam.
+	
+	A ESP32\_GENERIC\_S3-SPIRAM\_OCT-20241129-v1.24.1 firmware-en történt a fejlesztés a váltás eredményeként. Ez elérhető a \url{https://micropython.org/download/} linken keresztül.
+	\subsection{IDE}
+	Alapvetően a Visual Studio Code volt a választott IDE a fejlesztéshez, azonban ez bármely extensiont próbáltam használni egyik sem tudta sikeresen feltölteni a programot az ESP-re. Így a fejlesztés első szakaszában a VSCode-ban megírt programot az Arduino IDE segítségével töltöttem fel.
+	
+	A programozási nyelv váltása után a VSCode továbbra sem volt működőképes. Miután a probléma megoldására általam ismert módszerek tárháza kifogyott elkezdtem egy másik IDE után keresni. A keresésem eredményeként rátaláltam egy weblapra\footnote{\url{https://randomnerdtutorials.com/micropython-ides-esp32-esp8266/}} ahol több fejlesztői környezetet említenek. A keresés folyamatában számos GitHub és StackOverflow beszélgetést néztem át válasz után kutatva. Ezekben a beszélgetésekben többször is említették a \href{https://thonny.org/}{ThonyIDE}-t. Ennek eredményéül kezdtem el használni az említett környezetet.
+	\section{API}
+	Szerencsére az API-hoz használt technológiával nem volt probléma, így ez Node.js-ben íródott Visual Studio Code felhasználásával. Ezt már használtam így nem tartalmazott különösebb meglepetést a fejlesztés.
+	\section{Adatbázis}
+	A MongoDB egy nyílt forráskódú, dokumentumorientált NoSQL adatbázis, amelyet skálázható és nagy teljesítményű alkalmazások fejlesztésére terveztek. A hagyományos relációs adatbázisokkal (pl. MySQL, PostgreSQL) ellentétben a MongoDB nem táblákban, hanem rugalmas, JSON-szerű dokumentumokban tárolja az adatokat. Ez lehetővé teszi a gyors és hatékony adatkezelést, különösen olyan esetekben, amikor az adatok szerkezete dinamikus vagy változó.
+	
+	Fő jellemzői a MongoDB-nek:
+	\begin{enumerate}
+		\item Dokumentumorientált adatmodell:
+		\begin{itemize}
+			\item Az adatokat BSON (Binary JSON) formátumban tárolja, ami egy bináris reprezentációja a JSON-nek.
+			\item Egy dokumentum egy kulcs-érték párokból álló struktúra, amely hasonlít a programozási nyelvekben használt objektumokhoz.
+			\item Példa egy dokumentumra:\lstinputlisting[style=json,label=lst_docu,caption={Egy teszt dokumentum az adatbázisból.}]{docu.json}
+		\end{itemize}
+		\item Rugalmas séma:
+		\begin{itemize}
+			\item A MongoDB nem követeli meg, hogy minden dokumentumnak ugyanaz a szerkezete legyen. Ez lehetővé teszi, hogy különböző típusú adatokat tároljunk ugyanabban a gyűjteményben (collection).
+			\item Például egy users gyűjteményben lehetnek olyan dokumentumok, amelyeknek nincs age mezője, vagy más mezők is lehetnek.
+		\end{itemize}
+		\item Skálázhatóság:
+		\begin{itemize}
+			\item A MongoDB horizontálisan skálázható, ami azt jelenti, hogy az adatbázis több szerverre (shard) osztható szét, hogy kezelni tudja a nagy mennyiségű adatot és a magas terhelést.
+			\item Támogatja a replikációt is, ami magas rendelkezésre állást és hibaelállást biztosít.
+		\end{itemize}
+		\item Teljesítmény:
+		\begin{itemize}
+			\item A MongoDB gyors adatelérést biztosít indexek használatával. Többféle indexet támogat, beleértve az egyszerű, összetett, szöveges és geospatial indexeket.
+			\item A memóriában történő adatkezelés (in-memory storage) tovább növeli a teljesítményt.
+		\end{itemize}
+		\item Aggregáció és lekérdezés:
+		\begin{itemize}
+			\item A MongoDB hatékony lekérdezési nyelvet (Query Language) és aggregációs keretrendszert (Aggregation Framework) biztosít az adatok elemzéséhez és feldolgozásához.
+		\end{itemize}
+	\end{enumerate}
+	A MongoDB továbbá támogatja a CRUD műveleteket (Create, Read, Update, Delete), valamint a tranzakciókat is (a 4.0 verziótól kezdve).\cite{bib_mongo_sql}
+	\subsection{MongoDB struktúrája}
+	A MongoDB az adatbázison belül táblák helyett collection-ök vannak, ezen belül rekordok, avagy sorokkal ellentétben dokumentumokat találunk, ahol oszlopok helyett mezők vannak, az összehasonlítást egy hagyományos SQL adatbázissal a \ref{img_sql_mongo}.~ábrán lehet látni. \cite{bib_mongo_sql}
+	 \begin{figure}[!ht]
+	 	\centering
+	 	\includegraphics[width=8cm]{mongo_vs_sql}
+	 	\caption{SQL adatbázis és MongoDB szerkezeti hasonlóságai.}
+	 	\label{img_sql_mongo}
+	 \end{figure}
 	\chapter{ESP32, az eszköz}
+	\label{ch_esp}
 	\section{ESP32 bemutatása}
+	\label{se_espB}
 	Az ESP32 egy rendkívül sokoldalú és hatékony mikrokontroller, amely számos területen alkalmazható. Duális magos processzora, integrált Wi-Fi és Bluetooth képességei, valamint gazdag I/O lehetőségei miatt kiváló választás mind IoT, mind ipari vagy okos otthon alkalmazásokhoz. Az ESP32 fejlesztése egyszerű és gyors, köszönhetően a széles körben elérhető fejlesztői eszközöknek és könyvtáraknak. Ezek a tulajdonságok teszik az ESP32-t az egyik legnépszerűbb mikrokontrollerré a beágyazott rendszerek világában.
 	
 	Az általam \aref{img_myesp} használt modell az ESP32-S3-DevKitC-1 N32R8V, amely egy ESP32-S3-WROOM-2 chipet tartalmaz, ezt az Espressif System fejlesztette ki.
@@ -54,6 +133,7 @@
 		\item SPI, I2C, UART kommunikációs interfészek
 	\end{itemize}
 	Ezek a csatlakozók lehetővé teszik különböző érzékelők, kijelzők és egyéb perifériák csatlakoztatását.
+	Ezeket az eszközöket nagyrészt C és C++ nyelven lehet programozni, azonban van lehetőség a MicroPython és Lua script nyelvek használatára.
 	\section{Fejlesztés}
 	\subsection{Hardver szintű fejlesztés}
 	A projekt megvalósításához szükség volt egy egyedi áramkörre, amivel maximalizálhatom az elérhető portok számát.
@@ -67,8 +147,13 @@
 	
 	Ez a diagram a Circuit Diagram\footnote{ \url{https://www.circuit-diagram.org/}} segítségével készült.
 	Az ábra nem tartalmazza az érzékelő vezetékeket, amivel az eszköz érzékeli, hogy csatlakoztatva van-e a modul.
-	\subsection{szoftver fejlesztése}
+	\subsection{Szoftver fejlesztése és feltárt problémák}
+	\label{sub_fejlESP}
 	\chapter{API}
 	
 	\chapter{Front end}
+\begin{thebibliography}{8}
+	\bibitem{bib_mongo_sql}A szekció a \href{https://blockchainsimplified.com/blog/mongodb-introduction/}{Blockchain Simplified} alapján készült.
+	[Letöltve/látogatva:2025.03.21]
+\end{thebibliography}
 \end{document}

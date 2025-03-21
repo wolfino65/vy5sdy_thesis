@@ -1,9 +1,15 @@
 \select@language {magyar} \contentsline {chapter}{Bevezetés}{3}{chapter*.2}%
 \select@language {magyar} \contentsline {chapter}{\numberline {1}Technológiák}{4}{chapter.1}%
-\select@language {magyar} \contentsline {chapter}{\numberline {2}ESP32, az eszköz}{5}{chapter.2}%
-\select@language {magyar} \contentsline {section}{\numberline {2.1}ESP32 bemutatása}{5}{section.2.1}%
-\select@language {magyar} \contentsline {section}{\numberline {2.2}Fejlesztés}{6}{section.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.1}Hardver szintű fejlesztés}{6}{subsection.2.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.2}szoftver fejlesztése}{6}{subsection.2.2.2}%
-\select@language {magyar} \contentsline {chapter}{\numberline {3}API}{7}{chapter.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {4}Front end}{8}{chapter.4}%
+\select@language {magyar} \contentsline {section}{\numberline {1.1}Eszköz oldal}{4}{section.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.1.1}Programozási nyelv}{4}{subsection.1.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.1.2}IDE}{4}{subsection.1.1.2}%
+\select@language {magyar} \contentsline {section}{\numberline {1.2}API}{5}{section.1.2}%
+\select@language {magyar} \contentsline {section}{\numberline {1.3}Adatbázis}{5}{section.1.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.3.1}MongoDB struktúrája}{6}{subsection.1.3.1}%
+\select@language {magyar} \contentsline {chapter}{\numberline {2}ESP32, az eszköz}{8}{chapter.2}%
+\select@language {magyar} \contentsline {section}{\numberline {2.1}ESP32 bemutatása}{8}{section.2.1}%
+\select@language {magyar} \contentsline {section}{\numberline {2.2}Fejlesztés}{9}{section.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.1}Hardver szintű fejlesztés}{9}{subsection.2.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2.2}Szoftver fejlesztése és feltárt problémák}{10}{subsection.2.2.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {3}API}{11}{chapter.3}%
+\select@language {magyar} \contentsline {chapter}{\numberline {4}Front end}{12}{chapter.4}%
