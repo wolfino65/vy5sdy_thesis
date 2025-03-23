@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  21 MAR 2025 12:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  23 MAR 2025 19:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -404,7 +404,7 @@ Package: listings 2024/05/25 1.10b (Carsten Heinz)
 (c:/texlive/2024/texmf-dist/tex/latex/graphics/dvipsnam.def
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 )
-\c@tetel=\count303
+\c@megjegyzes=\count303
 
 (c:/texlive/2024/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
@@ -571,7 +571,7 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
-<eszterhazy-logo-hu.pdf, id=64, 256.07971pt x 88.04292pt>
+<eszterhazy-logo-hu.pdf, id=80, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
 Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 43.
@@ -597,17 +597,11 @@ thesis-ekf/eszterhazy-logo-hu.pdf>] (./Szakdolgozat_vy5sdy.toc)
 
 ]
 1. fejezet.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 6
-6.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 7
+0.
 (c:/texlive/2024/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (0.40442pt too wide) in paragraph at lines 66--67
-\T1/lmr/m/n/12 fej-lesz-tés a vál-tás ered-mé-nye-ként. Ez el-ér-he-t® a []$\T1
-/lmtt/m/n/12 https : / / micropython . org / download/$[]
- []
-
-
 
 [4
 
@@ -616,52 +610,79 @@ Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 82.
  (./docu.json)
 
-[5]
-<mongo_vs_sql.jpeg, id=147, 1116.17pt x 697.60625pt>
+[5] (./user_schema.json
+
+[6]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
+7.
+ (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+))
+<mongo_vs_sql.jpeg, id=185, 1116.17pt x 697.60625pt>
 File: mongo_vs_sql.jpeg Graphic file (type jpg)
 <use mongo_vs_sql.jpeg>
-Package pdftex.def Info: mongo_vs_sql.jpeg  used on input line 109.
+Package pdftex.def Info: mongo_vs_sql.jpeg  used on input line 113.
 (pdftex.def)             Requested size: 227.62204pt x 142.26508pt.
 
 
-[6]
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[7 <./mongo_vs_sql.jpeg>]
+
+
+[7{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+
+[8 <./mongo_vs_sql.jpeg>]
+
+[9]
 2. fejezet.
-<MyESP32.jpg, id=163, 1328.965pt x 3606.47375pt>
+<MyESP32.jpg, id=232, 1328.965pt x 3606.47375pt>
 File: MyESP32.jpg Graphic file (type jpg)
 <use MyESP32.jpg>
-Package pdftex.def Info: MyESP32.jpg  used on input line 122.
+Package pdftex.def Info: MyESP32.jpg  used on input line 159.
 (pdftex.def)             Requested size: 85.35826pt x 231.62248pt.
 
 
-[8
+[10
 
  <./MyESP32.jpg>]
-<circuit.png, id=172, 2730.2pt x 2168.1pt>
+<circuit.png, id=241, 2730.2pt x 2168.1pt>
 File: circuit.png Graphic file (type png)
 <use circuit.png>
-Package pdftex.def Info: circuit.png  used on input line 142.
+Package pdftex.def Info: circuit.png  used on input line 179.
 (pdftex.def)             Requested size: 284.52756pt x 225.92038pt.
 
 
-[9 <./circuit.png>]
+[11 <./circuit.png>]
 
-[10]
+[12]
+
+[13]
 3. fejezet.
 
 
-[11
+[14
 
 ]
 4. fejezet.
 
 
-[12
+[15
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 226--228
+[][]$\T1/lmtt/m/n/12 https : / / www . fullstack . com / labs / resources / blo
+g /
+ []
 
-[13
+
+Underfull \hbox (badness 2245) in paragraph at lines 226--228
+\T1/lmtt/m/n/12 an-[]introduction-[]to-[]flutters-[]world$[] \T1/lmr/m/n/12 for
+-dít-va Deep-Se-ek ál-tal. [Le-tölt-ve/-lá-
+ []
+
+
+
+[16
 
 ] (./Szakdolgozat_vy5sdy.aux)
  ***********
@@ -669,27 +690,28 @@ LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `Szakdolgozat_vy5sdy.out' has not changed.
-(rerunfilecheck)             Checksum: F6E40FB163DC6D0AF23FB4C0ADA1A3BE;2317.
+(rerunfilecheck)             Checksum: DCCF8F80A50AEFE5E934205DEF1C58AA;3024.
  ) 
 Here is how much of TeX's memory you used:
- 15600 strings out of 473578
- 246268 string characters out of 5732242
- 678748 words of memory out of 5000000
- 38195 multiletter control sequences out of 15000+600000
- 627441 words of font info for 94 fonts, out of 8000000 for 9000
+ 15701 strings out of 473578
+ 248439 string characters out of 5732242
+ 694976 words of memory out of 5000000
+ 38244 multiletter control sequences out of 15000+600000
+ 632078 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,7n,93p,812b,1371s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,7n,93p,812b,2061s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
 /type1/public/lm/lmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
 r12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/
 2024/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2024/texmf-dist/font
 s/type1/public/lm/lmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
-tt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Szakdolgozat_vy5sdy.pdf (13 pages, 3200789 bytes).
+ri12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texli
+ve/2024/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
+Output written on Szakdolgozat_vy5sdy.pdf (16 pages, 3235161 bytes).
 PDF statistics:
- 258 PDF objects out of 1000 (max. 8388607)
- 217 compressed objects within 3 object streams
- 59 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 358 PDF objects out of 1000 (max. 8388607)
+ 310 compressed objects within 4 object streams
+ 102 named destinations out of 1000 (max. 500000)
+ 173 words of extra memory for PDF output out of 10000 (max. 10000000)
 

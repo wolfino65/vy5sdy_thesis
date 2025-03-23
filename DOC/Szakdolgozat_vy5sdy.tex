@@ -5,11 +5,11 @@
 \usepackage{amssymb,amsthm,pdfpages,listingsutf8}
 \footnotestyle{rule=fourth}
 \usepackage[dvipsnames]{xcolor}
-\newtheorem{tetel}{Tétel}[chapter]
+%\newtheorem{tetel}{Tétel}[chapter]
 \theoremstyle{definition}
-\newtheorem{definicio}[tetel]{Definíció}
+%\newtheorem{definicio}[tetel]{Definíció}
 \theoremstyle{remark}
-\newtheorem{megjegyzes}[tetel]{Megjegyzés}
+\newtheorem{megjegyzes}{Megjegyzés}
 
 
 \lstdefinestyle{json}{
@@ -63,7 +63,7 @@
 	
 	A megoldásban első sorban C++ nyelvet akartam használni, azonban ez a megközelítés felvetett számos problémát a megvalósítás közben (ezekről bővebben a \aref{sub_fejlESP}.~alszekcióban olvashat). A problémák hatására elhagytam a C++ programozási nyelvet és MicroPython-ra váltottam.
 	
-	A ESP32\_GENERIC\_S3-SPIRAM\_OCT-20241129-v1.24.1 firmware-en történt a fejlesztés a váltás eredményeként. Ez elérhető a \url{https://micropython.org/download/} linken keresztül.
+	A ESP32\_GENERIC\_S3-SPIRAM\_OCT-20241129-v1.24.1 firmware-en történt a fejlesztés a váltás eredményeként. Ez elérhető a \href{https://micropython.org/download/}{MicroPython} weboldalán.
 	\subsection{IDE}
 	Alapvetően a Visual Studio Code volt a választott IDE a fejlesztéshez, azonban ez bármely extensiont próbáltam használni egyik sem tudta sikeresen feltölteni a programot az ESP-re. Így a fejlesztés első szakaszában a VSCode-ban megírt programot az Arduino IDE segítségével töltöttem fel.
 	
@@ -102,14 +102,51 @@
 		\end{itemize}
 	\end{enumerate}
 	A MongoDB továbbá támogatja a CRUD műveleteket (Create, Read, Update, Delete), valamint a tranzakciókat is (a 4.0 verziótól kezdve).\cite{bib_mongo_sql}
+	Míg nem kényszeríti a MongoDb sémák használatát van rá lehetőségünk. A sémákban megadhatunk kötelező mezőket, azok típusát, valamint ezekhez köthetünk különböző ellenőrzéseket.
+	\lstinputlisting[style=json,label=lst_schema,caption={Felhasználó collection sémája az adatbázisból. (A séma mezőinek azonosítója nem felelnek meg a json nyelv szabájainak, mivel a fájl tartalma konzolban került bevitelre.)}]{user_schema.json}
+	
+	Ahogy a \ref{lst_schema}.-es példában is látható típus és mező megszorításokat eszközöltem, e mellett az email mező még reguláris kifejezéssel is vizsgálva van.
 	\subsection{MongoDB struktúrája}
 	A MongoDB az adatbázison belül táblák helyett collection-ök vannak, ezen belül rekordok, avagy sorokkal ellentétben dokumentumokat találunk, ahol oszlopok helyett mezők vannak, az összehasonlítást egy hagyományos SQL adatbázissal a \ref{img_sql_mongo}.~ábrán lehet látni. \cite{bib_mongo_sql}
-	 \begin{figure}[!ht]
+	 \begin{figure}[!h]
 	 	\centering
 	 	\includegraphics[width=8cm]{mongo_vs_sql}
 	 	\caption{SQL adatbázis és MongoDB szerkezeti hasonlóságai.}
 	 	\label{img_sql_mongo}
 	 \end{figure}
+	\section{Frontend technológia}
+	Az eszköz hatékony vezéréléséhez szükségünk van egy applikációhoz, azonban lehet, hogy egyes emberek nem mindenhez a telefonjukat akarják használni. Ez problémát vet fel, mivel több kódbázis fenntartása és javítása sok embert és erőforrást igényel. 
+	
+	\textbf{Megoldás:} Olyan keretrendszerre, vagy programozási nyelvre van szükség, amely működőképes több platformon is.
+	
+	\textbf{Például:}
+	\begin{itemize}
+		\item React Native
+		\item Kotlin
+		\item Flutter
+		\item Lynx
+	\end{itemize}
+	\begin{megjegyzes}
+		A legújabb keretrendszer a LynxJs, amely 2025.03.05.-én jelent meg. Ahogy a React Native ez is javascript alapú, így a Lynx és React Native egyfajta versenyhelyzetben vannak. A keretrendzerek összehasonlítását olvashatja a  \href{https://medium.com/@mostsignificant/introducing-lynx-how-tiktoks-new-framework-compares-to-react-native-580a52d3462c}{Medium.com}-on, valamint a \href{https://lynxjs.org/}{LynxJs.org}-on tudhat meg többet a keretrendszerről.
+	\end{megjegyzes}
+	Választásom a Flutter-re esett. 
+	\subsection{Miért Flutter?}
+	\begin{itemize}
+		\item könnyű crossplatform build lehetőség
+		\item opensource
+		\item gyorsaság\footnote{,,Flutter is powered by Dart, a language optimized for fast apps on any platform''\cite{bib_flutter_web}}
+		\item új technológia megismerése
+	\end{itemize}
+	\subsection{Flutter ismertetése}
+	A Flutter egy olyan eszköz, amely lehetővé teszi a fejlesztők számára, hogy natív, többplatformos alkalmazásokat hozzanak létre egyetlen programozási nyelv és egyetlen kódbázis segítségével. Nem olyan alkalmazást hoz létre, amely böngészőben fut, vagy amelyet natív alkalmazásokba csomagolnak. Ehelyett natív alkalmazásokat készít iOS-re és Androidra is, amelyek később közzétehetők az app store-okban.
+	
+	
+	Az alkalmazást létrehozásához egyetlen programozási nyelvre van szükségünk, ahelyett, hogy különböző nyelveket használnánk egy iOS vagy Android alkalmazás fejlesztéséhez. Így csak egyetlen kódbázissal kell foglalkoznunk. A Flutter egy SDK\footnote{Software Development Kit}, amely lehetővé teszi, hogy a kódbázisodat natív gépi kódra fordítsd, amely a fent említett platformokon fut.
+	
+	
+	A fordítási eszközök mellett a Flutter keretrendszerként is funkcionál, UI építőelemeket (widgeteket) biztosít, mint például lapok, legördülő menük, gombok stb., valamint néhány segédfüggvényt és csomagot, amelyeket az SDK segítségével lehet lefordítani.\cite{bib_flutter_short}
+	
+	Flutter applikációt a fent említettek mellett még Windows-on, Linux-on és Web-en is lehet használni.
 	\chapter{ESP32, az eszköz}
 	\label{ch_esp}
 	\section{ESP32 bemutatása}
@@ -149,11 +186,44 @@
 	Az ábra nem tartalmazza az érzékelő vezetékeket, amivel az eszköz érzékeli, hogy csatlakoztatva van-e a modul.
 	\subsection{Szoftver fejlesztése és feltárt problémák}
 	\label{sub_fejlESP}
+	Fejlesztés elején több probléma is felmerült.
+	\begin{enumerate}
+		\item A modul vezérlő fájlok tárolása. Amennyiben C++ vagy C nyelvet használunk a belső tárhely kizárólagosan az általunk feltöltött fájlokat tartalmazza és a hozzáférés nehézkes fájlrendszer nélkül. Szerencsére elérhető több csomag is ennek a megoldására, mint a \href{https://github.com/littlefs-project/littlefs}{LittleFS}, vagy a \href{https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/storage/spiffs.html}{Spiffs}
+		\item A modul vezérlő fájlok használata, vagy futtatása. A projekt egyik fő feladata, hogy a modulok programja és a fő program egymástól függetlenül legyenek képesek működni, azaz ne a fő program hajtsa végre a szükséges lépéseket, hanem a modul vezérlő. Egy megoldás erre a fájl dinamikus betöltése és a program belépési pontjának meghatározása, majd a pont memória címén keresztüli futtatás. Ez a megközelítés a programot rendkívül bonyolultá tette volna és memória biztonsági problémákat is felvetett volna, mivel a C++ nyelvben íródó programnak C-t is használnia kellett volna.
+	\end{enumerate}
+	 Ez a kettő komolyabb probléma vezetett arra, hogy más nyelvet keressek. A MicroPython mind a kettő problémára megoldást nyújtott a beépített fájlrendszerével és JIT\footnote{Just In Time} interpreterével, ugyanis így nem bináris kóddal kell dolgozni, hanem egyszerű \textit{.py} fájlokkal.
+	 Ez a változtatás nagyban megkönnyítette a program fejlesztését.
+	 
+	 A váltás után neki tudtam kezdeni a tényleges fejlesztésnek. Itt a főbb problémákat a fájl letöltése és azoknak a futtatása jelentette. A fájl letöltését több módszerrel is megkíséreltem, a Google API használatával sikeresen le tudtam tölteni a fájlt az API mindössze az igényelt API kulcsot és a fájl azonosítóját kéri (Az azonosító a megosztási linkből kinyerhető.).
+	 
+	 Ezen a ponton a szerverrel való kommunikáció is kérdéses volt. Elsőre Websocket technológiát terveztem használni, azonban ezt drágának találtam és a szervernek egyszerre több kapcsolatot is fenn kellett volna tartania, miközben relatívan kevés és ritka az információ áramlása. A következő ötlet egy az eszközön futó API volt, ez azonban ennek a megoldásnak, hogy működőképes legyen szükséges az eszköz IP címe, valamint esetlegesen portforwarding-re van szükség amely nem egyezik az eszköz Plug\&Play irányzatával. Ennek eredményéül a jól ismert RestAPI technológia mellett döntöttem. Az API-ról többet olvashat a \ref{ch_API}. fejezetben.
+	 
+	 API-ra még így szükség van a konfigurációhoz, ehhez a Microdot könyvtárat használtam, valamint a szerver felé irányuló kérésekhez a urequests és az abból származó adatok feldolgozásához a nyelv által alapértelmezetten tartalmazott modulokat használtam. A beépített NeoPixel LED használatához a NeoPixel könyvtárra volt szükségem.
+	 \subsection{Működése}
+	 Az eszköz használata konfigurációval kezdődik, melyet kék fénnyel jelez a felhasználónak. A konfiguráció után megpróbál csatlakozni a megadott hálózathoz eközben az eszközön található LED kék fényről pulzáló zöld fényre vált. Amennyiben a kapcsolódás sikeres az eszköz zöld fénnyel jelzi ezt, ha sikertelen, akkor újraindul a folyamat.
+	 
+	 Sikeres kapcsolódás után önmagát regisztrálja az eszköz a hálózatra. Innentől az eszköz használatra kész és azonnal kérést küld az API-nak a hozzá kapcsolt feladatok iránt érdeklődve. A szerver válasza alapján a következő műveleteket végezheti el az eszköz:
+	 \begin{itemize}
+	 	\item ,,add\_new'': A parancs kiadásával új modult tudunk hozzáadni az eszközhöz.
+	 	\item ,,remove'': Az ,,add\_new'' parancs ellentettje. Modul eltávolítására adja ki a parancsot.
+	 	\item ,,disown'': Gyári visszaállítás.
+	 	\item ,,network\_reset'': Az eszköz elfelejti a hálózatot. Hasznos lehet, ha az eszközt egy másik épületbe helyezzük át.
+	 	\item ,,module\_reset'': Az eszköz belső állapotát visszaállítja, ezzel egyszerre az összes modul eltávolítható.
+	 	\item ,,run'': Futtatja a modulhoz megadott programot.
+	 \end{itemize}
+	 Fontos megjegyezni, hogy minden feladat elvégzése annak törlésével és egy új kéréssel záródik. A ,,run'' parancs esetén az eszköz a modul azonosítója alapján dönti el, hogy melyik modult kell használnia, azaz megállapítja a modul áramkörét és kiválasztja azt. Az ,,add\_new'' esetén az eszköz újraindul, hogy a program sikeresen érzékelni tudja a fájl változásait, erre a ,,remove'' parancs esetén nincs szükség, mivel a program belső állapota változik csak.
+	 
+	  Az eszköz esetleges áramkimaradásra fel van készítve, mivel a belső állapot változása folyamatosan mentve van a belső tárhelybe.
 	\chapter{API}
+	\label{ch_API}
 	
-	\chapter{Front end}
+	\chapter{Frontend}
 \begin{thebibliography}{8}
-	\bibitem{bib_mongo_sql}A szekció a \href{https://blockchainsimplified.com/blog/mongodb-introduction/}{Blockchain Simplified} alapján készült.
+	\bibitem{bib_mongo_sql}A szekció a \href{https://blockchainsimplified.com/blog/mongodb-introduction/}{Blockchain Simplified} és a DeepSeek alapján és felhasználásával készült.
 	[Letöltve/látogatva:2025.03.21]
+	\bibitem{bib_flutter_web}\url{https://flutter.dev/}
+	[Letöltve/látogatva:2025.03.23]
+	\bibitem{bib_flutter_short}\url{https://www.fullstack.com/labs/resources/blog/an-introduction-to-flutters-world} fordítva DeepSeek által.
+	[Letöltve/látogatva:2025.03.23]
 \end{thebibliography}
 \end{document}
