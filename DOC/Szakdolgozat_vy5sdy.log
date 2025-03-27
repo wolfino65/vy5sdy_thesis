@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  23 MAR 2025 19:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  27 MAR 2025 15:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -571,7 +571,7 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
-<eszterhazy-logo-hu.pdf, id=80, 256.07971pt x 88.04292pt>
+<eszterhazy-logo-hu.pdf, id=84, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
 Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 43.
@@ -618,7 +618,7 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
  (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
-<mongo_vs_sql.jpeg, id=185, 1116.17pt x 697.60625pt>
+<mongo_vs_sql.jpeg, id=190, 1116.17pt x 697.60625pt>
 File: mongo_vs_sql.jpeg Graphic file (type jpg)
 <use mongo_vs_sql.jpeg>
 Package pdftex.def Info: mongo_vs_sql.jpeg  used on input line 113.
@@ -635,7 +635,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [9]
 2. fejezet.
-<MyESP32.jpg, id=232, 1328.965pt x 3606.47375pt>
+<MyESP32.jpg, id=237, 1328.965pt x 3606.47375pt>
 File: MyESP32.jpg Graphic file (type jpg)
 <use MyESP32.jpg>
 Package pdftex.def Info: MyESP32.jpg  used on input line 159.
@@ -645,7 +645,7 @@ Package pdftex.def Info: MyESP32.jpg  used on input line 159.
 [10
 
  <./MyESP32.jpg>]
-<circuit.png, id=241, 2730.2pt x 2168.1pt>
+<circuit.png, id=246, 2730.2pt x 2168.1pt>
 File: circuit.png Graphic file (type png)
 <use circuit.png>
 Package pdftex.def Info: circuit.png  used on input line 179.
@@ -663,43 +663,52 @@ Package pdftex.def Info: circuit.png  used on input line 179.
 [14
 
 ]
+
+[15]
 4. fejezet.
 
 
-[15
+[16
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 226--228
-[][]$\T1/lmtt/m/n/12 https : / / www . fullstack . com / labs / resources / blo
-g /
+Underfull \hbox (badness 10000) in paragraph at lines 238--240
+[]\T1/lmr/m/n/12 MongoDB fel-hasz-ná-lói fó-rum: []$\T1/lmtt/m/n/12 https : / /
+ www . mongodb . com / community /
  []
 
 
-Underfull \hbox (badness 2245) in paragraph at lines 226--228
-\T1/lmtt/m/n/12 an-[]introduction-[]to-[]flutters-[]world$[] \T1/lmr/m/n/12 for
--dít-va Deep-Se-ek ál-tal. [Le-tölt-ve/-lá-
+Underfull \hbox (badness 10000) in paragraph at lines 238--240
+\T1/lmtt/m/n/12 forums / t / mongoose-[]querying-[]on-[]object-[]id-[]type / 26
+5185$[] \T1/lmr/m/n/12 [Le-tölt-ve/-lá-to-
  []
 
 
 
-[16
+[17
 
 ] (./Szakdolgozat_vy5sdy.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
-Package rerunfilecheck Info: File `Szakdolgozat_vy5sdy.out' has not changed.
-(rerunfilecheck)             Checksum: DCCF8F80A50AEFE5E934205DEF1C58AA;3024.
+
+
+Package rerunfilecheck Warning: File `Szakdolgozat_vy5sdy.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Szakdolgozat_vy5sdy.out':
+(rerunfilecheck)             Before: 5CBCC0B2309955EBB6477D02C56F98D1;3206
+(rerunfilecheck)             After:  F7E03D9F05A9CBD4D2442561A82815D7;3337.
  ) 
 Here is how much of TeX's memory you used:
- 15701 strings out of 473578
- 248439 string characters out of 5732242
- 694976 words of memory out of 5000000
- 38244 multiletter control sequences out of 15000+600000
+ 15709 strings out of 473578
+ 248553 string characters out of 5732242
+ 695054 words of memory out of 5000000
+ 38247 multiletter control sequences out of 15000+600000
  632078 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,7n,93p,812b,2061s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,7n,93p,1160b,2061s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
 /type1/public/lm/lmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
@@ -708,10 +717,10 @@ r12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/
 s/type1/public/lm/lmr8.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
 ri12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texli
 ve/2024/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Szakdolgozat_vy5sdy.pdf (16 pages, 3235161 bytes).
+Output written on Szakdolgozat_vy5sdy.pdf (17 pages, 3239490 bytes).
 PDF statistics:
- 358 PDF objects out of 1000 (max. 8388607)
- 310 compressed objects within 4 object streams
- 102 named destinations out of 1000 (max. 500000)
- 173 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 377 PDF objects out of 1000 (max. 8388607)
+ 328 compressed objects within 4 object streams
+ 107 named destinations out of 1000 (max. 500000)
+ 181 words of extra memory for PDF output out of 10000 (max. 10000000)
 

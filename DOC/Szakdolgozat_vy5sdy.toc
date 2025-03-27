@@ -16,4 +16,6 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {2.2.2}Szoftver fejlesztése és feltárt problémák}{12}{subsection.2.2.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.2.3}Működése}{13}{subsection.2.2.3}%
 \select@language {magyar} \contentsline {chapter}{\numberline {3}API}{14}{chapter.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {4}Frontend}{15}{chapter.4}%
+\select@language {magyar} \contentsline {section}{\numberline {3.1}Adatbázis kezelése}{14}{section.3.1}%
+\select@language {magyar} \contentsline {section}{\numberline {3.2}Végpontok}{15}{section.3.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {4}Frontend}{16}{chapter.4}%

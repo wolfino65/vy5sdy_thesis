@@ -2,13 +2,14 @@ import express from 'express'
 import { addTask, getTasksByDeviceId, deleteTask } from '../DB_handling/tasks_db.js'
 var taskRouter = express.Router();
 var responses = []
+var currentExecution = []
 taskRouter.post('/addTask', async (req, res) => {
     let { dev_id, module_id, user_id, params, aditionalInfo } = req.body;
     let result = await addTask(dev_id, module_id, user_id, params, aditionalInfo);
     executeByIndex(checkForData(dev_id))
     res.send(result);
 })
-var currentExecution = []
+
 taskRouter.get('/getTasksByDeviceId', async (req, res) => {
     let { dev_id } = req.headers;
     var i = checkForData(dev_id)
@@ -60,7 +61,9 @@ function remove(arr, data, isJSON = false, JSONIdentifier) {
         arr.splice(arr.findIndex((el) => el == data), 1)
     }
 }
+
 function getExec(JSONIdentifier) {
     return currentExecution.findIndex((el) => el == JSONIdentifier)
 }
+
 export default taskRouter;

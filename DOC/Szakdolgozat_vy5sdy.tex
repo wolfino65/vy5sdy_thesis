@@ -216,14 +216,26 @@
 	  Az eszköz esetleges áramkimaradásra fel van készítve, mivel a belső állapot változása folyamatosan mentve van a belső tárhelybe.
 	\chapter{API}
 	\label{ch_API}
+	Az API az Express.js keretrendszerrel készült és minden entitás CRUD műveleteit ellátja.
+	\section{Adatbázis kezelése}
+	Az adatbázishoz egy egyszerű connect stringel történik, amelyet a MongoDB oldalán kérhetünk. A string tartalmazza a felhasználónevet, fiókhoz tartozó jelszót és más az adatbázissal kapcsolatos adatokat, mint az appName paramétert.
 	
+	A kapcsolat létesítéséhez szükség van a MongoDB natív JavaScript driver-ére, ezt az NPM segítségével letölthetjük, majd az ebben található MongoClient osztályt importálhatjuk és új példányt hozhatunk létre, az osztály konstruktora a már feljebb említett connect stringet várja paraméterül. Innentől kiválaszthatjuk az adatbázist amin dolgozni fogunk.
+	
+	A programkódban minden collection-re külön fájl készült.  Az adatbázishoz tartozó metódusok mindig egy JSON objektumot várnak. A műveletek elvégzését MongoBD által definiált metódusok hívásával lehetségesek. Az adatbázis különbséget tesz az alapján, hogy egy vagy több dokumentumot várunk eredményül, ez az összes metódusra igaz. A collection-ben való keresés nem nehéz, csak meg kell adni a mező nevét és annak értékét, ez azonban nem annyira egyszerű, ha a ,,\_id'' mező alapján akarunk keresni, hiszen az eddigiek alapján arra készülünk, hogy a megfelelő mezőhöz kell kapcsolni az adatot, azonban ahogy a \ref{lst_docu}.-es dokumentumban láthatjuk a mező nem string hanem objektum típusú, ez azonban nem észrevehető, ha a klienst, vagy a weblapot használjuk. A dokumentációt\cite{bib_mongo_docs} keresve nem találtam megoldást így a fórumhoz\cite{bib_mongo_forum} fordultam, ahol megtaláltam amit kerestem. Ahhoz, hogy ID alapján tudjunk keresni szükségünk van az ,,ObjetId'' nevű osztályra, ennek a konstruktorába kell elhelyezni az ID-t.
+	
+	\section{Végpontok}
+	Ahogy az adatbázis kezelésnél itt is minden collection-nek külön fájl van dedikálva, nagy részük nem különbözik a már megszokott végpontoktól. 
 	\chapter{Frontend}
 \begin{thebibliography}{8}
 	\bibitem{bib_mongo_sql}A szekció a \href{https://blockchainsimplified.com/blog/mongodb-introduction/}{Blockchain Simplified} és a DeepSeek alapján és felhasználásával készült.
 	[Letöltve/látogatva:2025.03.21]
 	\bibitem{bib_flutter_web}\url{https://flutter.dev/}
 	[Letöltve/látogatva:2025.03.23]
-	\bibitem{bib_flutter_short}\url{https://www.fullstack.com/labs/resources/blog/an-introduction-to-flutters-world} fordítva DeepSeek által.
+	\bibitem{bib_flutter_short}Introduction to Flutter: \url{https://www.fullstack.com/labs/resources/blog/an-introduction-to-flutters-world} fordítva DeepSeek által.
 	[Letöltve/látogatva:2025.03.23]
+	\bibitem{bib_mongo_docs}MongoDB dokumentáció: \url{https://www.mongodb.com/docs/manual/} [Letöltve/látogatva:2025.03.06]
+	\bibitem{bib_mongo_forum}MongoDB felhasználói fórum: \url{https://www.mongodb.com/community/forums/t/mongoose-querying-on-object-id-type/265185}
+	[Letöltve/látogatva:2025.03.06]
 \end{thebibliography}
 \end{document}
