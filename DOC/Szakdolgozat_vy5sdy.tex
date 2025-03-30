@@ -32,6 +32,37 @@
 	captionpos=b
 }
 
+\lstdefinestyle{JavaScript}{
+	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywords={class, export, boolean, throw, implements, import, this},
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{purple}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	morestring=[b]',
+	morestring=[b]"
+	backgroundcolor=\color{gray!20},
+	stringstyle=\color{red},
+	keywordstyle=\color{blue},
+	keywordstyle=\color{purple},
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	frame=single,
+	rulecolor=\color{black},
+	tabsize=2,
+	breaklines=true,
+	breakatwhitespace=true,
+	captionpos=b
+}
 \begin{document}
 	
 	\institute{Matematikai és Informatikai Intézet}
@@ -225,7 +256,26 @@
 	A programkódban minden collection-re külön fájl készült.  Az adatbázishoz tartozó metódusok mindig egy JSON objektumot várnak. A műveletek elvégzését MongoBD által definiált metódusok hívásával lehetségesek. Az adatbázis különbséget tesz az alapján, hogy egy vagy több dokumentumot várunk eredményül, ez az összes metódusra igaz. A collection-ben való keresés nem nehéz, csak meg kell adni a mező nevét és annak értékét, ez azonban nem annyira egyszerű, ha a ,,\_id'' mező alapján akarunk keresni, hiszen az eddigiek alapján arra készülünk, hogy a megfelelő mezőhöz kell kapcsolni az adatot, azonban ahogy a \ref{lst_docu}.-es dokumentumban láthatjuk a mező nem string hanem objektum típusú, ez azonban nem észrevehető, ha a klienst, vagy a weblapot használjuk. A dokumentációt\cite{bib_mongo_docs} keresve nem találtam megoldást így a fórumhoz\cite{bib_mongo_forum} fordultam, ahol megtaláltam amit kerestem. Ahhoz, hogy ID alapján tudjunk keresni szükségünk van az ,,ObjetId'' nevű osztályra, ennek a konstruktorába kell elhelyezni az ID-t.
 	
 	\section{Végpontok}
-	Ahogy az adatbázis kezelésnél itt is minden collection-nek külön fájl van dedikálva, nagy részük nem különbözik a már megszokott végpontoktól. 
+	Ahogy az adatbázis kezelésnél itt is minden collection-nek külön fájl van dedikálva, nagy részük nem különbözik a már megszokott végpontoktól. Azonban, az nem optimális, ha az okos eszköz folyamatosan kéréseket küld az API-nak. Aprobléma megoldása az IoC\footnote{Inversion of Controll} alkalmazása akár csak a modern GUI-val ellátott alkalmazások esetén. Nem a program vár vezérlésre, hanem majd jelzünk a programnak, hogy végezze el a feladatot. Ez azt jelenti, hogy az API-nak kell jeleznie az okos eszköznek a feladat elvégzésére. Erre egy jó megoldás lehet az RPC\footnote{Remote Procedure Call}, azonban így a szervernek tudnia kell az eszköz IP címét, valamint portforward-ot kell végeznünk.
+	\subsection{Mi felel meg az elvárásoknak?}
+	Elvárásaink:
+	\begin{enumerate}
+		\item Az eszköznek kell kezdeményezni a kapcsolatot, ezzel elkerülve a lehetséges problémákat melyeket a hálózat, vagy a tűzfal okozhat. \label{it_elv_1}
+		\item Az eszköznek várnia kell a feladatra, nem küldhet request-et percenként a szervernek. \label{it_elv_2}
+		\item Az eszközt értesíteni kell a feladat létrejöttéről, akárcsak az Observer.\label{it_elv_3}
+	\end{enumerate}
+	Ezen elvárásoknak megfelel például a WebSocket, azonban ezt túlságosan pazarló megoldásnak találtam, ahogy a \ref{sub_fejlESP}.-es szekcióban is említettem. Egy másik Lehetőség az SSE\footnote{Server Sent Event}-volt, azonban míg könnyű implementálni a kapcsolat csak egy irányú, ezáltal az eszköz nem küldhet vissza adatot a szervernek\cite{bib_SSE}.
+	
+	Egy másik lehetőség az MQTT\footnote{Lightweight Pub/Sub Protocol} volt, amely IoT felhasználásra tökéletes, azonban, hogy ez működjön szükségünk van egy broker-re pl.: Mosquitto, AWS IoT. Ez egy plusz költséget jelent a rendszerben, amely drágábbá tenné a rendszert, ez nem lehetőség\cite{bib_MQTT}.
+	
+	Egy pénzügyileg kedvezőbb megoldás a Polling. Amely HTTP protokollal tökéletesen működik és eleget tesz az \ref{it_elv_1}.~feltételnek és a \ref{it_elv_3}.~kritériumnak is, azonban ebben az esetben az eszköz bizonyos intervallumonként újra kérést fog küldeni a szervernek, ez a \ref{it_elv_2}. pontnak nem felel meg.
+	
+	A Polling egy változata a Long-Polling azonban megfelel az elvárásainknak. A módszer implementálásával, az eszköz addig várakozik a válaszra amíg azt meg nem kapja, majd annak érkezésével végrehajtja az abban kapott feladatot és az esetleges eredményeket vissza is tudja küldeni. 
+	\subsection{Long-Polling megvalósítása}
+	Tekintve, hogy Long-Polling-ot még nem használtam meg kellett ismernem\cite{bib_long_poll1,bib_long_poll_imp}. Ezek mellett praktikusabb példákat is keresnem kellet, hogy jobban megértsem\cite{bib_long_poll_pl}.
+	
+	Implementálás után teszteltem a funkciót, eleinte jól működött, azonban amikor több feladatot is feltöltöttem az API összeomlott és az eszköz kommunikációs hibát dobott. A hiba gyökere az volt, hogy, míg a bejövő request elindította a folyamatot, addig egy másik ismét megtette ezt, így a kapcsolat a response elküldésével lezárult és nem tudta az API elküldeni a másikat. Ennek megoldása ként egy ,,jelenleg futó'' másodlagos lista létrehozása volt szükséges.
+	\lstinputlisting[style=JavaScript,label=lst_polling,caption={Long-Polling és a hozzá tartozó metódusok.}]{sample_of_long-polling.js}
 	\chapter{Frontend}
 \begin{thebibliography}{8}
 	\bibitem{bib_mongo_sql}A szekció a \href{https://blockchainsimplified.com/blog/mongodb-introduction/}{Blockchain Simplified} és a DeepSeek alapján és felhasználásával készült.
@@ -237,5 +287,15 @@
 	\bibitem{bib_mongo_docs}MongoDB dokumentáció: \url{https://www.mongodb.com/docs/manual/} [Letöltve/látogatva:2025.03.06]
 	\bibitem{bib_mongo_forum}MongoDB felhasználói fórum: \url{https://www.mongodb.com/community/forums/t/mongoose-querying-on-object-id-type/265185}
 	[Letöltve/látogatva:2025.03.06]
+	\bibitem{bib_SSE}Server Sent Event ismertetők: \url{https://web.dev/articles/eventsource-basics}, \url{https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events}
+	[Letöltve/látogatva:2025.03.07]
+	\bibitem{bib_MQTT} MQTT honlapja: \url{https://mqtt.org/}
+	[Letöltve/látogatva:2025.03.07]
+	\bibitem{bib_long_poll1} Long-Polling-ot ismertető oldal: \url{https://javascript.info/long-polling}
+	[Letöltve/látogatva:2025.03.08]
+	\bibitem{bib_long_poll_pl} Long-Polling használata Expressel: \url{https://medium.com/@ignatovich.dm/implementing-long-polling-with-express-and-react-2cb965203128}
+	[Letöltve/látogatva:2025.03.08]
+	\bibitem{bib_long_poll_imp} Long-Polling használata: \url{https://stackoverflow.com/questions/45853418/how-to-use-long-polling-in-native-javascript-and-node-js}
+	[Letöltve/látogatva:2025.03.08]
 \end{thebibliography}
 \end{document}
