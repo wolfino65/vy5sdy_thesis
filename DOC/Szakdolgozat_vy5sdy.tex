@@ -264,13 +264,44 @@
 		\item Az eszköznek várnia kell a feladatra, nem küldhet request-et percenként a szervernek. \label{it_elv_2}
 		\item Az eszközt értesíteni kell a feladat létrejöttéről, akárcsak az Observer.\label{it_elv_3}
 	\end{enumerate}
-	Ezen elvárásoknak megfelel például a WebSocket, azonban ezt túlságosan pazarló megoldásnak találtam, ahogy a \ref{sub_fejlESP}.-es szekcióban is említettem. Egy másik Lehetőség az SSE\footnote{Server Sent Event}-volt, azonban míg könnyű implementálni a kapcsolat csak egy irányú, ezáltal az eszköz nem küldhet vissza adatot a szervernek\cite{bib_SSE}.
+	Ezen elvárásoknak megfelel például a WebSocket, azonban ezt túlságosan pazarló megoldásnak találtam, ahogy a \ref{sub_fejlESP}.-es szekcióban is említettem. Egy másik Lehetőség az SSE\footnote{Server Sent Event}-volt, azonban míg könnyű implementálni a kapcsolat csak egy irányú, ezáltal az eszköz nem küldhet vissza adatot a szervernek\cite{bib_SSE}. Az SSE-ről többet olvashat a \ref{sssec_SSE}.~szekcióban.
 	
 	Egy másik lehetőség az MQTT\footnote{Lightweight Pub/Sub Protocol} volt, amely IoT felhasználásra tökéletes, azonban, hogy ez működjön szükségünk van egy broker-re pl.: Mosquitto, AWS IoT. Ez egy plusz költséget jelent a rendszerben, amely drágábbá tenné a rendszert, ez nem lehetőség\cite{bib_MQTT}.
 	
 	Egy pénzügyileg kedvezőbb megoldás a Polling. Amely HTTP protokollal tökéletesen működik és eleget tesz az \ref{it_elv_1}.~feltételnek és a \ref{it_elv_3}.~kritériumnak is, azonban ebben az esetben az eszköz bizonyos intervallumonként újra kérést fog küldeni a szervernek, ez a \ref{it_elv_2}. pontnak nem felel meg.
 	
 	A Polling egy változata a Long-Polling azonban megfelel az elvárásainknak. A módszer implementálásával, az eszköz addig várakozik a válaszra amíg azt meg nem kapja, majd annak érkezésével végrehajtja az abban kapott feladatot és az esetleges eredményeket vissza is tudja küldeni. 
+	\subsubsection{SSE}
+	\label{sssec_SSE}
+	Az SSE (Server-Sent Events) egy olyan HTTP-alapú technológia, amely lehetővé teszi, hogy a szerver valós időben küldjön adatokat a kliensnek egy egyirányú kommunikációs csatornán keresztül. Az SSE-t gyakran használják valós idejű értesítések, frissítések és adatstreamelés céljaira, ahol a kliensnek folyamatosan frissülő információra van szüksége anélkül, hogy újra és újra lekérdezné a szervert.\\
+	\textbf{Működési elv}\\
+	Az SSE (Server-Sent Events) egy olyan HTTP-alapú technológia, amely lehetővé teszi, hogy a szerver valós időben küldjön adatokat a kliensnek egy egyirányú kommunikációs csatornán keresztül. Az SSE-t gyakran használják valós idejű értesítések, frissítések és adatstreamelés céljaira, ahol a kliensnek folyamatosan frissülő információra van szüksége anélkül, hogy újra és újra lekérdezné a szervert\cite{bib_SSE_spec,bib_SSE}.\\
+	\textbf{SSE jellemzöi}\\
+	\begin{enumerate}
+		\item Egyirányú kommunikáció –- Csak a szerver küldhet adatot a kliens felé.
+		\item Egyszerű implementáció –- Nincs szükség komplex protokollokra (mint a WebSocket).
+		\item HTTP-alapú –- Nem igényel külön portot, működik a meglévő HTTP(S) infrastruktúrán.
+		\item Automatikus újrakapcsolódás –- Ha a kapcsolat megszakad, a kliens automatikusan újrapróbálkozik.
+		\item Támogatja az eseménytípusokat -– Lehetőség van különböző típusú események küldésére (pl. message, update).
+	\end{enumerate}
+	\begin{table}[h]
+		\centering
+		\caption{SSE és WebSocket összehasonlítás}
+		\label{tab_sse_v_websocket}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{Jellemző}         & \textbf{SSE}                          & \textbf{WebSocket}                  \\ \hline
+			\textbf{Kommunikáció iránya}       & Egyirányú (szerver $\rightarrow$ kliens) & Kétirányú (duplex)                  \\ \hline
+			\textbf{Protokoll}                 & HTTP/HTTPS                            & WS (WebSocket), WSS (secure)        \\ \hline
+			\textbf{Adatformátum}              & Csak szöveg (text/event-stream)       & Szöveg és bináris is                \\ \hline
+			\textbf{Komplexitás}               & Egyszerű (beépített böngésző API)     & Bonyolultabb (külön könyvtár kell)  \\ \hline
+			\textbf{Újrakapcsolódás}           & Automatikus                           & Manuális kezelés szükséges          \\ \hline
+			\textbf{Alkalmazási terület}       & Valós idejű értesítések, frissítések  & Chat, játékok, valós idejű interakció \\ \hline
+			\textbf{Böngészőtámogatás}        & Modern böngészők (IE nem)            & Szélesebb támogatás                 \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	
 	\subsection{Long-Polling megvalósítása}
 	Tekintve, hogy Long-Polling-ot még nem használtam meg kellett ismernem\cite{bib_long_poll1,bib_long_poll_imp}. Ezek mellett praktikusabb példákat is keresnem kellet, hogy jobban megértsem\cite{bib_long_poll_pl}.
 	
@@ -296,6 +327,8 @@
 	\bibitem{bib_long_poll_pl} Long-Polling használata Expressel: \url{https://medium.com/@ignatovich.dm/implementing-long-polling-with-express-and-react-2cb965203128}
 	[Letöltve/látogatva:2025.03.08]
 	\bibitem{bib_long_poll_imp} Long-Polling használata: \url{https://stackoverflow.com/questions/45853418/how-to-use-long-polling-in-native-javascript-and-node-js}
+	[Letöltve/látogatva:2025.03.08]
+	\bibitem{bib_SSE_spec} SSE implementálása és leírása: \url{https://html.spec.whatwg.org/multipage/server-sent-events.html}
 	[Letöltve/látogatva:2025.03.08]
 \end{thebibliography}
 \end{document}
