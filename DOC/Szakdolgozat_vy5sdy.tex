@@ -227,7 +227,7 @@
 	 
 	 A váltás után neki tudtam kezdeni a tényleges fejlesztésnek. Itt a főbb problémákat a fájl letöltése és azoknak a futtatása jelentette. A fájl letöltését több módszerrel is megkíséreltem, a Google API használatával sikeresen le tudtam tölteni a fájlt az API mindössze az igényelt API kulcsot és a fájl azonosítóját kéri (Az azonosító a megosztási linkből kinyerhető.).
 	 
-	 Ezen a ponton a szerverrel való kommunikáció is kérdéses volt. Elsőre Websocket technológiát terveztem használni, azonban ezt drágának találtam és a szervernek egyszerre több kapcsolatot is fenn kellett volna tartania, miközben relatívan kevés és ritka az információ áramlása. A következő ötlet egy az eszközön futó API volt, ez azonban ennek a megoldásnak, hogy működőképes legyen szükséges az eszköz IP címe, valamint esetlegesen portforwarding-re van szükség amely nem egyezik az eszköz Plug\&Play irányzatával. Ennek eredményéül a jól ismert RestAPI technológia mellett döntöttem. Az API-ról többet olvashat a \ref{ch_API}. fejezetben.
+	 Ezen a ponton a szerverrel való kommunikáció is kérdéses volt. Elsőre Websocket technológiát terveztem használni, azonban ezt drágának találtam és a szervernek egyszerre több kapcsolatot is fenn kellett volna tartania, miközben relatívan kevés és ritka az információ áramlása. A következő ötlet egy az eszközön futó API volt, ez azonban ennek a megoldásnak, hogy működőképes legyen szükséges az eszköz IP címe, valamint esetlegesen portforwarding-re van szükség amely nem egyezik az eszköz Plug\&Play irányzatával. Ennek eredményéül a jól ismert RestAPI technológia mellett döntöttem. Az API-ról többet olvashat a \ref{ch_API}.~fejezetben.
 	 
 	 API-ra még így szükség van a konfigurációhoz, ehhez a Microdot könyvtárat használtam, valamint a szerver felé irányuló kérésekhez a urequests és az abból származó adatok feldolgozásához a nyelv által alapértelmezetten tartalmazott modulokat használtam. A beépített NeoPixel LED használatához a NeoPixel könyvtárra volt szükségem.
 	 \subsection{Működése}
@@ -264,18 +264,18 @@
 		\item Az eszköznek várnia kell a feladatra, nem küldhet request-et percenként a szervernek. \label{it_elv_2}
 		\item Az eszközt értesíteni kell a feladat létrejöttéről, akárcsak az Observer.\label{it_elv_3}
 	\end{enumerate}
-	Ezen elvárásoknak megfelel például a WebSocket, azonban ezt túlságosan pazarló megoldásnak találtam, ahogy a \ref{sub_fejlESP}.-es szekcióban is említettem. Egy másik Lehetőség az SSE\footnote{Server Sent Event}-volt, azonban míg könnyű implementálni a kapcsolat csak egy irányú, ezáltal az eszköz nem küldhet vissza adatot a szervernek\cite{bib_SSE}. Az SSE-ről többet olvashat a \ref{sssec_SSE}.~szekcióban.
+	Ezen elvárásoknak megfelel például a WebSocket, azonban ezt túlságosan pazarló megoldásnak találtam, ahogy a \ref{sub_fejlESP}.-es szekcióban is említettem. Egy másik Lehetőség az SSE\footnote{Server Sent Event}-volt, azonban míg könnyű implementálni a kapcsolat csak egy irányú, ezáltal az eszköz nem küldhet vissza adatot a szervernek\cite{bib_SSE}. Az SSE-ről többet olvashat a \ref{sssec_SSE}.~szekcióban, valamint megtekintheti az SSE és WebSocket összehasonlítását a \ref{tab_sse_v_websocket}.~táblázatban.
 	
-	Egy másik lehetőség az MQTT\footnote{Lightweight Pub/Sub Protocol} volt, amely IoT felhasználásra tökéletes, azonban, hogy ez működjön szükségünk van egy broker-re pl.: Mosquitto, AWS IoT. Ez egy plusz költséget jelent a rendszerben, amely drágábbá tenné a rendszert, ez nem lehetőség\cite{bib_MQTT}.
+	Egy másik lehetőség az MQTT\footnote{Message Queuing Telemetry Transport} volt, amely IoT felhasználásra tökéletes, azonban, hogy ez működjön szükségünk van egy broker-re pl.: Mosquitto, AWS IoT. Ez egy plusz költséget jelent a rendszerben, amely drágábbá tenné a rendszert, ez nem lehetőség\cite{bib_MQTT}. Az MQTT-ről többet olvashat a \ref{sssec_MQQTT}.~szekcióban.
 	
 	Egy pénzügyileg kedvezőbb megoldás a Polling. Amely HTTP protokollal tökéletesen működik és eleget tesz az \ref{it_elv_1}.~feltételnek és a \ref{it_elv_3}.~kritériumnak is, azonban ebben az esetben az eszköz bizonyos intervallumonként újra kérést fog küldeni a szervernek, ez a \ref{it_elv_2}. pontnak nem felel meg.
 	
 	A Polling egy változata a Long-Polling azonban megfelel az elvárásainknak. A módszer implementálásával, az eszköz addig várakozik a válaszra amíg azt meg nem kapja, majd annak érkezésével végrehajtja az abban kapott feladatot és az esetleges eredményeket vissza is tudja küldeni. 
 	\subsubsection{SSE}
 	\label{sssec_SSE}
-	Az SSE (Server-Sent Events) egy olyan HTTP-alapú technológia, amely lehetővé teszi, hogy a szerver valós időben küldjön adatokat a kliensnek egy egyirányú kommunikációs csatornán keresztül. Az SSE-t gyakran használják valós idejű értesítések, frissítések és adatstreamelés céljaira, ahol a kliensnek folyamatosan frissülő információra van szüksége anélkül, hogy újra és újra lekérdezné a szervert.\\
-	\textbf{Működési elv}\\
 	Az SSE (Server-Sent Events) egy olyan HTTP-alapú technológia, amely lehetővé teszi, hogy a szerver valós időben küldjön adatokat a kliensnek egy egyirányú kommunikációs csatornán keresztül. Az SSE-t gyakran használják valós idejű értesítések, frissítések és adatstreamelés céljaira, ahol a kliensnek folyamatosan frissülő információra van szüksége anélkül, hogy újra és újra lekérdezné a szervert\cite{bib_SSE_spec,bib_SSE}.\\
+	\textbf{Működési elv}\\
+	Az SSE a standard HTTP/1.1 vagy HTTP/2 protokollt használja, és egy tartós TCP-kapcsolaton keresztül működik. A kliens (általában egy böngésző) létrehoz egy kapcsolatot a szerverrel egy speciális EventSource API segítségével, majd a szerver folyamatosan küldhet eseményeket a kliens felé text/event-stream MIME típusban.\\
 	\textbf{SSE jellemzöi}\\
 	\begin{enumerate}
 		\item Egyirányú kommunikáció –- Csak a szerver küldhet adatot a kliens felé.
@@ -284,11 +284,12 @@
 		\item Automatikus újrakapcsolódás –- Ha a kapcsolat megszakad, a kliens automatikusan újrapróbálkozik.
 		\item Támogatja az eseménytípusokat -– Lehetőség van különböző típusú események küldésére (pl. message, update).
 	\end{enumerate}
-	\begin{table}[h]
+	
+	\begin{table}[!hb]
 		\centering
 		\caption{SSE és WebSocket összehasonlítás}
 		\label{tab_sse_v_websocket}
-		\begin{tabular}{|l|l|l|}
+		\begin{tabular}{|l|l|p{5cm}|}
 			\hline
 			\textbf{Jellemző}         & \textbf{SSE}                          & \textbf{WebSocket}                  \\ \hline
 			\textbf{Kommunikáció iránya}       & Egyirányú (szerver $\rightarrow$ kliens) & Kétirányú (duplex)                  \\ \hline
@@ -300,8 +301,25 @@
 			\textbf{Böngészőtámogatás}        & Modern böngészők (IE nem)            & Szélesebb támogatás                 \\ \hline
 		\end{tabular}
 	\end{table}
-	
-	
+	\clearpage
+	\subsubsection{MQTT}
+	\label{sssec_MQQTT}
+	Az MQTT egy nyílt, könnyűsúlyú üzenetküldő protokoll, amelyet eredetileg a publisker-előfizet (pub/sub) modellre terveztek az alacsony sávszélességű, magas késleltetésű hálózatok (pl. IoT eszközök) számára. Az MQTT-t ma széles körben használják az Ipari Internet of Things (IIoT), otthoni automatizálás, és valós idejű adatátviteli rendszerek területén. A protokollt az OASIS szabványosította, és a ISO/IEC 20922 szabvány részét képezi\cite{bib_MQTT_iso,bib_MQTT_oasis}.\\
+	\textbf{Történet és fejlődés}
+	\begin{itemize}
+		\item 1999: Az IBM és az Arcom (ma Eurotech) fejlesztette ki Andy Stanford-Clark és Arlen Nipper vezetésével, olajvezeték-figyelő rendszerekhez\cite{bib_MQTT_ibm}.
+		\item 2014: Az MQTT v3.1.1 vált hivatalos OASIS szabvánnyá.
+		\item 2019: Megjelent az MQTT v5, új funkciókkal (pl. üzenetlejárat, okokódok, megosztott előfizetések).
+	\end{itemize}
+	\textbf{Működési elv (Publish-Subscribe modell)}\\
+	Az MQTT központi broker segítségével működik, amely üzeneteket továbbít a kliensek között. A kommunikáció témakörök (topics) alapján történik.
+	Kulcsfogalmak:
+	\begin{enumerate}
+		\item Közzétevő (Publisher): Üzeneteket küld egy témakörre (\textit{publish}).
+		\item Előfizető (Subscriber): Feliratkozik egy témakörre, és fogadja az üzeneteket (\textit{subscribe}).
+		\item Broker: Közvetíti az üzeneteket a megfelelő előfizetőknek.
+		\item Témakör (Topic): Hierarchikus útvonal (pl. \textit{iot/sensor1/temperature}).
+	\end{enumerate}
 	\subsection{Long-Polling megvalósítása}
 	Tekintve, hogy Long-Polling-ot még nem használtam meg kellett ismernem\cite{bib_long_poll1,bib_long_poll_imp}. Ezek mellett praktikusabb példákat is keresnem kellet, hogy jobban megértsem\cite{bib_long_poll_pl}.
 	
@@ -329,6 +347,12 @@
 	\bibitem{bib_long_poll_imp} Long-Polling használata: \url{https://stackoverflow.com/questions/45853418/how-to-use-long-polling-in-native-javascript-and-node-js}
 	[Letöltve/látogatva:2025.03.08]
 	\bibitem{bib_SSE_spec} SSE implementálása és leírása: \url{https://html.spec.whatwg.org/multipage/server-sent-events.html}
+	[Letöltve/látogatva:2025.03.08]
+	\bibitem{bib_MQTT_oasis}OASIS MQTT v5 specifikáció: \url{https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html}
+	[Letöltve/látogatva:2025.03.08]
+	\bibitem{bib_MQTT_iso} ISO/IEC 20922: \url{https://www.iso.org/standard/69466.html}
+	[Letöltve/látogatva:2025.03.08]
+	\bibitem{bib_MQTT_ibm} IBM MQTT fehér könyv: \url{https://www.ibm.com/docs/en/ibm-mq/8.0.0}
 	[Letöltve/látogatva:2025.03.08]
 \end{thebibliography}
 \end{document}
