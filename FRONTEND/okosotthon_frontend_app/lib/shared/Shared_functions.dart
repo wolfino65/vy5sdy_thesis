@@ -23,4 +23,5 @@ class Shared{
       throw Exception("No data");
     }
   }
+  
 }

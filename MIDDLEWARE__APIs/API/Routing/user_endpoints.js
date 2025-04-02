@@ -14,7 +14,12 @@ userRouter.post('/login', async (req, res) => {
     console.log(password);
     let result = await login(email, password);
     console.log(result);
-    res.send(result);
+    if (result===null){
+        res.status(401).send("Wrong password or email address.");
+    }
+    else{
+        res.status(200).send(result);
+    }
 })
 
 userRouter.get('/getUserById', async (req, res) => {

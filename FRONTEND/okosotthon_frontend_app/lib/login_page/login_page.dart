@@ -3,6 +3,7 @@ import 'package:okosotthon_frontend_app/input/InputFields.dart';
 import 'package:okosotthon_frontend_app/register_page/reg_page.dart';
 import 'package:okosotthon_frontend_app/home_page/home_page.dart';
 import 'package:okosotthon_frontend_app/shared/Shared_functions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -53,13 +54,28 @@ class _LoginPageState extends State<LoginPage> {
   void _login() async {
     try {
       final resp = await Shared.loginRequest(emailCont.text, pwCont.text);
-      print(resp["_id"].toString());
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('email', resp['email'].toString());
+      prefs.setString('uname', resp['username'].toString());
+      prefs.setString('id', resp['_id'].toString());
+      prefs.setString('password', resp['password'].toString());
+      prefs.setBool('autoLogin', true);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => DeviceList()),
       );
     } catch (e) {
-      print("not succesfull");
+      AlertDialog alert = AlertDialog(
+        title: Text("Unsuccesfull login."),
+        content: Text("Wrong email address or password."),
+      );
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
     }
   }
 
