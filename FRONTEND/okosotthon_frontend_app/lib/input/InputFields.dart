@@ -34,6 +34,7 @@ class InputFields {
     String topText,
     String hintText, [
     double width = double.infinity,
+    
     Color fillColor = Colors.deepPurpleAccent,
   ]) {
     return Column(
@@ -67,7 +68,7 @@ class InputFields {
   ) {
     return Container(
       child: ElevatedButton(
-        onPressed: () => {onPressedFunc()},
+        onPressed: ()=>{onPressedFunc()},
         child: Text(buttonText),
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll<Color>(buttonColor),

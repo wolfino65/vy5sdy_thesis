@@ -5,19 +5,22 @@ var userRouter = express.Router();
 
 userRouter.post('/register', async (req, res) => {
     let { username, password, email } = req.body;
-    let result = await registerUser(username, password, email);
-    res.send(result);
+    try {
+        let result = await registerUser(username, password, email);
+        res.status(200).send(result);
+    }
+    catch (e) {
+        res.status(500).send("Email already exists.");
+    }
 })
 
 userRouter.post('/login', async (req, res) => {
     let { email, password } = req.body;
-    console.log(password);
     let result = await login(email, password);
-    console.log(result);
-    if (result===null){
+    if (result === null) {
         res.status(401).send("Wrong password or email address.");
     }
-    else{
+    else {
         res.status(200).send(result);
     }
 })

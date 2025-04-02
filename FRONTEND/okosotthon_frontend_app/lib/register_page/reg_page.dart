@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:okosotthon_frontend_app/input/InputFields.dart';
+import 'package:okosotthon_frontend_app/shared/Shared_functions.dart';
+import 'package:okosotthon_frontend_app/register_page/registration.dart';
 
 class RegPage extends StatefulWidget {
   @override
@@ -31,7 +33,13 @@ class _RegPageState extends State<RegPage> {
         ),
         child: Column(
           children: [
-            SizedBox(width: 800, child: InputFields.buildEmailField(emailCont, MediaQuery.sizeOf(context).width*0.8)),
+            SizedBox(
+              width: 800,
+              child: InputFields.buildEmailField(
+                emailCont,
+                MediaQuery.sizeOf(context).width * 0.8,
+              ),
+            ),
             SizedBox(height: 30),
             SizedBox(
               width: 800,
@@ -39,7 +47,7 @@ class _RegPageState extends State<RegPage> {
                 pwCont,
                 "Password",
                 "Password",
-                MediaQuery.sizeOf(context).width*0.8
+                MediaQuery.sizeOf(context).width * 0.8,
               ),
             ),
             SizedBox(height: 30),
@@ -49,13 +57,19 @@ class _RegPageState extends State<RegPage> {
                 pwAgainCont,
                 "Password again",
                 "Password again",
-                MediaQuery.sizeOf(context).width*0.8
+                MediaQuery.sizeOf(context).width * 0.8,
               ),
             ),
             SizedBox(height: 30),
             SizedBox(
               width: 800,
-              child: InputFields.buildSimpleTextField(unameCont,TextInputType.name, "Username","",MediaQuery.sizeOf(context).width*0.8),
+              child: InputFields.buildSimpleTextField(
+                unameCont,
+                TextInputType.name,
+                "Username",
+                "",
+                MediaQuery.sizeOf(context).width * 0.8,
+              ),
             ),
             SizedBox(height: 100),
             InputFields.buildCustomizedButton(
@@ -70,7 +84,25 @@ class _RegPageState extends State<RegPage> {
     );
   }
 
-  void _registerUser() {
-    print("ins");
+  void _registerUser() async {
+    if (pwCont.text != pwAgainCont.text) {
+      Shared.showCustomDialog(
+        context,
+        "Does not match.",
+        "The two passwords do not match!",
+      );
+      return;
+    }
+    final s = await Registration.registerUser(
+      pwCont.text,
+      emailCont.text,
+      unameCont.text,
+    );
+    if (s == "true") {
+      Navigator.pop(context);
+      Shared.showCustomDialog(context, "Success", "Succesfull registration!");
+    } else {
+      Shared.showCustomDialog(context, "Error", "Unsuccesfull registration!\n$s");
+    }
   }
 }
