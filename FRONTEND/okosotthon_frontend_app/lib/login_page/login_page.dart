@@ -33,9 +33,17 @@ class _LoginPageState extends State<LoginPage> {
         ),
         child: Column(
           children: [
-            SizedBox(width: 800, child: InputFields.buildEmailField(emailCont)),
+            SizedBox(width: 800, child: InputFields.buildEmailField(emailCont,MediaQuery.sizeOf(context).width*0.8)),
             SizedBox(height: 50),
-            SizedBox(width: 800, child: InputFields.buildPasswdField(pwCont)),
+            SizedBox(
+              width: 800,
+              child: InputFields.buildPasswdField(
+                pwCont,
+                "Password",
+                "Password",
+                MediaQuery.sizeOf(context).width*0.8
+              ),
+            ),
             SizedBox(height: 100),
             InputFields.buildCustomizedButton(
               "Login",
@@ -65,16 +73,10 @@ class _LoginPageState extends State<LoginPage> {
         MaterialPageRoute(builder: (context) => DeviceList()),
       );
     } catch (e) {
-      AlertDialog alert = AlertDialog(
-        title: Text("Unsuccesfull login."),
-        content: Text("Wrong email address or password."),
-      );
-
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
+      Shared.showCustomDialog(
+        context,
+        "Unsuccesfull login.",
+        "Wrong email address or password.",
       );
     }
   }
