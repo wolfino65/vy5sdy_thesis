@@ -3,7 +3,11 @@ import 'home_page/home_page.dart';
 import 'login_page/login_page.dart';
 
 void main() {
-  runApp(MaterialApp(home: LoginPage()) /*MyApp()*/);
+  if (true) {
+    runApp(MaterialApp(home: LoginPage()) /*MyApp()*/);
+  } else {
+    runApp(MaterialApp(home: DeviceList()) /*MyApp()*/);
+  }
 }
 
 class MyApp extends StatelessWidget {

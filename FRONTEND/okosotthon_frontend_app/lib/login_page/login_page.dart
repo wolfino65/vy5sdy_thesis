@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:okosotthon_frontend_app/input/InputFields.dart';
-import 'dart:async';
 import 'package:okosotthon_frontend_app/register_page/reg_page.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:okosotthon_frontend_app/home_page/home_page.dart';
+import 'package:okosotthon_frontend_app/shared/Shared_functions.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -54,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _login() async {
     try {
-      final resp = await _loginRequest(emailCont.text, pwCont.text);
+      final resp = await Shared.loginRequest(emailCont.text, pwCont.text);
       print(resp["_id"].toString());
       Navigator.pushReplacement(
         context,
@@ -62,25 +60,6 @@ class _LoginPageState extends State<LoginPage> {
       );
     } catch (e) {
       print("not succesfull");
-    }
-  }
-
-  Future<Map<String, dynamic>> _loginRequest(String email, String pw) async {
-    final resp = await http.post(
-      Uri.parse("http://172.30.16.1:4500/user/login"),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'email': emailCont.text,
-        'password': pwCont.text,
-      }),
-    );
-
-    if (resp.statusCode == 200) {
-      return jsonDecode(resp.body) as Map<String, dynamic>;
-    } else {
-      throw Exception("No data");
     }
   }
 
