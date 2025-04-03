@@ -4,7 +4,9 @@ var deviceRouter = express.Router();
 
 deviceRouter.post('/addDevice', async (req, res) => {
     let { owner, aditionalInfo } = req.body;
+    console.log(owner);
     let result = await addDevice(owner, aditionalInfo);
+    console.log(result);
     res.send(result);
 })
 
