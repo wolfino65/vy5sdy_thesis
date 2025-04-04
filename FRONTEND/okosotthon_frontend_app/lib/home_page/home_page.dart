@@ -18,6 +18,7 @@ class _DeviceListState extends State<DeviceList> {
     super.initState();
     loadData();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,13 +32,10 @@ class _DeviceListState extends State<DeviceList> {
   }
   Future<void> loadData() async{
       if (this.mounted) {
-      Timer(Duration(milliseconds: 3000), () async {
         final l = await DeviceFetcher.getDevicesByOwner();
-        print(l.length);
         setState(() {
           this._listOfDevices = l as List<Device>;
         });
-      });
     }
   }
 
@@ -47,11 +45,10 @@ class _DeviceListState extends State<DeviceList> {
       separatorBuilder: (BuildContext context, int index) => const Divider(),
       itemCount: _listOfDevices.length,
       itemBuilder: (BuildContext context, int index) {
-        
         return ListTile(
           title: Text(_listOfDevices[index].deviceName),
           onTap: () {
-            print('tapped');
+            print(_listOfDevices[index].location);
           },
           tileColor: Colors.green,
         );
