@@ -16,10 +16,14 @@ class DeviceFetcher {
     if(resp.statusCode!=200){
       throw Exception("Something went wrong.");
     }
-    List<Device> devices=<Device>[];
-    for (var jsonItem in json.decode(resp.body)) {
-      devices.add(Device.fromJson(jsonItem));
-    }
-    return devices;
+    final List<dynamic> jsonList = json.decode(resp.body);
+    return jsonList.map((jsonItem) {
+      try {
+        return Device.fromJson(jsonItem);
+      } catch (e) {
+        print('Error parsing device: $e\nJSON: $jsonItem');
+        return Device.empty();
+      }
+    }).toList();
   }
 }

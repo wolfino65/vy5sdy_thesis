@@ -128,7 +128,7 @@ def init_net():
     return True 
 serverip="192.168.1.82"
 def getIdent():
-    js=ujson.dumps({'owner':'testOwner','aditionalInfo':{'asd':'bb'}})
+    js=ujson.dumps({'owner':'testOwner','aditionalInfo':{'connected':['Unused','Unused','Unused','Unused']}})
     resp=urequests.post("http://"+serverip+":4500/device/addDevice",data=js,headers = {'content-type': 'application/json'}).json()
     with open("ident.txt","w") as f:
         f.write(resp['insertedId'])

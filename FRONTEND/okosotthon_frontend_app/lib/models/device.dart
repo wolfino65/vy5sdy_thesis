@@ -1,23 +1,30 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:okosotthon_frontend_app/models/aditionalInfo_device.dart';
 part 'device.g.dart';
 
 @JsonSerializable()
 class Device {
   @JsonKey(name: "_id")
-  final id;
-  final owner;
-  final location;
+  String id;
+  String owner;
+  String location;
   @JsonKey(name: "device_name")
-  final deviceName;
-  final additionalInfo; //JSON object
+  String deviceName;
+  final AditionalinfoDevice aditionalInfo; 
 
   Device({
     required this.id,
     required this.owner,
     required this.location,
     required this.deviceName,
-    required this.additionalInfo,
+    required this.aditionalInfo,
   });
+  Device.empty()
+    : id = '',
+      owner = '',
+      location = '',
+      deviceName = '',
+      aditionalInfo = AditionalinfoDevice.empty();
 
   factory Device.fromJson(Map<String, dynamic> json) => _$DeviceFromJson(json);
 
@@ -31,7 +38,7 @@ class Device {
         owner: $owner,
         location: $location,
         deviceName: $deviceName,
-        additionalInfo: ${additionalInfo?.toString() ?? 'null'}
+        additionalInfo: ${aditionalInfo.toString()}
       }''';
   }
 }

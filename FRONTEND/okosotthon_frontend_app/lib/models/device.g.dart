@@ -7,11 +7,13 @@ part of 'device.dart';
 // **************************************************************************
 
 Device _$DeviceFromJson(Map<String, dynamic> json) => Device(
-  id: json['_id'],
-  owner: json['owner'],
-  location: json['location'],
-  deviceName: json['device_name'],
-  additionalInfo: json['additionalInfo'],
+  id: json['_id'] as String,
+  owner: json['owner'] as String,
+  location: json['location'] as String,
+  deviceName: json['device_name'] as String,
+  aditionalInfo: AditionalinfoDevice.fromJson(
+    json['aditionalInfo'] as Map<String, dynamic>,
+  ),
 );
 
 Map<String, dynamic> _$DeviceToJson(Device instance) => <String, dynamic>{
@@ -19,5 +21,5 @@ Map<String, dynamic> _$DeviceToJson(Device instance) => <String, dynamic>{
   'owner': instance.owner,
   'location': instance.location,
   'device_name': instance.deviceName,
-  'additionalInfo': instance.additionalInfo,
+  'aditionalInfo': instance.aditionalInfo,
 };

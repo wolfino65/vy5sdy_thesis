@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
+import 'package:okosotthon_frontend_app/models/module.dart';
 
 class Shared {
   static Future<Map<String, dynamic>> loginRequest(
@@ -34,5 +35,18 @@ class Shared {
         return alert;
       },
     );
+  }
+
+  static Future<Module> getModuleById(String id) async{
+      final resp = await http.get(Uri.parse("http://192.168.1.82:4500/module/getModuleById"),
+        headers: <String,String>{
+        "module_id": id
+      }
+      );
+      if(resp.statusCode != 200){
+        throw Exception("Could not find module.");
+      }
+      return Module.fromJson(json
+      .decode(resp.body));
   }
 }
