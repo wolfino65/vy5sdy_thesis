@@ -6,6 +6,7 @@ import 'package:okosotthon_frontend_app/models/module.dart';
 import 'package:okosotthon_frontend_app/shared/Shared_functions.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DevicePage extends StatefulWidget {
   Device dev = Device.empty();
@@ -17,8 +18,8 @@ class DevicePage extends StatefulWidget {
 }
 
 class _DevicePageState extends State<DevicePage> {
-  bool deltedFlag=false;
-  bool tryedToDeleteFlag=false;
+  bool deltedFlag = false;
+  bool tryedToDeleteFlag = false;
   @override
   void initState() {
     super.initState();
@@ -32,8 +33,6 @@ class _DevicePageState extends State<DevicePage> {
   }
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
       ///////////////////////////
       appBar: AppBar(
@@ -74,7 +73,6 @@ class _DevicePageState extends State<DevicePage> {
                           child: Text(modules[0].name),
                         ),
                       ),
-                      
                     ),
                     GestureDetector(
                       child: SizedBox(
@@ -126,7 +124,7 @@ class _DevicePageState extends State<DevicePage> {
   }
 
   Future<void> _getConnectedModules(List<String> arr) async {
-    List<Module> l =[];
+    List<Module> l = [];
     if (this.mounted) {
       Module mod = Module.empty();
       for (var moduleId in arr) {
@@ -134,67 +132,89 @@ class _DevicePageState extends State<DevicePage> {
           mod = Module.empty();
         } else {
           mod = await Shared.getModuleById(moduleId);
-          
         }
         l.add(mod);
       }
       setState(() {
-        this.modules=l;
+        this.modules = l;
       });
     }
   }
 
-  Future<void> _deleteDevice() async{
-    final resp= await http.delete(Uri.parse("http://192.168.1.82:4500/device/deleteDevice"),
-      headers: <String,String>{
-        "dev_id": dev.id
-      }
+  Future<void> _deleteDevice() async {
+    final resp = await http.delete(
+      Uri.parse("http://192.168.1.82:4500/device/deleteDevice"),
+      headers: <String, String>{"dev_id": dev.id},
     );
-    if(resp.statusCode==200){
+    final prefs = await SharedPreferences.getInstance();
+    await Shared.scheduleTask(
+      dev.id,
+      Module.empty(),
+      "disown",
+      prefs.getString("id") as String,
+      {},
+    );
+    if (resp.statusCode == 200) {
       setState(() {
-        deltedFlag=true;
+        deltedFlag = true;
       });
       Navigator.pop(context);
     }
   }
 
-  void _handlePopupMenuChoice(int value){
-    if(value==99){
-      final deviceName=dev.deviceName;
-      AlertDialog question = AlertDialog(title: Text("Delete device?"), content: Text("Are you shure you want to delete $deviceName?"),
-      actions: [
-        TextButton(onPressed: (){_handleCoice(true);}, child: Text("Yes")),
-        TextButton(onPressed: (){_handleCoice(false);}, child: Text("No"))
-      ],
+  void _handlePopupMenuChoice(int value) {
+    if (value == 99) {
+      final deviceName = dev.deviceName;
+      Shared.buildChoiceDialog(
+        context,
+        "Delete device?",
+        "Are you shure you want to delete $deviceName?",
+        () => {_handleYesChoice()},
+        () => {_handleNoChoice()},
       );
-
-      showDialog(context: context, barrierDismissible: false, builder: (BuildContext context) {
-        return question;
-      });
-      if(deltedFlag){
+      if (deltedFlag) {
         Navigator.pop(context);
       }
-      if(!deltedFlag && tryedToDeleteFlag){
-        Shared.showCustomDialog(context, "Error", "We were unable to delete the device.");
+      if (!deltedFlag && tryedToDeleteFlag) {
+        Shared.showCustomDialog(
+          context,
+          "Error",
+          "We were unable to delete the device.",
+        );
       }
-
       return;
     }
-    if(value==0){
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>UpdateDevice(dev)));
+    if (value == 0) {
+      _handleReturningData();
     }
-    if(value==1){
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>DeviceOptions(dev)));
+    if (value == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => DeviceOptions(dev)),
+      );
     }
   }
 
-  void _handleCoice(bool isYes){
-      if(isYes){
-        _deleteDevice();
-        setState(() {
-          tryedToDeleteFlag=true;
-        });
-      }
-      Navigator.pop(context);
+  void _handleYesChoice() {
+    _deleteDevice();
+    setState(() {
+      tryedToDeleteFlag = true;
+    });
+    Navigator.pop(context);
+  }
+
+  void _handleNoChoice() {
+    Navigator.pop(context);
+  }
+
+  Future<void> _handleReturningData() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => UpdateDevice(dev)),
+    );
+    setState(() {
+      dev.deviceName = result[0];
+      dev.location = result[1];
+    });
   }
 }

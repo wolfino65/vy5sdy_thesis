@@ -27,6 +27,9 @@ class _DeviceListState extends State<DeviceList> {
         title: Text('Your devices'),
         backgroundColor: Colors.blue,
         centerTitle: true,
+        actions: [
+          
+        ],
       ),
       body: Container(child: buildDeviceList(context)),
       floatingActionButton: FloatingActionButton(
@@ -35,7 +38,7 @@ class _DeviceListState extends State<DeviceList> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => AddDevice()),
-              ),
+              ).then((_) => {loadData()}),
             },
         child: Icon(Icons.add),
       ),

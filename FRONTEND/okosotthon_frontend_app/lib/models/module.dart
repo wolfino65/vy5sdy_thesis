@@ -14,6 +14,7 @@ class Module {
     required this.frontID,
     required this.name
   });
+  
   Module.empty({
     this.id="",
     this.frontID="",

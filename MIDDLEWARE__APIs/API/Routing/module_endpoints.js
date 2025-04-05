@@ -11,7 +11,6 @@ moduleRouter.post('/addModule', async (req, res) => {
 moduleRouter.get('/getModuleById', async (req, res) => {
     let { module_id } = req.headers;
     let result = await getModuleById(module_id);
-    console.log(result);
     res.send(result);
 })
 
