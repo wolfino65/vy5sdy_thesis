@@ -1,10 +1,11 @@
 import db from "../DB/dbCon.js"
 import { ObjectId } from "mongodb"
 
-async function addModule(device_file_id, frontend_file_id, aditionalInfo) {
+async function addModule(device_file_id, frontend_file_id, aditionalInfo,name) {
     return await db.collection('modules').insertOne({
         "py_id": device_file_id,
         "front_id": frontend_file_id,
+        "name":name,
         "aditionalInfo": aditionalInfo
     })
 }

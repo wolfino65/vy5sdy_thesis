@@ -118,7 +118,7 @@ class _DevicePageState extends State<DevicePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {Navigator.push(context, MaterialPageRoute(builder: (context)=>AddModule()))},
+        onPressed: () => {Navigator.push(context, MaterialPageRoute(builder: (context)=>AddModule(dev)))},
         child: Icon(Icons.add),
       ),
     );

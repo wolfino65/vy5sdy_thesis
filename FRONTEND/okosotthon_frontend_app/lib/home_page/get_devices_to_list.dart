@@ -21,7 +21,6 @@ class DeviceFetcher {
       try {
         return Device.fromJson(jsonItem);
       } catch (e) {
-        print('Error parsing device: $e\nJSON: $jsonItem');
         return Device.empty();
       }
     }).toList();

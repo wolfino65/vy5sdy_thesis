@@ -3,8 +3,8 @@ import { getModuleById, addModule, updateModule, deleteModule,getModules } from 
 var moduleRouter = express.Router();
 
 moduleRouter.post('/addModule', async (req, res) => {
-    let { device_file_id, frontend_file_id, aditionalInfo } = req.body;
-    let result = await addModule(device_file_id, frontend_file_id, aditionalInfo);
+    let { device_file_id, frontend_file_id, aditionalInfo ,name } = req.body;
+    let result = await addModule(device_file_id, frontend_file_id, aditionalInfo, name);
     res.send(result);
 })
 
