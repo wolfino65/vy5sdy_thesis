@@ -32,4 +32,8 @@ async function deleteModule(module_id) {
     })
 }
 
-export { getModuleById, addModule, updateModule, deleteModule }
+async function getModules() {
+    return await db.collection('modules').find().toArray();
+}
+
+export { getModuleById, addModule, updateModule, deleteModule,getModules }

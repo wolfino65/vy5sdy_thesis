@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:okosotthon_frontend_app/add_module/add_module_page.dart';
 import 'package:okosotthon_frontend_app/device_option_pages/device_options_page/options_page.dart';
 import 'package:okosotthon_frontend_app/device_option_pages/update_device_page/update_page.dart';
 import 'package:okosotthon_frontend_app/models/device.dart';
@@ -117,7 +118,7 @@ class _DevicePageState extends State<DevicePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {print("pushed")},
+        onPressed: () => {Navigator.push(context, MaterialPageRoute(builder: (context)=>AddModule()))},
         child: Icon(Icons.add),
       ),
     );
