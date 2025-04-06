@@ -118,7 +118,23 @@ class _DevicePageState extends State<DevicePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {Navigator.push(context, MaterialPageRoute(builder: (context)=>AddModule(dev)))},
+        onPressed: ()  {
+          bool hasUnused=false;
+            for (Module module in modules) {
+              if(module.name=="Unused"){
+                hasUnused=true;
+                break;
+              }
+            }
+            if(hasUnused){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>AddModule(dev)));
+            }
+            else{
+              Shared.showCustomDialog(context, "Error", "Your device does not have any available ports.\n"+
+              "If you have just disconnected a device please reload this page by exiting to the previous page.");
+              return;
+            }
+          },
         child: Icon(Icons.add),
       ),
     );
