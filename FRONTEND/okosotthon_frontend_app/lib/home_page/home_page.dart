@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:okosotthon_frontend_app/add_device_page/add_device.dart';
 import 'package:okosotthon_frontend_app/device_page/device_page.dart';
 import 'package:okosotthon_frontend_app/home_page/get_devices_to_list.dart';
+import 'package:okosotthon_frontend_app/login_page/login_page.dart';
 import 'package:okosotthon_frontend_app/models/device.dart';
+import 'package:okosotthon_frontend_app/profile_page/profile_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DeviceList extends StatefulWidget {
   const DeviceList({super.key});
@@ -28,7 +31,28 @@ class _DeviceListState extends State<DeviceList> {
         backgroundColor: Colors.blue,
         centerTitle: true,
         actions: [
-          
+          PopupMenuButton(
+            itemBuilder:
+                (BuildContext context) => <PopupMenuEntry>[
+                  const PopupMenuItem(
+                    value: 1,
+                    child: Text("Profile settings"),
+                  ),
+                  const PopupMenuItem(
+                    value: 99,
+                    child: Row(
+                      children: [
+                        Icon(Icons.logout),
+                        SizedBox(width: 20),
+                        Text("Logout"),
+                      ],
+                    ),
+                    
+                  ),
+                ],
+            icon: Icon(Icons.person),
+            onSelected: (value) => _handleChoice(value),
+          ),
         ],
       ),
       body: Container(child: buildDeviceList(context)),
@@ -75,5 +99,20 @@ class _DeviceListState extends State<DeviceList> {
       context,
       MaterialPageRoute(builder: (context) => DevicePage(dev)),
     ).then((_) => {loadData()});
+  }
+
+  void _handleChoice(value) async{
+    if(value==1){
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfilePage()));
+      return;
+    }
+    final prefs = await SharedPreferences.getInstance();
+    bool isCleared= await prefs.clear();
+    if(isCleared && mounted){
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+    }
   }
 }

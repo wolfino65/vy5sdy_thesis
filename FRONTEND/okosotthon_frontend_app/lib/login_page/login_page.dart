@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:okosotthon_frontend_app/input/InputFields.dart';
+import 'package:okosotthon_frontend_app/shared/InputFields.dart';
 import 'package:okosotthon_frontend_app/register_page/reg_page.dart';
 import 'package:okosotthon_frontend_app/home_page/home_page.dart';
 import 'package:okosotthon_frontend_app/shared/Shared_functions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:crypto/crypto.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,6 +16,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailCont = new TextEditingController();
   TextEditingController pwCont = new TextEditingController();
+  bool swOn=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,12 +48,23 @@ class _LoginPageState extends State<LoginPage> {
                 MediaQuery.sizeOf(context).width*0.8
               ),
             ),
+            Column(
+              children: [
+                Text("Keep me logged in"),
+                SizedBox(height: 20,),
+                Switch(value: swOn, onChanged: (bool value){
+                    setState(() {
+                      swOn=value;
+                    });
+                })
+              ],
+            ),
             SizedBox(height: 100),
             InputFields.buildCustomizedButton(
               "Login",
               Colors.greenAccent,
               Colors.purpleAccent,
-              () => _login(),
+              () => _login(swOn),
             ),
             SizedBox(height: 50),
             _buildSignIn(),
@@ -59,15 +74,16 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _login() async {
+  void _login(bool autoLogin) async {
     try {
-      final resp = await Shared.loginRequest(emailCont.text, pwCont.text);
+      String pw = sha256.convert(utf8.encode(pwCont.text)).toString();
+      final resp = await Shared.loginRequest(emailCont.text,pw );
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('email', resp['email'].toString());
       prefs.setString('uname', resp['username'].toString());
       prefs.setString('id', resp['_id'].toString());
       prefs.setString('password', resp['password'].toString());
-      prefs.setBool('autoLogin', true);
+      prefs.setBool('autoLogin', autoLogin);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => DeviceList()),

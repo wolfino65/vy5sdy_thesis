@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:okosotthon_frontend_app/input/InputFields.dart';
+import 'package:okosotthon_frontend_app/shared/InputFields.dart';
 import 'package:okosotthon_frontend_app/models/device.dart';
 import 'package:okosotthon_frontend_app/models/module.dart';
 import 'package:okosotthon_frontend_app/shared/Shared_functions.dart';

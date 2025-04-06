@@ -11,7 +11,7 @@ class Registration {
   ) async {
     pw = sha256.convert(utf8.encode(pw)).toString();
     final resp = await http.post(
-      Uri.parse("http://172.30.16.1:4500/user/register"),
+      Uri.parse("http://192.168.1.82:4500/user/register"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

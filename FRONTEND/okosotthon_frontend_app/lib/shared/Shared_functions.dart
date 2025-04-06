@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:okosotthon_frontend_app/models/module.dart';
 
@@ -10,7 +9,6 @@ class Shared {
     String email,
     String pw,
   ) async {
-    pw = sha256.convert(utf8.encode(pw)).toString();
     final resp = await http.post(
       Uri.parse("http://192.168.1.82:4500/user/login"),
       headers: <String, String>{

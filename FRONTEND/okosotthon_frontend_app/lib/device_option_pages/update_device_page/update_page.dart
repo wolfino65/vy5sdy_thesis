@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:okosotthon_frontend_app/input/InputFields.dart';
+import 'package:okosotthon_frontend_app/shared/InputFields.dart';
 import 'package:okosotthon_frontend_app/models/device.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
