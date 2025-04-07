@@ -106,6 +106,9 @@ def disconnect_module():
 def reset_state():
     with open('state.txt','w') as f:
         f.write('False,False,False,False\n,,,')
+def get_owner():
+    with open("owner.txt","r") as f:
+        return f.readline().ststrip()
 npxl = neopixel.NeoPixel(machine.Pin(38),1)
 #----------------------
 populated=read_state()#module connections
@@ -114,6 +117,7 @@ con_check_pins=[1,2,42,41]       #*testrig    config
 circuit_controller_pins=[4,5,6,7]#*        v2 
 file_ids=read_fids()
 module_controlfile_names = ["a.py","b.py","c.py","d.py"]
+ownerId=get_owner()
 #----------------------
 #connect_new_module(FILE_ID)
 #b.set_to_red()
