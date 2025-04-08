@@ -8,7 +8,6 @@ import urequests
 import os
 import neopixel
 
-#FILE_ID = "1F5GJ0k45eJiRC3-XUQ_f74drGBJRwOTh"
 API_KEY = "AIzaSyCof7aLYawxMevJrPAwpgYt9fUxYXMrdZE"
 def download_file_from_google_drive(file_id, api_key,file):
     url = f"https://www.googleapis.com/drive/v3/files/{file_id}?alt=media&key={api_key}"
@@ -22,7 +21,6 @@ def download_file_from_google_drive(file_id, api_key,file):
         print("Status Code:", response.status_code)
         print("Response:", response.text)
     response.close()
-#download_file_from_google_drive(FILE_ID,API_KEY)
 
 def connect_new_module(fid):
     if False not in populated:
@@ -30,7 +28,7 @@ def connect_new_module(fid):
     while True:
         for i in range(0,len(con_check_pins)):
             p= machine.Pin(con_check_pins[i],machine.Pin.IN)
-            if p.value() == 1 and populated[i] == False : #p.value()
+            if p.value() == 1 and populated[i] == False :
                 populated[i]=True
                 file_ids[i]=fid
                 download_file_from_google_drive(fid,API_KEY,module_controlfile_names[i])
@@ -108,7 +106,23 @@ def reset_state():
         f.write('False,False,False,False\n,,,')
 def get_owner():
     with open("owner.txt","r") as f:
-        return f.readline().ststrip()
+        return f.readline().strip()
+def report_state():
+    stringifyedState=[]
+    for i in file_ids:
+        if i is None :
+            stringifyedState.append("Unused")
+        else:
+            stringifyedState.append(i)
+    json_data = {
+    'dev_id': ID,
+    'newInfo': {
+        'additionalInfo': {
+            'connected': stringifyedState
+        }
+    }
+}
+    urequests.put("http://"+serverip+":4500/device/updateDevice",json = json_data)
 npxl = neopixel.NeoPixel(machine.Pin(38),1)
 #----------------------
 populated=read_state()#module connections
@@ -134,8 +148,10 @@ while True :
             module_resp=urequests.get("http://"+serverip+":4500/module/getModuleById",headers={'module_id':resp['module_id']}).json()
             connect_new_module(module_resp['py_id'])
             new_file_flag=True
+            report_state()
         elif resp["aditionalInfo"]["method"] == "remove":
-                disconnect_module()
+            disconnect_module()
+            report_state()
         elif resp["aditionalInfo"]["method"] == "disown":
             os.remove('ident.txt')
             os.remove('conf.txt')

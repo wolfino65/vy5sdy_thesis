@@ -6,6 +6,7 @@ import urequests
 import ujson
 
 npxl = neopixel.NeoPixel(machine.Pin(38),1)
+owner=""
     
 def configuration():
     npxl[0]=(0,0,255)
@@ -18,8 +19,9 @@ def configuration():
         f.write(req["ssid"]+"\n")
         f.write(req['password'])
         f.close()
+        owner=req["owner"]
         with open('owner.txt','w') as f:
-            f.write(req["owner"]) #will be replaced with data form request
+            f.write(req["owner"]) 
         response = {'status': 'success'}
         def shutdown():
             time.sleep(1)
@@ -74,7 +76,7 @@ def init_net():
     return True 
 serverip="192.168.1.82"
 def getIdent():
-    js=ujson.dumps({'owner':'testOwner','aditionalInfo':{'connected':['Unused','Unused','Unused','Unused']}})
+    js=ujson.dumps({'owner':owner,'aditionalInfo':{'connected':['Unused','Unused','Unused','Unused']}})
     resp=urequests.post("http://"+serverip+":4500/device/addDevice",data=js,headers = {'content-type': 'application/json'}).json()
     with open("ident.txt","w") as f:
         f.write(resp['insertedId'])
