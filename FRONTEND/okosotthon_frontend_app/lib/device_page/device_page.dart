@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:okosotthon_frontend_app/add_module/add_module_page.dart';
+import 'package:okosotthon_frontend_app/add_task_page/add_task.dart';
 import 'package:okosotthon_frontend_app/device_option_pages/device_options_page/options_page.dart';
 import 'package:okosotthon_frontend_app/device_option_pages/update_device_page/update_page.dart';
 import 'package:okosotthon_frontend_app/models/device.dart';
@@ -74,6 +75,9 @@ class _DevicePageState extends State<DevicePage> {
                           child: Text(modules[0].name),
                         ),
                       ),
+                      onTap: () => {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[0])))
+                      },
                     ),
                     GestureDetector(
                       child: SizedBox(
@@ -84,6 +88,9 @@ class _DevicePageState extends State<DevicePage> {
                           child: Text(modules[1].name),
                         ),
                       ),
+                      onTap: () => {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[1])))
+                      },
                     ),
                   ],
                 ),
@@ -99,6 +106,9 @@ class _DevicePageState extends State<DevicePage> {
                           child: Text(modules[2].name),
                         ),
                       ),
+                      onTap: () => {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[2])))
+                      },
                     ),
                     GestureDetector(
                       child: SizedBox(
@@ -109,6 +119,9 @@ class _DevicePageState extends State<DevicePage> {
                           child: Text(modules[3].name),
                         ),
                       ),
+                      onTap: () => {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[3])))
+                      },
                     ),
                   ],
                 ),
