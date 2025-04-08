@@ -35,7 +35,8 @@ class _UpdateDeviceState extends State<UpdateDevice>{
           title: Text("Update device details"),
           backgroundColor: Colors.deepOrangeAccent.shade100,
         ),
-        body: SizedBox(
+        body: SingleChildScrollView(child: 
+        SizedBox(
           width: double.infinity,
           child: Column(
             children: [
@@ -47,7 +48,8 @@ class _UpdateDeviceState extends State<UpdateDevice>{
               InputFields.buildCustomizedButton("Update", Colors.lightGreen.shade600, Colors.white, ()=>_handleUpdate())
             ],
           ),
-        )
+        ),
+        ),
     );
   }
 

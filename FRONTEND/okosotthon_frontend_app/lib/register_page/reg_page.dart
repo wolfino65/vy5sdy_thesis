@@ -31,7 +31,8 @@ class _RegPageState extends State<RegPage> {
             colors: [Colors.green, Colors.lightBlue.shade200],
           ),
         ),
-        child: Column(
+        child: SingleChildScrollView(child: 
+         Column(
           children: [
             SizedBox(
               width: 800,
@@ -80,6 +81,7 @@ class _RegPageState extends State<RegPage> {
             ),
           ],
         ),
+        )
       ),
     );
   }

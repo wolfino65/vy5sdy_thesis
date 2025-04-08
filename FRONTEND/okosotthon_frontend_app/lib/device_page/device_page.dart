@@ -76,6 +76,7 @@ class _DevicePageState extends State<DevicePage> {
                         ),
                       ),
                       onTap: () => {
+                        if(modules[0].name !="Unused")
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[0])))
                       },
                     ),
@@ -89,6 +90,7 @@ class _DevicePageState extends State<DevicePage> {
                         ),
                       ),
                       onTap: () => {
+                        if(modules[1].name !="Unused")
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[1])))
                       },
                     ),
@@ -107,6 +109,7 @@ class _DevicePageState extends State<DevicePage> {
                         ),
                       ),
                       onTap: () => {
+                        if(modules[2].name !="Unused")
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[2])))
                       },
                     ),
@@ -120,6 +123,7 @@ class _DevicePageState extends State<DevicePage> {
                         ),
                       ),
                       onTap: () => {
+                        if(modules[3].name !="Unused")
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[3])))
                       },
                     ),

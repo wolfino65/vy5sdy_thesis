@@ -35,7 +35,8 @@ class _LoginPageState extends State<LoginPage> {
             colors: [Colors.green, Colors.lightBlue.shade200],
           ),
         ),
-        child: Column(
+        child: SingleChildScrollView(child: 
+         Column(
           children: [
             SizedBox(width: 800, child: InputFields.buildEmailField(emailCont,MediaQuery.sizeOf(context).width*0.8)),
             SizedBox(height: 50),
@@ -70,6 +71,7 @@ class _LoginPageState extends State<LoginPage> {
             _buildSignIn(),
           ],
         ),
+        )
       ),
     );
   }
