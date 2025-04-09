@@ -4,6 +4,7 @@ from microdot import Microdot
 import neopixel,machine,time
 import urequests
 import ujson
+import _thread
 
 npxl = neopixel.NeoPixel(machine.Pin(38),1)
 owner=""
@@ -26,10 +27,8 @@ def configuration():
         def shutdown():
             time.sleep(1)
             app.shutdown()
-            import machine
             machine.reset() 
-            
-        import _thread
+        
         _thread.start_new_thread(shutdown, ())
         return  response
         

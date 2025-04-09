@@ -11,6 +11,7 @@
 \theoremstyle{remark}
 \newtheorem{megjegyzes}{Megjegyzés}
 
+\renewcommand\lstlistingname{Kódrészlet}
 
 \lstdefinestyle{json}{
 	backgroundcolor=\color{gray!20},
@@ -76,11 +77,11 @@
 	\chapter*{Bevezetés}
 	\addcontentsline{toc}{chapter}{Bevezetés}
 	
-	Az emberi faj a létezésétől kezdve lusta volt és lesz. Minden nap valamivel könnyebbé, egyszerűbbé akarjuk tenni a mindennapokat, hogy minél kevesebbel keljen foglalkoznunk és több időt tölthessünk más tevékenységgel. Az okos otthon rendszerek pontosan ezt teszik lehetővé, ezek régen drágák voltak így csak a tehetősebb emberek engedhették meg maguknak. Ma azonban olcsóbb ökoszisztémák is léteznek, de még így sem tudják sokan megfizetni. A projekt amiről ezen dolgozat szól egy olcsóbb, közösség alapú ökoszisztéma létrehozását tűzte ki célul.
+	Az emberi civilizáció létezésétől kezdve a kényelemre törekedett. Minden nap valamivel könnyebbé, egyszerűbbé akarjuk tenni a mindennapokat, hogy minél kevesebbel kelljen foglalkoznunk és több időt tölthessünk más tevékenységgel. Az okos otthon rendszerek pontosan ezt teszik lehetővé, ezek régen drágák voltak így  a kevésbé tehetős emberek nem engedhették meg maguknak. Ma azonban olcsóbb ökoszisztémák is léteznek, de még így sem tudják sokan megfizetni. A projekt, amiről ezen dolgozat szól egy olcsóbb, közösség alapú, Apple szerű ökoszisztéma létrehozására törekszik, amely költséghatékonyabb megoldást kínál.
 	
-	Számomra elképesztő belegondolni abba, hogy pár sor kóddal ki tudunk hatni a környezetünkre. Főképp azért, mert a programozás szempontjából én mindig adatkezelésként tekintettem a munkánkra. Még a szakdolgozat témájának kiválasztása előtt kapcsolatba kerültem a mikrokontrollerek világával és attól a ponttól nem tudtam elengedni ezen eszközök varázsát. Tekintettel arra, hogy az áramkörök és elektromosság foglalkoztatott hobbi szinten már régóta, ez egy nagyszerű lehetőség volt, hogy kettő nagy szenvedélyemet, az informatikát és az áramköröket ötvözzem a szakdolgozatomban. Számomra hihetetlen volt akár csak egy LED\footnote{Light Emitting Diode, avagy fényt kibocsájtó dióda.} villanása is.
+	Számomra lenyűgöző belegondolni abba, hogy pár sor kóddal ki tudunk hatni a környezetünkre. Főképp azért, mert a programozás szempontjából én mindig adatkezelésként tekintettem a munkánkra. Még a szakdolgozat témájának kiválasztása előtt kapcsolatba kerültem a mikrokontrollerek világával és attól a ponttól nem tudtam elengedni ezen eszközök varázsát. Tekintettel arra, hogy az áramkörök és elektromosság foglalkoztatott hobbi szinten már régóta, ez egy nagyszerű lehetőség volt, hogy kettő nagy szenvedélyemet, az informatikát és az áramköröket ötvözzem a szakdolgozatomban. Számomra hihetetlen volt akár csak egy LED\footnote{Light Emitting Diode, avagy fényt kibocsájtó dióda.} villanása is.
 	
-	Szakdolgozatom termék-orientált. Célja az, hogy a kevésbé tehetős emberek számára is elérhetővé tegye az okos otthonok varázsát. Logikám szerint az okos eszközök árát nagyrészt a programozható mikrochipek teszik ki, ezeknek egy részről a hozzá tartozó áramkört kell vezérelniük, amely nem egy nehéz feladat, azonban az adatnak amely alapján ez működni fog valahogy el kell jutnia az eszközhöz, ez WiFi-n keresztül történik minden esetben, azonban így jelentősen megugrik ezek ára. A gondolatmenetemben egy egy eszközt képzeltem el, amely ezt a drága technológiát központosítja, ezzel a rendszer szummázott árát csökkentve.
+	Szakdolgozatom termék-orientált. Célja az, hogy a kevésbé tehetős emberek számára is elérhetővé tegye az okos otthonok varázsát. Általános tapasztalat szerint az okos eszközök árát nagyrészt a programozható mikrochipek teszik ki, ezeknek egy részről a hozzá tartozó áramkört kell vezérelniük, amely nem egy nehéz feladat, azonban az adatnak, amely alapján ez működni fog valahogy el kell jutnia az eszközhöz. Az elemek kapcsolata vezeték nélküli kapcsolattal valósul meg, amely minden esetben WiFi-n keresztül történik, azonban ez a fajta megközelítés jelentősen megemeli a hardver árát. Elképzelésem szerint a több különálló drága technológiát központosítani lehetne, amely az összköltség csökkenéséhez vezetne.
 	
 	Az eszköz önmagában nem képes sok mindenre, azonban a hozzá kapcsolódó ,,buta'' modulok használatával lehetőség nyílik arra, hogy egy eszköz négy modult, azaz működésében különálló okos eszközt kezeljen.
 	A fejlesztés idejében az eszköz négy modult képes befogadni, azonban ez áramkör és program módosítással növelhető.
@@ -88,19 +89,42 @@
 	Számomra fontos volt még az általam nem ismert, vagy nem használt technológiák használata, így próbáltam minél több számomra új technológiát használni, ezekről a technológiákról bővebben a \ref{ch_tech}.~fejezetben olvashatnak.
 	\chapter{Technológiák}
 	\label{ch_tech}
-	\section{Eszköz oldal}
+	\section{Eszköz oldalon alkalmazott technológiák}
+	A rendszer sokrétű felépítése eredményeként több technológiát és programot fel kellet kutatnom, valamint ezek használatát minél jobban el kellett sajátítanom.
 	\subsection{Programozási nyelv}
-	Ahogy később a \aref{ch_esp}.~fejezet \aref{se_espB}.~szekciójában olvashatja az ESP32 eszközöket C/C++ nyelveken lehet főképp programozni, ezek mellett script nyelveket is lehet használni.
+	Ahogy később a \aref{ch_esp}.~fejezet \aref{se_espB}.~szekciójában olvasható az ESP32 eszközöket C/C++ nyelveken lehet főképp programozni, ezek mellett script nyelveket is lehet használni.
 	
-	A megoldásban első sorban C++ nyelvet akartam használni, azonban ez a megközelítés felvetett számos problémát a megvalósítás közben (ezekről bővebben a \aref{sub_fejlESP}.~alszekcióban olvashat). A problémák hatására elhagytam a C++ programozási nyelvet és MicroPython-ra váltottam.
+	A megoldásban első sorban C++ nyelvet akartam használni, azonban ez a megközelítés felvetett számos problémát a megvalósítás közben (ezekről bővebben a \aref{sub_fejlESP}.~alszekcióban olvashat). A problémák hatására célszerűnek találtam a C++ programozási nyelv leváltását, amelyet a MicroPython váltotta fel.
 	
-	A ESP32\_GENERIC\_S3-SPIRAM\_OCT-20241129-v1.24.1 firmware-en történt a fejlesztés a váltás eredményeként. Ez elérhető a \href{https://micropython.org/download/}{MicroPython} weboldalán.
-	\subsection{IDE}
-	Alapvetően a Visual Studio Code volt a választott IDE a fejlesztéshez, azonban ez bármely extensiont próbáltam használni egyik sem tudta sikeresen feltölteni a programot az ESP-re. Így a fejlesztés első szakaszában a VSCode-ban megírt programot az Arduino IDE segítségével töltöttem fel.
+	A fejlesztés alapjául a programozási nyelv változásának eredményeként a  ESP32\_GENERIC\_S3-SPIRAM\_OCT-20241129-v1.24.1 firmware szolgált . Ami elérhető a \href{https://micropython.org/download/}{\color{blue}{MicroPython}} weboldalán.
+	\subsection{Integrált fejlesztői környezet, IDE}
+	A fejlesztéshez választott fejlesztői környezet eredetileg a Visual Studio Code volt. -- azonban bármely extensiont próbáltam használni egyik sem tudta sikeresen feltölteni a programot az ESP-re -- Ennek eredményéül a fejlesztés első szakaszában a VSCode-ban megírt programot az Arduino IDE segítségével töltöttem fel.
 	
-	A programozási nyelv váltása után a VSCode továbbra sem volt működőképes. Miután a probléma megoldására általam ismert módszerek tárháza kifogyott elkezdtem egy másik IDE után keresni. A keresésem eredményeként rátaláltam egy weblapra\footnote{\url{https://randomnerdtutorials.com/micropython-ides-esp32-esp8266/}} ahol több fejlesztői környezetet említenek. A keresés folyamatában számos GitHub és StackOverflow beszélgetést néztem át válasz után kutatva. Ezekben a beszélgetésekben többször is említették a \href{https://thonny.org/}{ThonyIDE}-t. Ennek eredményéül kezdtem el használni az említett környezetet.
-	\section{API}
-	Szerencsére az API-hoz használt technológiával nem volt probléma, így ez Node.js-ben íródott Visual Studio Code felhasználásával. Ezt már használtam így nem tartalmazott különösebb meglepetést a fejlesztés.
+	A programozási nyelv váltása után a VSCode továbbra sem volt működőképes, valamint az Arduino IDE nem támogatta a MicroPython nyelvet. Miután a probléma megoldására általam ismert módszerek tárháza kifogyott elkezdtem egy másik IDE után keresni. A keresésem eredményeként rátaláltam egy weboldalra\footnote{\url{https://randomnerdtutorials.com/micropython-ides-esp32-esp8266/}}, ahol több fejlesztői környezetet említenek. A keresés folyamatában számos GitHub és StackOverflow beszélgetést néztem át a válasz után kutatva. Ezekben a beszélgetésekben többször is említették a \href{https://thonny.org/}{\color{blue}{ThonyIDE}}-t. Ennek eredményéül kezdtem el használni az említett környezetet.
+	\section{A REST API technológia háttere}
+	Az alkalmazás kommunikációs rétegét egy REST API biztosította, amelyet Node.js platformon fejlesztettem Express.js keretrendszer segítségével. A választott technológiák lehetővé tették a gyors prototípuskészítést és a skálázható szerveroldali logika kialakítását.
+	\subsection{Kulcstechnológiák és Döntések}
+	\begin{enumerate}
+		\item Node.js és Express.js
+		\begin{itemize}
+			\item A Node.js ideális volt aszinkron, eseményvezérelt architektúrájából eredően a párhuzamos kérések kezelésére.
+			\item Express.js-re a gyors fejlesztési ciklus és egyszerű útvonalak kialakítása miatt esett a választás.
+		\end{itemize}
+		\item Adatcsere formátuma a JSON\footnote{JavaScript Object Notation} több okból is.
+		\begin{itemize}
+			\item Széles körben használt és elfogadott modern fejlesztői eszközökben.
+			\item Könnyen értelmezhető ember és gép számára is.
+			\item Alacsony adatmennyiségű, de strukturált információtovábbítást tesz lehetővé.
+		\end{itemize}
+	\end{enumerate}
+	A bejövő HTTP kérések törzsében rejlő JSON adat feldolgozásának könnyítése érdekében a body-parser könyvtárat használtam.
+	\subsection{Technológiai előnyök} 
+		\begin{itemize}
+			\item Platformfüggetlen. Az API-t bármely eszköz használhatja, legyen az beágyazott eszköz, vagy egy mobil applikáció.
+			\item Teljesítmény. A Node.js által használt I/O műveletek nem blokkolók, így tökéletes az esetlegesen több ezer eszköz kéréseink fogadására.
+		\end{itemize}
+	
+	
 	\section{Adatbázis}
 	A MongoDB egy nyílt forráskódú, dokumentumorientált NoSQL adatbázis, amelyet skálázható és nagy teljesítményű alkalmazások fejlesztésére terveztek. A hagyományos relációs adatbázisokkal (pl. MySQL, PostgreSQL) ellentétben a MongoDB nem táblákban, hanem rugalmas, JSON-szerű dokumentumokban tárolja az adatokat. Ez lehetővé teszi a gyors és hatékony adatkezelést, különösen olyan esetekben, amikor az adatok szerkezete dinamikus vagy változó.
 	
@@ -133,12 +157,12 @@
 		\end{itemize}
 	\end{enumerate}
 	A MongoDB továbbá támogatja a CRUD műveleteket (Create, Read, Update, Delete), valamint a tranzakciókat is (a 4.0 verziótól kezdve).\cite{bib_mongo_sql}
-	Míg nem kényszeríti a MongoDb sémák használatát van rá lehetőségünk. A sémákban megadhatunk kötelező mezőket, azok típusát, valamint ezekhez köthetünk különböző ellenőrzéseket.
+	A MongoDB nem kényszeríti a sémák használatát, azonban van rá lehetőségünk, ha a feladat azt kívánja. A sémákban megadhatunk kötelező mezőket, azok típusát, valamint ezekhez köthetünk különböző ellenőrzéseket, úgynevezett validátor értékeket.
 	\lstinputlisting[style=json,label=lst_schema,caption={Felhasználó collection sémája az adatbázisból. (A séma mezőinek azonosítója nem felelnek meg a json nyelv szabájainak, mivel a fájl tartalma konzolban került bevitelre.)}]{user_schema.json}
 	
-	Ahogy a \ref{lst_schema}.-es példában is látható típus és mező megszorításokat eszközöltem, e mellett az email mező még reguláris kifejezéssel is vizsgálva van.
+	Ahogy a \ref{lst_schema}.-es kódrészletben is látható típus és mező megszorításokat tartalmaz a séma, e mellett az email mező még reguláris kifejezéssel is vizsgálva van.
 	\subsection{MongoDB struktúrája}
-	A MongoDB az adatbázison belül táblák helyett collection-ök vannak, ezen belül rekordok, avagy sorokkal ellentétben dokumentumokat találunk, ahol oszlopok helyett mezők vannak, az összehasonlítást egy hagyományos SQL adatbázissal a \ref{img_sql_mongo}.~ábrán lehet látni. \cite{bib_mongo_sql}
+	A MongoDB az adatbázison belül táblák helyett collection-ök vannak, ezen belül rekordok, avagy sorokkal ellentétben dokumentumokat találunk, ahol oszlopok helyett mezők vannak. Az összehasonlítást egy hagyományos SQL adatbázissal a \ref{img_sql_mongo}.~ábrán lehet látni. \cite{bib_mongo_sql}
 	 \begin{figure}[!h]
 	 	\centering
 	 	\includegraphics[width=8cm]{mongo_vs_sql}
@@ -148,7 +172,7 @@
 	\section{Frontend technológia}
 	Az eszköz hatékony vezéréléséhez szükségünk van egy applikációhoz, azonban lehet, hogy egyes emberek nem mindenhez a telefonjukat akarják használni. Ez problémát vet fel, mivel több kódbázis fenntartása és javítása sok embert és erőforrást igényel. 
 	
-	\textbf{Megoldás:} Olyan keretrendszerre, vagy programozási nyelvre van szükség, amely működőképes több platformon is.
+	Megoldásként egy olyan keretrendszerre, vagy programozási nyelvre van szükség, amely működőképes több platformon is.
 	
 	\textbf{Például:}
 	\begin{itemize}
@@ -158,16 +182,22 @@
 		\item Lynx
 	\end{itemize}
 	\begin{megjegyzes}
-		A legújabb keretrendszer a LynxJs, amely 2025.03.05.-én jelent meg. Ahogy a React Native ez is javascript alapú, így a Lynx és React Native egyfajta versenyhelyzetben vannak. A keretrendzerek összehasonlítását olvashatja a  \href{https://medium.com/@mostsignificant/introducing-lynx-how-tiktoks-new-framework-compares-to-react-native-580a52d3462c}{Medium.com}-on, valamint a \href{https://lynxjs.org/}{LynxJs.org}-on tudhat meg többet a keretrendszerről.
+		A legújabb keretrendszer a LynxJs, amely 2025.03.05.-én jelent meg. Ahogy a React Native ez is javascript alapú, így a Lynx és React Native egyfajta versenyhelyzetben vannak. A keretrendzerek összehasonlítását olvashatja a  \href{https://medium.com/@mostsignificant/introducing-lynx-how-tiktoks-new-framework-compares-to-react-native-580a52d3462c}{\color{blue}{Medium.com}}-on, valamint a \href{https://lynxjs.org/}{\color{blue}{LynxJs.org}}-on tudhat meg többet a keretrendszerről.
 	\end{megjegyzes}
-	Választásom a Flutter-re esett. 
+	
+	React Native-ról meglehetősen sok negatív megjegyzést hallottam, miszerint rendkívül nehéz a használata és rengeteg nehezen javítható problémát eredményez, ha nem tökéletesen használjuk. Ismeretségi körömbe tartozik egy személy, aki arra esküdött fel, hogy soha többé nem fogja használni a túlságosan komplikált fejlesztés eredményeként.
+	A Lynx tekintve, hogy rendkívül új, nagy valószínűséggel több, még rejtett hibákat tartalmazhat, valamint a dokumentáción kívül logikám szerint rendkívül alacsony a jelenleg elérhető egyéb források száma.
+	A Kotlin, mint a Java helyettesítője alapvetően egy JVM\footnote{Java Virtual Machine}-et használ a program futtatására, amely nem optimális teljesítményhez vezethet. A probléma megoldására létrejött a Kotlin Native\cite{bib_kotlin_native_home}, azonban rendkívül lassú a JRE\footnote{Java Runtime Environment} verzióhoz képest, valamint nem létezik hozzá sok alapvető csomag, vagy ,,könyvtár''\cite{bib_kotlin_native_discussion}.
+	A fent említett okok miatt, valamint a tény, hogy a Flutter natívan futó programot állít elő miatt választásom a Flutter-re esett.
 	\subsection{Miért Flutter?}
 	\begin{itemize}
-		\item könnyű crossplatform build lehetőség
-		\item opensource
-		\item gyorsaság\footnote{,,Flutter is powered by Dart, a language optimized for fast apps on any platform''\cite{bib_flutter_web}}
-		\item új technológia megismerése
+		\item Könnyű crossplatform build lehetőség
+		\item Opensource
+		\item Gyorsaság\footnote{,,Flutter is powered by Dart, a language optimized for fast apps on any platform''\cite{bib_flutter_web}}
+		\item Új technológia megismerése
+		\item Native build-ek
 	\end{itemize}
+	A Flutter ezen tulajdonságai rendkívül kedvezővé tette a frontend applikáció elkészítéséhez. 
 	\subsection{Flutter ismertetése}
 	A Flutter egy olyan eszköz, amely lehetővé teszi a fejlesztők számára, hogy natív, többplatformos alkalmazásokat hozzanak létre egyetlen programozási nyelv és egyetlen kódbázis segítségével. Nem olyan alkalmazást hoz létre, amely böngészőben fut, vagy amelyet natív alkalmazásokba csomagolnak. Ehelyett natív alkalmazásokat készít iOS-re és Androidra is, amelyek később közzétehetők az app store-okban.
 	
@@ -180,9 +210,11 @@
 	Flutter applikációt a fent említettek mellett még Windows-on, Linux-on és Web-en is lehet használni.
 	\chapter{ESP32, az eszköz}
 	\label{ch_esp}
+	A projekt kulcsfontosságú része, maga az eszköz, amely lehetővé teszi a modulok vezérlését. A \ref{img_myesp}-es ábrán látható mikrokontrollerhez hasonlót több gyártó is gyárt, azonban egy ESP kifejezetten a benne található processzortól lesz ESP. Az ESP32-ben található Xtensa LX6 processzor két maggal van ellátva és órajele 240 MHz\footnote{Megahertz}.
 	\section{ESP32 bemutatása}
 	\label{se_espB}
-	Az ESP32 egy rendkívül sokoldalú és hatékony mikrokontroller, amely számos területen alkalmazható. Duális magos processzora, integrált Wi-Fi és Bluetooth képességei, valamint gazdag I/O lehetőségei miatt kiváló választás mind IoT, mind ipari vagy okos otthon alkalmazásokhoz. Az ESP32 fejlesztése egyszerű és gyors, köszönhetően a széles körben elérhető fejlesztői eszközöknek és könyvtáraknak. Ezek a tulajdonságok teszik az ESP32-t az egyik legnépszerűbb mikrokontrollerré a beágyazott rendszerek világában.
+	Az ESP32 egy rendkívül sokoldalú és hatékony mikrokontroller, amely számos területen alkalmazható. Két magos processzora, integrált WiFi és Bluetooth képességei, valamint gazdag I/O lehetőségei miatt kiváló választás mind IoT, mind ipari vagy okos otthon alkalmazásokhoz. Az ESP32 fejlesztése egyszerű és gyors, köszönhetően a széles körben elérhető fejlesztői eszközöknek és könyvtáraknak. Ezek a tulajdonságok teszik az ESP32-t az egyik legnépszerűbb mikrokontrollerré a beágyazott rendszerek világában. Mind e mellett az általam választott változat nem szenved RAM, vagy ROM hiányában sem. Az adatlap szerint el van látva 512 KB SPRAM-al, 384 KB ROM-al és változó méretű PSRAM\footnote{Pseudo SRAM}-al. Az utóbbi a használt eszköz esetében 8 Mb, valamint még fel van szerelve 32MB Octal Flash\footnote{Az Octal (xSPI) Flash memória egy gyors memória típus, amely kedvelt beültetett rendszerek között, nagyrészt a memóriáról történő gyors boot-nak köszönhetően. A memória típus 400MB/s olvasási sebességre képes.\cite{bib_esp_octal}} memóriával.
+	
 	
 	Az általam \aref{img_myesp} használt modell az ESP32-S3-DevKitC-1 N32R8V, amely egy ESP32-S3-WROOM-2 chipet tartalmaz, ezt az Espressif System fejlesztette ki.
 	\begin{figure}[!ht]
@@ -208,33 +240,51 @@
 	\begin{figure}[!ht]
 		\centering
 		\includegraphics[width=10cm]{circuit}
-		\caption{Egyedi áramkör}
+		\caption{Hatékonyság növelés érdekében kifejlesztett egyedi áramkör.}
 		\label{img_circ}
 	\end{figure}
-	A \ref{img_circ}-es ábrán látható az említett áramkör, amely segítségével elérem az általam elfogadható eredményt. Ebben a fő alkatrész az optocsatoló, amellyel igyekeztem  az esetleges interferenciát csökkenteni.
-	
-	Ez a diagram a \href{https://www.circuit-diagram.org/}{Circuit Diagram} segítségével készült.
+	A \ref{img_circ}-es ábrán látható az említett áramkör, amely segítségével elérem az általam elfogadható eredményt. Ebben a kulcsfontosságú alkatrészek az optocsatoló, amelyek használatával igyekeztem  az esetlegesen előforduló interferenciát csökkenteni.
+	Ez a kapcsolási rajz a \href{https://www.circuit-diagram.org/}{\color{blue}{Circuit Diagram}} segítségével készült.
 	Az ábra nem tartalmazza az érzékelő vezetékeket, amivel az eszköz érzékeli, hogy csatlakoztatva van-e a modul.
 	\subsection{Szoftver fejlesztése és feltárt problémák}
 	\label{sub_fejlESP}
 	Fejlesztés elején több probléma is felmerült.
 	\begin{enumerate}
-		\item A modul vezérlő fájlok tárolása. Amennyiben C++ vagy C nyelvet használunk a belső tárhely kizárólagosan az általunk feltöltött fájlokat tartalmazza és a hozzáférés nehézkes fájlrendszer nélkül. Szerencsére elérhető több csomag is ennek a megoldására, mint a \href{https://github.com/littlefs-project/littlefs}{LittleFS}, vagy a \href{https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/storage/spiffs.html}{Spiffs}
+		\item A modul vezérlő fájlok tárolása. Amennyiben C++ vagy C nyelvet használunk a belső tárhely kizárólagosan az általunk feltöltött fájlokat tartalmazza és a hozzáférés nehézkes fájlrendszer nélkül. Szerencsére elérhető több csomag is ennek a megoldására, mint a \href{https://github.com/littlefs-project/littlefs}{\color{blue}{LittleFS}}, vagy a \href{https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/storage/spiffs.html}{\color{blue}{Spiffs}}
 		\item A modul vezérlő fájlok használata, vagy futtatása. A projekt egyik fő feladata, hogy a modulok programja és a fő program egymástól függetlenül legyenek képesek működni, azaz ne a fő program hajtsa végre a szükséges lépéseket, hanem a modul vezérlő. Egy megoldás erre a fájl dinamikus betöltése és a program belépési pontjának meghatározása, majd a pont memória címén keresztüli futtatás. Ez a megközelítés a programot rendkívül bonyolultá tette volna és memória biztonsági problémákat is felvetett volna, mivel a C++ nyelvben íródó programnak C-t is használnia kellett volna.
 	\end{enumerate}
 	 Ez a kettő komolyabb probléma vezetett arra, hogy más nyelvet keressek. A MicroPython mind a kettő problémára megoldást nyújtott a beépített fájlrendszerével és JIT\footnote{Just In Time} interpreterével, ugyanis így nem bináris kóddal kell dolgozni, hanem egyszerű \textit{.py} fájlokkal.
 	 Ez a változtatás nagyban megkönnyítette a program fejlesztését.
 	 
-	 A váltás után neki tudtam kezdeni a tényleges fejlesztésnek. Itt a főbb problémákat a fájl letöltése és azoknak a futtatása jelentette. A fájl letöltését több módszerrel is megkíséreltem, a Google API használatával sikeresen le tudtam tölteni a fájlt az API mindössze az igényelt API kulcsot és a fájl azonosítóját kéri (Az azonosító a megosztási linkből kinyerhető.).
+	 A váltás után neki tudtam kezdeni a tényleges fejlesztésnek. Itt a főbb problémákat a fájl letöltése és azoknak a futtatása jelentette. A fájl letöltését több módszerrel is megkíséreltem, azonban egyik sem hozott megfelelő eredményt, végül a Google API használatával sikeresen le tudtam tölteni a fájlt. Az API mindössze a Google-től igényelt API kulcsot és a fájl azonosítóját kéri (Az azonosító a megosztási linkből kinyerhető.).
 	 
 	 Ezen a ponton a szerverrel való kommunikáció is kérdéses volt. Elsőre Websocket technológiát terveztem használni, azonban ezt drágának találtam és a szervernek egyszerre több kapcsolatot is fenn kellett volna tartania, miközben relatívan kevés és ritka az információ áramlása. A következő ötlet egy az eszközön futó API volt, ez azonban ennek a megoldásnak, hogy működőképes legyen szükséges az eszköz IP címe, valamint esetlegesen portforwarding-re van szükség amely nem egyezik az eszköz Plug\&Play irányzatával. Ennek eredményéül a jól ismert RestAPI technológia mellett döntöttem. Az API-ról többet olvashat a \ref{ch_API}.~fejezetben.
 	 
-	 API-ra még így szükség van a konfigurációhoz, ehhez a Microdot könyvtárat használtam, valamint a szerver felé irányuló kérésekhez a urequests és az abból származó adatok feldolgozásához a nyelv által alapértelmezetten tartalmazott modulokat használtam. A beépített NeoPixel LED használatához a NeoPixel könyvtárra volt szükségem.
+	 API-ra még így szükség van a konfigurációhoz, ehhez a Microdot könyvtárat használtam, valamint a szerver felé irányuló kérésekhez a urequests és az abból származó adatok feldolgozásához a nyelv által alapértelmezetten tartalmazott modulokat használtam, például a \textit{ujson} modult. A konfigurációhoz használható más technológia az eszköz esetében a Bluetooth volt, azonban ezt az egyszerűség kedvéért nem használtam.
+	 
+	 \begin{megjegyzes}
+	 	A Bluetooth-os konfiguráció kihagyása, jó döntés volt. A Tarlogic Március 6.~megjelent cikk-je alapján\cite{bib_esp_bluetooth}. A cikk említést tesz egy több millió eszközt sújtó sebezhetőségi pontról. A cikk által említett eszközök Bluetooth chipjeiben rejtett funkcionalitást véltek felfedezni, amely biztonsági résként fogható fel.
+	 \end{megjegyzes}
+	 
+	 A felhasználónak mindenféle képen jelezni kell az eszköz belső állapotáról, ennek a legegyszerűbb formája a színek használata, szerencsére az eszköz el van látva egy  beépített NeoPixel LED-el, amely használatához a NeoPixel könyvtárra volt szükségem.
+	 
+	 A konfigurációhoz és működéshez szükséges a MicroPython-ban alapértelmezetten megtalálható network modul. A modul segítségével tud az eszköz létrehozni saját WiFi hálózatot, valamit csatlakozni egy már meglévő hálózathoz. Szintén alapértelmezett csomag az OS csomag, amely a legtöbb Python verzióban megtalálható. Ez a könyvtár rendkívül fontos az eszköz működésének szempontjából, mivel használatával dönthető el, hogy bizonyos fájlok, például az eszköz saját azonosítóját tartalmazó fájl jelen van-e a fájlrendszerben.
+	 
+	 A műveletek megvalósítása egy végtelen ciklusban történik, ahol minden iteráció egy a szerver felé irányuló kéréssel kezdődik. A végpont amely kezeli ezt a kérést az egyetemen tanultaktól eltér, a végpontról többet olvashat a \ref{ssec_long_polling}.~szekcióban. Innentől az esetlegesen több feladatot egy a végtelen ciklusba beágyazott \textbf{for} ciklus kezeli, amely törzsében minden egyes feladatot megvizsgálunk.
+	 
+	 A ciklus törzsében található if-elif szerkezet döntéshozó szervként működik. A feladat, mint JSON dokumentum \textit{aditionalInfo} mezőjében található \textit{method} mező rejti a feladat típusát, ezek a típusok és hozzájuk társított folyamatok megtekinthetőek a \ref{ssec_mukodes}.~szekcióban található felsorolásban.
+	 
+	 Ezen folyamatok közül a legnehezebben a ,,run'' volt megvalósítható. Itt a modulhoz társított python fájl azonosítója alapján választjuk ki a tárolt modulok közül a feladatban megadott modult. Minden modulhoz tartozik egy metódus, például a az első számú modulhoz a ,,runa'' metódus tartozik. Ezek a metódusok kivétel nélkül el vannak látva egy dekorátorral, amely feladata a megfelelő áramkör kiválasztása. Ezen metódusok belsejében hívódnak meg a különböző modulok ,,run"" metódusai, amely egy paraméterrel van ellátva. Ez a paraméter tartalmazza a feladat paramétereit.
+	 
+	 
+	 
 	 \subsection{Működése}
+	 \label{ssec_mukodes}
 	 Az eszköz használata konfigurációval kezdődik, melyet kék fénnyel jelez a felhasználónak. A konfiguráció után megpróbál csatlakozni a megadott hálózathoz eközben az eszközön található LED kék fényről pulzáló zöld fényre vált. Amennyiben a kapcsolódás sikeres az eszköz zöld fénnyel jelzi ezt, ha sikertelen, akkor újraindul a folyamat.
 	 
 	 Sikeres kapcsolódás után önmagát regisztrálja az eszköz a hálózatra. Innentől az eszköz használatra kész és azonnal kérést küld az API-nak a hozzá kapcsolt feladatok iránt érdeklődve. A szerver válasza alapján a következő műveleteket végezheti el az eszköz:
 	 \begin{itemize}
+	 	
 	 	\item ,,add\_new'': A parancs kiadásával új modult tudunk hozzáadni az eszközhöz.
 	 	\item ,,remove'': Az ,,add\_new'' parancs ellentettje. Modul eltávolítására adja ki a parancsot.
 	 	\item ,,disown'': Gyári visszaállítás.
@@ -245,7 +295,7 @@
 	 Fontos megjegyezni, hogy minden feladat elvégzése annak törlésével és egy új kéréssel záródik. A ,,run'' parancs esetén az eszköz a modul azonosítója alapján dönti el, hogy melyik modult kell használnia, azaz megállapítja a modul áramkörét és kiválasztja azt. Az ,,add\_new'' esetén az eszköz újraindul, hogy a program sikeresen érzékelni tudja a fájl változásait, erre a ,,remove'' parancs esetén nincs szükség, mivel a program belső állapota változik csak.
 	 
 	  Az eszköz esetleges áramkimaradásra fel van készítve, mivel a belső állapot változása folyamatosan mentve van a belső tárhelybe.
-	\chapter{API}
+	\chapter{A REST API fejlesztése}
 	\label{ch_API}
 	Az API az Express.js keretrendszerrel készült és minden entitás CRUD műveleteit ellátja.
 	\section{Adatbázis kezelése}
@@ -301,7 +351,7 @@
 			\textbf{Böngészőtámogatás}        & Modern böngészők (IE nem)            & Szélesebb támogatás                 \\ \hline
 		\end{tabular}
 	\end{table}
-	\clearpage
+	%\clearpage
 	\subsubsection{MQTT}
 	\label{sssec_MQQTT}
 	Az MQTT egy nyílt, könnyűsúlyú üzenetküldő protokoll, amelyet eredetileg a publisker-előfizet (pub/sub) modellre terveztek az alacsony sávszélességű, magas késleltetésű hálózatok (pl. IoT eszközök) számára. Az MQTT-t ma széles körben használják az Ipari Internet of Things (IIoT), otthoni automatizálás, és valós idejű adatátviteli rendszerek területén. A protokollt az OASIS szabványosította, és a ISO/IEC 20922 szabvány részét képezi\cite{bib_MQTT_iso,bib_MQTT_oasis}.\\
@@ -321,13 +371,14 @@
 		\item Témakör (Topic): Hierarchikus útvonal (pl. \textit{iot/sensor1/temperature}).
 	\end{enumerate}
 	\subsection{Long-Polling megvalósítása}
+	\label{ssec_long_polling}
 	Tekintve, hogy Long-Polling-ot még nem használtam meg kellett ismernem\cite{bib_long_poll1,bib_long_poll_imp}. Ezek mellett praktikusabb példákat is keresnem kellet, hogy jobban megértsem\cite{bib_long_poll_pl}.
 	
 	Implementálás után teszteltem a funkciót, eleinte jól működött, azonban amikor több feladatot is feltöltöttem az API összeomlott és az eszköz kommunikációs hibát dobott. A hiba gyökere az volt, hogy, míg a bejövő request elindította a folyamatot, addig egy másik ismét megtette ezt, így a kapcsolat a response elküldésével lezárult és nem tudta az API elküldeni a másikat. Ennek megoldása ként egy ,,jelenleg futó'' másodlagos lista létrehozása volt szükséges.
 	\lstinputlisting[style=JavaScript,label=lst_polling,caption={Long-Polling és a hozzá tartozó metódusok.}]{sample_of_long-polling.js}
 	\chapter{Frontend}
 \begin{thebibliography}{8}
-	\bibitem{bib_mongo_sql}A szekció a \href{https://blockchainsimplified.com/blog/mongodb-introduction/}{Blockchain Simplified} és a DeepSeek alapján és felhasználásával készült.
+	\bibitem{bib_mongo_sql}A szekció a \href{https://blockchainsimplified.com/blog/mongodb-introduction/}{\color{blue}{Blockchain Simplified}} és a DeepSeek alapján és felhasználásával készült.
 	[Letöltve/látogatva:2025.03.21]
 	\bibitem{bib_flutter_web}\url{https://flutter.dev/}
 	[Letöltve/látogatva:2025.03.23]
@@ -354,5 +405,13 @@
 	[Letöltve/látogatva:2025.03.08]
 	\bibitem{bib_MQTT_ibm} IBM MQTT fehér könyv: \url{https://www.ibm.com/docs/en/ibm-mq/8.0.0}
 	[Letöltve/látogatva:2025.03.08]
+	\bibitem{bib_kotlin_native_home} Kotlin Native oldala: \url{https://kotlinlang.org/docs/native-overview.html}
+	[Letöltve/látogatva:2025.03.16]
+	\bibitem{bib_kotlin_native_discussion} Kotlin Native kérdések oldal: \url{https://discuss.kotlinlang.org/t/questions-about-kotlin-native/26042}
+	[Letöltve/látogatva:2025.03.16]
+	\bibitem{bib_esp_octal} www.ISSI.com-on található PDF:\url{https://www.issi.com/WW/pdf/Octal-Memory.pdf}
+	 [Letöltve/látogatva:2025.03.18]
+	\bibitem{bib_esp_bluetooth} Tarlogic cikk az ESP32 mikrokontrollerek Bluetooth sebezhetőségéről: \url{https://www.tarlogic.com/news/hidden-feature-esp32-chip-infect-ot-devices/}
+	[Letöltve/látogatva:2025.03.20]
 \end{thebibliography}
 \end{document}
