@@ -87,7 +87,7 @@
 	A fejlesztés idejében az eszköz négy modult képes befogadni, azonban ez áramkör és program módosítással növelhető.
 	
 	Számomra fontos volt még az általam nem ismert, vagy nem használt technológiák használata, így próbáltam minél több számomra új technológiát használni, ezekről a technológiákról bővebben a \ref{ch_tech}.~fejezetben olvashatnak.
-	\chapter{Technológiák}
+	\chapter{Technológiai áttekintés}
 	\label{ch_tech}
 	\section{Eszköz oldalon alkalmazott technológiák}
 	A rendszer sokrétű felépítése eredményeként több technológiát és programot fel kellet kutatnom, valamint ezek használatát minél jobban el kellett sajátítanom.
@@ -98,6 +98,7 @@
 	
 	A fejlesztés alapjául a programozási nyelv változásának eredményeként a  ESP32\_GENERIC\_S3-SPIRAM\_OCT-20241129-v1.24.1 firmware szolgált . Ami elérhető a \href{https://micropython.org/download/}{\color{blue}{MicroPython}} weboldalán.
 	\subsection{Integrált fejlesztői környezet, IDE}
+	\label{ssec_ide_esp}
 	A fejlesztéshez választott fejlesztői környezet eredetileg a Visual Studio Code volt. -- azonban bármely extensiont próbáltam használni egyik sem tudta sikeresen feltölteni a programot az ESP-re -- Ennek eredményéül a fejlesztés első szakaszában a VSCode-ban megírt programot az Arduino IDE segítségével töltöttem fel.
 	
 	A programozási nyelv váltása után a VSCode továbbra sem volt működőképes, valamint az Arduino IDE nem támogatta a MicroPython nyelvet. Miután a probléma megoldására általam ismert módszerek tárháza kifogyott elkezdtem egy másik IDE után keresni. A keresésem eredményeként rátaláltam egy weboldalra\footnote{\url{https://randomnerdtutorials.com/micropython-ides-esp32-esp8266/}}, ahol több fejlesztői környezetet említenek. A keresés folyamatában számos GitHub és StackOverflow beszélgetést néztem át a válasz után kutatva. Ezekben a beszélgetésekben többször is említették a \href{https://thonny.org/}{\color{blue}{ThonyIDE}}-t. Ennek eredményéül kezdtem el használni az említett környezetet.
@@ -166,7 +167,7 @@
 	 \begin{figure}[!h]
 	 	\centering
 	 	\includegraphics[width=8cm]{mongo_vs_sql}
-	 	\caption{SQL adatbázis és MongoDB szerkezeti hasonlóságai.}
+	 	\caption{SQL adatbázis és MongoDB szerkezeti hasonlóságai.\cite{bib_mongo_sql}}
 	 	\label{img_sql_mongo}
 	 \end{figure}
 	\section{Frontend technológia}
@@ -208,6 +209,94 @@
 	A fordítási eszközök mellett a Flutter keretrendszerként is funkcionál, UI építőelemeket (widgeteket) biztosít, mint például lapok, legördülő menük, gombok stb., valamint néhány segédfüggvényt és csomagot, amelyeket az SDK segítségével lehet lefordítani.\cite{bib_flutter_short}
 	
 	Flutter applikációt a fent említettek mellett még Windows-on, Linux-on és Web-en is lehet használni.
+	\chapter{Rendszerterv}
+	\section{Rendszer célja}
+	A szakdolgozat célja egy moduláris okos otthon rendszer fejlesztése, ahol egy köztes API-val van kapcsolatban minden eszköz. Az eszközöket két csoportba lehet sorolni. Célja egy community alapú rendszer kialakítása, ahol bárki fejleszthet különböző céllal modulokat a rendszerhez. Ez a megközelítés törekszik arra, hogy a rendszer összköltsége alacsony maradjon.
+	\section{Architekturális terv}
+	A rendszer 3 különböző projektből épül fel: multiplatform felhasználói felület (Flutter), moduláris eszköz (MicroPython, ESP32), valamint, amely ezt a kettő projektet összeköti a REST API (Node.js, Express.js). Tekintve, hogy egyik projektben használt programozási nyelv sem azonos, szükség van egy közös ,,nyelvre''. Ez a nyelv a JSON.
+	\begin{itemize}
+		\item \textbf{Multiplatform felhasználói felület}: Ez a felület szolgál a parancsok, avagy feladatok kiadására, amelyet a moduláris eszköz el fog végezni. Amennyiben csoportként tekintünk az egyes projektekre, ez a csoport a vezérlő csoport.
+		\item \textbf{Moduláris eszköz}: Szerepe és munkája a felület által létrehozott feladatok ellátása és végrehajtása. Csoport szemléletben ez a végrehajtó csoport.
+		\item \textbf{REST API}: A két csoport összekötésére hívatott köztes rendszer, amely lehetővé teszi a kommunikációt a csoportok között.
+	\end{itemize}
+	\section{Követelmények}
+	A szekció a fejlesztés sikeréhez szükséges követelményeket tartalmazza részletesen.
+	\subsection{Felhasználói felület}
+	A felület rendelkezik egy regisztrációs és bejelentkező oldallal, a kettő oldal eléréséhez nem szükséges semmilyen előzetes vizsgálat. A bejelentkező felület fogadja a felhasználót alapértelmezetten.
+	Amennyiben a felhasználó engedélyt ad az automatikus bejelentkezéshez, a felhasználót az alapértelmezett felületet felülíró felület fogadja, amely a felhasználóhoz csatlakoztatott eszközök listáját tartalmazza.
+	
+	Az eszközök oldalon, amely a felülírja a bejelentkezés oldalt, találhatónak kell lennie egy gombnak, amellyel új eszközöket adhatunk hozzá. Mind e mellett ideálisan a jobb felső sarokban meg kell adni a felhasználónak a kijelentkezés lehetőségét és a saját adatainak változtatását. A listázott eszközök egyikére kattintva az eszköz moduljainak meg kell jelennie, valamint a felhasználónak lehetőséget kell adni az eszközhöz új modult csatlakoztatni, azt leválasztani és az eszköz adatainak változtatását lehetségessé tenni.
+	
+	Az eszköz opcióin belül több lehetőséget is figyelembe kell venni.
+	\begin{itemize}
+		\item Eszköz adatainak módosítása.
+		\item Eszköz törlése.
+		\item Eszköz opciói.
+		\begin{itemize}
+			\item Modul eltávolítása.
+			\item Eszköz hálózatának alaphelyzetbe állítása.
+			\item Eszköz moduljainak alaphelyzetbe állítása, amely az összes modult le kell csatlakoztatnia.
+		\end{itemize}
+	\end{itemize}
+	
+	A felhasználónak a beállításokon belül meg kell adni a lehetőséget a
+	\begin{enumerate}
+		\item automatikus bejelentkezés letiltására,
+		\item felhasználónév cseréjére,
+		\item jelszó cseréjére,
+		\item e-mail cím módosítására
+		\item és fiók törlésére.
+	\end{enumerate}
+	A fiók törlését, jelszó cseréjét és e-mail cím módosítását követően felületnek kötelezően vissza kell térnie a bejelentkezéshez használt oldalhoz. Ennek a műveletnek bármely felsorolt esetnél meg kell történnie.
+	
+	Az eszköz oldalnak tartalmazni kell 4 ,,csempét'', amely kattintással átvisz a modulhoz tartozó feladat paramétereit megadó oldalra. Fontos, hogy a moduláris állapot fenntartásának érdekében ezek az oldalak dinamikusan jelenjenek meg és az egyes modulokhoz legyenek párosítva. 
+	\subsection{Eszköz követelményei}
+	Az eszköznek képesnek kell lennie legalább 4 modul fogadására és azoktól függetlenül kell működnie.
+	A felhasználó kizárólagosan az eszköz
+	\begin{itemize}
+		\item telepítésénél,
+		\item konfigurálásánál,
+	\end{itemize}
+	valamint egyes modulok
+	\begin{itemize}
+		\item csatlakoztatásánál,
+		\item leválasztásánál
+	\end{itemize}
+	szabad közvetlen kapcsolatba lépnie az eszközzel.
+	
+	Az eszköz konfigurálása WiFi-n keresztül kell történnie, valamint csatlakoznia kell az internethez. Az adatokat JSON formátumban kell feldolgoznia. Csatlakoztatás esetén kizárólagosan a csatlakozandó modult kell a felhasználónak megadnia, valamint leválasztás alkalmával nem kell semmit megadnia, azaz az eszköznek kell kezelnie, hogy melyik porthoz csatlakozott a modul. Ezeket a változásokat továbbá köteles megjeleníteni a az adatbázisban.
+	
+	Az eszköznek a beérkezett feladatról azonnal információt kell kapnia.
+	\subsection{API, összekötő réteg követelményei}
+	Az API köteles az összes táblára, vagy azzal egyen értékű szerkezethez kötődő műveletek megvalósítására. Azaz képes legyen ellátni azon szerkezet tartalmának műveleteit, mint egység az olvasása, létrehozása, frissítése, valamint törlése. Ezek mellett köteles egy modern, skálázható, könnyen kezelhető adatbázissal kapcsolatot létesítenie, amelyeken a fent említett műveleteket elvégezheti.
+	\section{Használt fejlesztői eszközök}
+	A rendszer fejlesztésének és üzemeltetésének folyamatát számos eszköz segítette elő.
+	\subsection{Visual Studio Code}
+	A Visual Studio Code (VS Code) egy modern, nyílt forráskódú kódszerkesztő, amelyet a Microsoft fejlesztett és 2015-ben adott ki. Azóta az egyik legnépszerűbb fejlesztői eszközzé vált, köszönhetően gyorsaságának, rugalmasságának és a gazdag funkcionalitásnak. Ingyenesen használható, és támogatja a Windows, macOS és Linux operációs rendszereket is, így széles körben elterjedt a fejlesztők körében.
+	
+	A VS Code nem csupán egy egyszerű szövegszerkesztő, hanem egy teljes értékű fejlesztői környezet, amely intelligens kódkiegészítéssel (IntelliSense), beépített Git-kezeléssel és hatékony hibakereső eszközökkel rendelkezik. A szerkesztő testreszabható felülete lehetővé teszi a témák, billentyűparancsok és bővítmények segítségével, hogy minden fejlesztő a saját igényeihez igazítsa.
+	
+	A bővítmények (extensions) rendszere hatalmas lehetőséget kínál a funkcionalitás bővítésére, legyen szó webfejlesztésről, adatbázis-kezelésről vagy akár mesterséges intelligenciával kapcsolatos eszközökről. Emiatt a VS Code nem csak kezdők, hanem professzionális fejlesztők számára is nélkülözhetetlen segédeszköz.
+	
+	A szoftver aktív fejlesztése és a közösség által támogatott nyílt forráskódú modell biztosítja, hogy folyamatosan fejlődik, új funkciókkal és optimalizálásokkal gazdagodva\cite{bib_vscode}.
+	\subsection{Thonny IDE}
+	A Thonny egy felhasználóbarát integrált fejlesztői környezet (IDE), amelyet elsősorban Python programozás tanítására és tanulására terveztek, különös hangsúllyal a MicroPython támogatásán. Az Észtországi \href{https://ut.ee/en}{\color{blue}{Tartu Egyetem}} fejleszti, és ingyenesen elérhető Windows, macOS és Linux platformokra.
+	
+	Ez az IDE kifejezetten kezdők számára készült, de a MicroPython támogatás miatt népszerű választás az embedded fejlesztésben is, különösen olyan mikrovezérlős projekteknél, mint az ESP32, ESP8266 vagy Raspberry Pi Pico. A Thonny beépített Python 3 és MicroPython interpretterrel rendelkezik, így nem igényel külön konfigurálást - ez ideális megoldást kínál mind a kódolás alapjainak elsajátításához, mind a fizikai számítógépes projektek fejlesztéséhez.
+	
+	A program egyik legnagyobb előnye a lépésről-lépésre történő kódvégrehajtás és a változók valós idejű vizualizációja, ami segít megérteni a program működését. MicroPython fejlesztéskor a Thonny lehetővé teszi a kód direkt feltöltését a mikrovezérlőre, valamint interaktív REPL (Read-Eval-Print Loop) konzolt biztosít a hibakereséshez.
+	
+	Bár a Thonny nem a legfejlettebb IDE összetett projektekhez, kiváló választás kezdőknek, oktatási célokra és egyszerűbb MicroPython-alapú fejlesztésekhez. Nyílt forráskódú termék, ami aktív fejlesztést és közösségi támogatást biztosít\cite{bib_thonny,bib_thonny_deepseek}.
+	
+	A Thonny IDE választásáról többet olvashat a \ref{ssec_ide_esp}.~szekcióban.
+	\subsection{Git, Github}
+	A Git egy nyílt forráskódú, verziókezelő rendszer, amely segítségével nyomonkövethető a projekt forráskódjai és fájljai, valamint azok változásai. A GitHub egy Git-re épülő népszerű online platform, amely lehetővé teszi távoli tárolók, úgynevezett repozitóriumok létrehozását és használatát. A GitHub projekt része lehetővé teszi, hogy a repozitóriumhoz csatoljunk úgynevezett projekteket, amely segítségével akár a Trello is helyettesíthető. A fejlesztés folyamán én a GitHub projekt részét használtam. A projektről készült képernyőkép megtekinthető a \ref{img_git}.~képen.
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[width=15cm]{github_project}
+		\caption{Szakdolgozathoz feladatkövetéshez használt GitHub projekt, és állapota [2025.04.10.]}
+		\label{img_git}
+	\end{figure}
 	\chapter{ESP32, az eszköz}
 	\label{ch_esp}
 	A projekt kulcsfontosságú része, maga az eszköz, amely lehetővé teszi a modulok vezérlését. A \ref{img_myesp}-es ábrán látható mikrokontrollerhez hasonlót több gyártó is gyárt, azonban egy ESP kifejezetten a benne található processzortól lesz ESP. Az ESP32-ben található Xtensa LX6 processzor két maggal van ellátva és órajele 240 MHz\footnote{Megahertz}.
@@ -235,6 +324,7 @@
 	Ezek a csatlakozók lehetővé teszik különböző érzékelők, kijelzők és egyéb perifériák csatlakoztatását.
 	Ezeket az eszközöket nagyrészt C és C++ nyelven lehet programozni, azonban van lehetőség a MicroPython és Lua script nyelvek használatára.
 	\section{Fejlesztés}
+	Tekintettel az ESP32 működésére a fejlesztés folyamata két részre osztható, a hardver és szoftver szintű fejlesztésre.
 	\subsection{Hardver szintű fejlesztés}
 	A projekt megvalósításához szükség volt egy egyedi áramkörre, amivel maximalizálhatom az elérhető portok számát.
 	\begin{figure}[!ht]
@@ -246,6 +336,14 @@
 	A \ref{img_circ}-es ábrán látható az említett áramkör, amely segítségével elérem az általam elfogadható eredményt. Ebben a kulcsfontosságú alkatrészek az optocsatoló, amelyek használatával igyekeztem  az esetlegesen előforduló interferenciát csökkenteni.
 	Ez a kapcsolási rajz a \href{https://www.circuit-diagram.org/}{\color{blue}{Circuit Diagram}} segítségével készült.
 	Az ábra nem tartalmazza az érzékelő vezetékeket, amivel az eszköz érzékeli, hogy csatlakoztatva van-e a modul.
+	
+	A kapcsolási rajz nem nevezhető egyértelmű bizonyítéknak annak helyességéről. Így prototípus készítése ajánlott. Egy ilyen prototípus tekinthető meg a \ref{img_proto}.~képen.
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[height=10cm]{korai_prototipus}
+		\caption{Kapcsolási rajz alapján készült prototípus, egyéb teszteléshez használt komponensekkel.}
+		\label{img_proto}
+	\end{figure}
 	\subsection{Szoftver fejlesztése és feltárt problémák}
 	\label{sub_fejlESP}
 	Fejlesztés elején több probléma is felmerült.
@@ -377,7 +475,30 @@
 	Implementálás után teszteltem a funkciót, eleinte jól működött, azonban amikor több feladatot is feltöltöttem az API összeomlott és az eszköz kommunikációs hibát dobott. A hiba gyökere az volt, hogy, míg a bejövő request elindította a folyamatot, addig egy másik ismét megtette ezt, így a kapcsolat a response elküldésével lezárult és nem tudta az API elküldeni a másikat. Ennek megoldása ként egy ,,jelenleg futó'' másodlagos lista létrehozása volt szükséges.
 	\lstinputlisting[style=JavaScript,label=lst_polling,caption={Long-Polling és a hozzá tartozó metódusok.}]{sample_of_long-polling.js}
 	\chapter{Frontend}
+	\section{Frontend program fejlesztésének menete}
+	Tekintettel a Flutter fejlesztéssel kapcsolatos hiányosságomra, a fejlesztés az alapvető fogalmak és tudás elsajátításával kezdődött. Nem csak a Flutter-t mint keretrendszert, hanem a Dart nyelvet is meg kellett ismernem. Ez különböző ,,crash course'' videók segítségével  történt\cite{bib_flutter_fireship,bib_flutter_traversy,bib_flutter_freecodecamp}. A fejlesztés alatt továbbá ihlet szerzéséhez használtam némelyik forráshoz tartozó repozitóriumokat is \cite{bib_flutter_freecodecamp_repo,bib_flutter_traversy_repo}.
+	\subsection{A login page fejlesztése közben szerzett tapasztalatok}
+	A fejlesztést a bejelentkező oldal készítésével kezdődött, ahol első sorban kialakításra került a felhasználói interfész. A Flutter esetében minden UI elem egy Widget ősosztályból származik. Felismerve, hogy egyes elemeket a fejlesztés során többször használatba fogom venni, célszerűnek találtam egy gyűjtő osztály kialakítását, amely statikus metódusokat tartalmaz a különböző gyakran használt elemek legyártására, mint például a ,,TextField'' Widget.
+	
+	Hasonlóan a UI elemekhez szintén felismertem, hogy egyes folyamatokat több helyen is fogok használni, ezek közé tartozik például a bejelentkezés folyamata. Tekintve, hogy a program tartalmaz egy automatikus bejelentkezés funkciót, ezáltal nem csak azon az egy ponton lesz rá szükségem.
+	A különböző felhasználó által használt beviteli elemekből, mint a már említett ,,TextField''-ből az adatok kinyerése különböző módon történik, mint például egy WidowsForm programban. Flutter esetén szükségünk van egy ,,TextEditingController''-re, amelyt a mező létrehozásánál meg kell adnunk, ezen az osztályon keresztül tudjuk elérni a felhasználó által beírt adatokat.
+	
+	Az automatikus bejelentkezéshez szükségem volt egy tartós tárolóra, ami segítségével le tudom menteni a felhasználó preferenciáját és adatait. Multiplatform programként egy SQLite, vagy bármilyen másik adatbázis kiépítése problémát jelentett volna, hiszen az operációs rendszerek közt fellelhetők eltérések a fájlrendszerben. A megoldást a ,,Shared\_Prefernces'' plugin \cite{bib_flutter_shared_prefs} jelentette, amely tartós tárba tudja helyezni a primitív típusú adatokat. Ennek köszönhetően ez a probléma elhárításra került.
+	
+	Az oldal kezdetleges tesztelése alkalmával, a jelszó mezőre kattintva megjelent egy ,,BottomOverflow'' üzenet, ahogy a \ref{img_login}.~képernyőképen látható. Ez az oldal kialakítása miatt történt. Magyarázata egyszerű: a megjelenő billentyűzet eltakarja a UI többi részét. Tekintve, hogy alapértelmezetten a ,,Column'' építőelem nem görgethető (scroll), a megoldást egy ,,SingleChildScrollView'' jelentette, amely gyermek attribútuma a már említett column lett.
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[height=10cm]{flutter_overflow}
+		\caption{A képernyőre rálógó billentyűzet takarásáról szóló figyelmeztetés.}
+		\label{img_login}
+	\end{figure}
+	
+	Amennyiben a bejelentkezés sikeres volt, már csak egy dolgot kell tennünk. Ez az oldalak közötti navigáció. A Flutter a navigációt egy veremmel oldja meg. Ez által amikor át akarunk lépni egy másik lapra, kivétel nélkül a ,,Navigator'' osztály használatos. Ez által a vermek szokásos metódusai használhatóak a navigációhoz, kisebb módosítással és bővítéssel. Tekintsük azt az esetet amikor nem akarjuk a felhasználót vissza engedni az előző lapra, ebben az esetben a ,,pushReplacement'' metódus használatos.
+	\chapter{A rendszer tesztelése}
+	\addcontentsline{toc}{chapter}{Összegzés}
+	\chapter*{Összegzés}
 \begin{thebibliography}{8}
+	\addcontentsline{toc}{chapter}{Irodalomjegyzék}
 	\bibitem{bib_mongo_sql}A szekció a \href{https://blockchainsimplified.com/blog/mongodb-introduction/}{\color{blue}{Blockchain Simplified}} és a DeepSeek alapján és felhasználásával készült.
 	[Letöltve/látogatva:2025.03.21]
 	\bibitem{bib_flutter_web}\url{https://flutter.dev/}
@@ -413,5 +534,21 @@
 	 [Letöltve/látogatva:2025.03.18]
 	\bibitem{bib_esp_bluetooth} Tarlogic cikk az ESP32 mikrokontrollerek Bluetooth sebezhetőségéről: \url{https://www.tarlogic.com/news/hidden-feature-esp32-chip-infect-ot-devices/}
 	[Letöltve/látogatva:2025.03.20]
+	\bibitem{bib_vscode} Visual Studio Code weboldala: \url{https://code.visualstudio.com/}[Letöltve/látogatva:2025.04.2]
+	\bibitem{bib_thonny} Thonny IDE weblapja: \url{https://thonny.org/}
+	[Letöltve/látogatva:2025.04.2]
+	\bibitem{bib_thonny_deepseek} A megjelölt részlet a DeepSeek felhasználásával készült. Propmt: \textit{Írj összefoglalást a Thonny IDE-ről, legyen benne szó a MicroPython-ról is.}
+	[Generálva: 2025.04.02]
+	\bibitem{bib_flutter_fireship} Fireship: Flutter Basic Training - 12 Minute Bootcamp elérhető: \url{https://www.youtube.com/watch?v=1xipg02Wu8s}
+	[Látogatva: 2025.03.31]
+	\bibitem{bib_flutter_traversy} Brad Traversy (Traversy media): Flutter Crash Course elérhető: \url{https://www.youtube.com/watch?v=1gDhl4leEzA}
+	[Látogatva: 2025.03.31]
+	\bibitem{bib_flutter_freecodecamp} Nick Manning (freeCodeCamp.org): Flutter Course - Full Tutorial for Beginners (Build iOS and Android Apps) elérhető: \url{https://www.youtube.com/watch?v=pTJJsmejUOQ}[Látogatva: 2025.03.31]
+	\bibitem{bib_flutter_traversy_repo} A \cite{bib_flutter_traversy}.~forráshoz tartozó repozitórium. elérhető: \url{https://github.com/bradtraversy/wordpair_generator}
+	[Látogatva: 2025.03.31]
+	\bibitem{bib_flutter_freecodecamp_repo} A \cite{bib_flutter_freecodecamp}.~forráshoz tartozó repozitórium. elérhető: \url{https://github.com/seenickcode/tourismandco}
+	[Látogatva: 2025.03.31]
+	\bibitem{bib_flutter_shared_prefs} A Shared\_Preferences plugin oldala a pub.dev-en: \url{https://pub.dev/packages/shared_preferences}
+	[Látogatva: 2025.03.31]
 \end{thebibliography}
 \end{document}
