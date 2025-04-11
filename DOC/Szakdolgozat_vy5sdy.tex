@@ -2,10 +2,9 @@
 \usepackage[T1]{fontenc}
 \PassOptionsToPackage{defaults=hu-min}{magyar.ldf}
 \usepackage[magyar]{babel}
-\usepackage{amssymb,amsthm,pdfpages,listingsutf8}
+\usepackage{amssymb,amsthm,pdfpages,listingsutf8,placeins}
 \footnotestyle{rule=fourth}
 \usepackage[dvipsnames]{xcolor}
-%\newtheorem{tetel}{Tétel}[chapter]
 \theoremstyle{definition}
 %\newtheorem{definicio}[tetel]{Definíció}
 \theoremstyle{remark}
@@ -435,7 +434,7 @@
 	A programkódban minden collection-re külön fájl készült.  Az adatbázishoz tartozó metódusok mindig egy JSON objektumot várnak. A műveletek elvégzését MongoBD által definiált metódusok hívásával lehetségesek. Az adatbázis különbséget tesz az alapján, hogy egy vagy több dokumentumot várunk eredményül, ez az összes metódusra igaz. A collection-ben való keresés nem nehéz, csak meg kell adni a mező nevét és annak értékét, ez azonban nem annyira egyszerű, ha a ,,\_id'' mező alapján akarunk keresni, hiszen az eddigiek alapján arra készülünk, hogy a megfelelő mezőhöz kell kapcsolni az adatot, azonban ahogy a \ref{lst_docu}.-es dokumentumban láthatjuk a mező nem string hanem objektum típusú, ez azonban nem észrevehető, ha a klienst, vagy a weblapot használjuk. A dokumentációt\cite{bib_mongo_docs} keresve nem találtam megoldást így a fórumhoz\cite{bib_mongo_forum} fordultam, ahol megtaláltam amit kerestem. Ahhoz, hogy ID alapján tudjunk keresni szükségünk van az ,,ObjetId'' nevű osztályra, ennek a konstruktorába kell elhelyezni az ID-t.
 	
 	\section{Végpontok}
-	Ahogy az adatbázis kezelésnél itt is minden collection-nek külön fájl van dedikálva, nagy részük nem különbözik a már megszokott végpontoktól. Azonban, az nem optimális, ha az okos eszköz folyamatosan kéréseket küld az API-nak. Aprobléma megoldása az IoC\footnote{Inversion of Controll} alkalmazása akár csak a modern GUI-val ellátott alkalmazások esetén. Nem a program vár vezérlésre, hanem majd jelzünk a programnak, hogy végezze el a feladatot. Ez azt jelenti, hogy az API-nak kell jeleznie az okos eszköznek a feladat elvégzésére. Erre egy jó megoldás lehet az RPC\footnote{Remote Procedure Call}, azonban így a szervernek tudnia kell az eszköz IP címét, valamint portforward-ot kell végeznünk.
+	Ahogy az adatbázis kezelésnél itt is minden collection-nek külön fájl van dedikálva, nagy részük nem különbözik a már megszokott végpontoktól. Azonban, az nem optimális, ha az okos eszköz folyamatosan kéréseket küld az API-nak. A probléma megoldása az IoC\footnote{Inversion of Controll} alkalmazása, akár csak a modern GUI-val ellátott alkalmazások esetén. Nem a program vár vezérlésre, hanem majd jelzünk a programnak, hogy végezze el a feladatot. Ez azt jelenti, hogy az API-nak kell jeleznie az okos eszköznek a feladat elvégzésére. Erre egy jó megoldás lehet az RPC\footnote{Remote Procedure Call}, azonban így a szervernek tudnia kell az eszköz IP címét, valamint portforward-ot kell végeznünk.
 	\subsection{Mi felel meg az elvárásoknak?}
 	Elvárásaink:
 	\begin{enumerate}
@@ -464,7 +463,7 @@
 		\item Támogatja az eseménytípusokat -– Lehetőség van különböző típusú események küldésére (pl. message, update).
 	\end{enumerate}
 	
-	\begin{table}[!hb]
+	\begin{table}[!h]
 		\centering
 		\caption{SSE és WebSocket összehasonlítás}
 		\label{tab_sse_v_websocket}
@@ -480,7 +479,7 @@
 			\textbf{Böngészőtámogatás}        & Modern böngészők (IE nem)            & Szélesebb támogatás                 \\ \hline
 		\end{tabular}
 	\end{table}
-	%\clearpage
+	\FloatBarrier
 	\subsubsection{MQTT}
 	\label{sssec_MQQTT}
 	Az MQTT egy nyílt, könnyűsúlyú üzenetküldő protokoll, amelyet eredetileg a publisker-előfizet (pub/sub) modellre terveztek az alacsony sávszélességű, magas késleltetésű hálózatok (pl. IoT eszközök) számára. Az MQTT-t ma széles körben használják az Ipari Internet of Things (IIoT), otthoni automatizálás, és valós idejű adatátviteli rendszerek területén. A protokollt az OASIS szabványosította, és a ISO/IEC 20922 szabvány részét képezi\cite{bib_MQTT_iso,bib_MQTT_oasis}.\\
