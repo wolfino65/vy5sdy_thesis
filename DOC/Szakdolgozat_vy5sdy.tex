@@ -32,6 +32,37 @@
 	breakatwhitespace=true,
 	captionpos=b
 }
+\lstdefinelanguage{Dart}{
+	keywords={abstract, as, assert, async, await, break, case, catch, class, const, continue, covariant, default, deferred, do, dynamic, else, enum, export, extends, extension, external, factory, false, final, finally, for, Function, get, hide, if, implements, import, in, interface, is, library, mixin, new, null, on, operator, part, required, rethrow, return, set, show, static, super, switch, sync, this, throw, true, try, typedef, var, void, while, with, yield},
+	keywordstyle=\color{blue}\bfseries,
+	sensitive=true,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{gray}\ttfamily,
+	string=[b]',
+	morestring=[b]",
+	morestring=[b]''',
+	morestring=[b]""",
+	stringstyle=\color{red}\ttfamily,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	stepnumber=1,
+	numbersep=5pt,
+	backgroundcolor=\color{white},
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2,
+	breaklines=true,
+	breakatwhitespace=true,
+	captionpos=b,
+	frame=single,
+	rulecolor=\color{lightgray},
+	basicstyle=\ttfamily\small,
+	emph={int, double, num, String, bool, List, Map, Set, Runes, Symbol, dynamic, void},
+	emphstyle=\color{purple}\bfseries,
+	moredelim=[is][\color{orange}]{@}{@},
+}
 
 \lstdefinestyle{JavaScript}{
 	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
@@ -474,16 +505,31 @@
 	
 	Implementálás után teszteltem a funkciót, eleinte jól működött, azonban amikor több feladatot is feltöltöttem az API összeomlott és az eszköz kommunikációs hibát dobott. A hiba gyökere az volt, hogy, míg a bejövő request elindította a folyamatot, addig egy másik ismét megtette ezt, így a kapcsolat a response elküldésével lezárult és nem tudta az API elküldeni a másikat. Ennek megoldása ként egy ,,jelenleg futó'' másodlagos lista létrehozása volt szükséges.
 	\lstinputlisting[style=JavaScript,label=lst_polling,caption={Long-Polling és a hozzá tartozó metódusok.}]{sample_of_long-polling.js}
-	\chapter{Frontend}
+	\chapter{Frontend fejlesztés}
+	
 	\section{Frontend program fejlesztésének menete}
 	Tekintettel a Flutter fejlesztéssel kapcsolatos hiányosságomra, a fejlesztés az alapvető fogalmak és tudás elsajátításával kezdődött. Nem csak a Flutter-t mint keretrendszert, hanem a Dart nyelvet is meg kellett ismernem. Ez különböző ,,crash course'' videók segítségével  történt\cite{bib_flutter_fireship,bib_flutter_traversy,bib_flutter_freecodecamp}. A fejlesztés alatt továbbá ihlet szerzéséhez használtam némelyik forráshoz tartozó repozitóriumokat is \cite{bib_flutter_freecodecamp_repo,bib_flutter_traversy_repo}.
+	\subsection{Grafikus felhasználói felület fejlesztése Flutter-ben}
+	A Flutter esetében minden UI elem egy Widget ősosztályból származik. A Widgetek kivétel nélkül tartalmaznak egy példányt a  ,,BuildContext'' osztályból, amelyre tapasztalat szerint mindig ,,context'' névvel hivatkozunk.
+	
+	Amennyiben teljesen új felületet hozunk létre szükségünk lesz kettő osztályra. Az első osztályt, vagy a ,,StatelesWidget'', vagy a ,,StatefulWidget'' osztályból származtatjuk, majd a másik osztályunkat egy ,,State'' generikusból származtatjuk, olyan módon, hogy az első osztályunk lesz a típusa. Erreláthatunk példát a \ref{lst_page_creation}.~kódrészletben.
+	\lstinputlisting[language=Dart,label=lst_page_creation,caption={Felülettel kapcsolatos osztályok és azok kapcsolata.}]{page_creation.dart}
+	A már említett kódrészleten észrevehető a ,,\_'' karakter. Ennek használatáról többet olvashat a (itt lesz egy dart részlet).~szekcióban, amelyben a Dart nyelvet tárgyaljuk felületesen.
+	
+	Az osztályokban általában egy-egy metódust írunk felül. A ,,Test'' osztályban a ,,createState'' és a ''\_TestState''-ben a ,,build'' metódust. Felhasználói felület kialakításánál a build metódusra koncentrálunk, ugyanis ez ad vissza Widget típust.
+	
+	Általánosságban a ,,Scaffold'' Widget használatával kezdünk, amelyben a felületet a body paraméter megadásával kezdjük, amely több egy Widget típusú osztályt fog tartalmazni. Ez bármelyik osztály lehet. Vannak osztályok amelyek egy, vagy, akár  több osztályt képesek befogadni. A Scaffold-nak a body-n kívül még van egy ,,appBar'' paramétere, ez a paraméter egy AppBar osztályt fogad, amelyben cím, háttérszín, egyéb paraméterek és egy ,,actions'' paraméter adható meg. A többesszámból könnyen felismerhető, hogy ez a paraméter több Widget-et is képes fogadni, ezek például lehetnek különböző gombok.
+	\subsection{Navigáció felületek között}
+	A Flutter a navigációt egy veremmel oldja meg. Ez által amikor át akarunk lépni egy másik lapra, kivétel nélkül a ,,Navigator'' osztály használatos. Ez által a vermek szokásos metódusai használhatóak a navigációhoz, kisebb módosítással és bővítéssel. Tekintsük azt az esetet amikor nem akarjuk a felhasználót vissza engedni az előző lapra, ebben az esetben a ,,pushReplacement'' metódus használatos.
+	
+	A BuildContext-et nem csak felület elemei használják, hanem a navigációhoz szanált osztály metódusai is. Tekintve a visszalépést az előző oldalra (vagy felületre), a vermeknél megismert pop metódust használjuk, Flutter-ben  ennek paramétere midig a kontextus (context). A BuildContext példányára nem csak visszalépés esetén van szükség, amennyiben egy másik felületre szeretnénk átirányítani a felhasználót, például egy gombnyomás esetén, a push metódust kell használnunk, amely egy két paramétert fogadó metódus. Az eddig leírtakból következtetve tudjuk, hogy a kontextusra lesz elsősorban szükségünk, a másik paraméter egy úgynevezett ,,MaterialPageRoute'' osztály, amely tartalmát a builder paraméterrel tudjuk megadni, ez általában a nyíl szintaxis\footnote{()=>} használatával történik.
 	\subsection{A login page fejlesztése közben szerzett tapasztalatok}
-	A fejlesztést a bejelentkező oldal készítésével kezdődött, ahol első sorban kialakításra került a felhasználói interfész. A Flutter esetében minden UI elem egy Widget ősosztályból származik. Felismerve, hogy egyes elemeket a fejlesztés során többször használatba fogom venni, célszerűnek találtam egy gyűjtő osztály kialakítását, amely statikus metódusokat tartalmaz a különböző gyakran használt elemek legyártására, mint például a ,,TextField'' Widget.
+	A fejlesztést a bejelentkező oldal készítésével kezdődött, ahol első sorban kialakításra került a felhasználói interfész. Felismerve, hogy egyes elemeket a fejlesztés során többször használatba fogom venni, célszerűnek találtam egy gyűjtő osztály kialakítását, amely statikus metódusokat tartalmaz a különböző gyakran használt elemek legyártására, mint például a ,,TextField'' Widget.
 	
 	Hasonlóan a UI elemekhez szintén felismertem, hogy egyes folyamatokat több helyen is fogok használni, ezek közé tartozik például a bejelentkezés folyamata. Tekintve, hogy a program tartalmaz egy automatikus bejelentkezés funkciót, ezáltal nem csak azon az egy ponton lesz rá szükségem.
 	A különböző felhasználó által használt beviteli elemekből, mint a már említett ,,TextField''-ből az adatok kinyerése különböző módon történik, mint például egy WidowsForm programban. Flutter esetén szükségünk van egy ,,TextEditingController''-re, amelyt a mező létrehozásánál meg kell adnunk, ezen az osztályon keresztül tudjuk elérni a felhasználó által beírt adatokat.
 	
-	Az automatikus bejelentkezéshez szükségem volt egy tartós tárolóra, ami segítségével le tudom menteni a felhasználó preferenciáját és adatait. Multiplatform programként egy SQLite, vagy bármilyen másik adatbázis kiépítése problémát jelentett volna, hiszen az operációs rendszerek közt fellelhetők eltérések a fájlrendszerben. A megoldást a ,,Shared\_Prefernces'' plugin \cite{bib_flutter_shared_prefs} jelentette, amely tartós tárba tudja helyezni a primitív típusú adatokat. Ennek köszönhetően ez a probléma elhárításra került.
+	Az automatikus bejelentkezéshez szükségem volt egy tartós tárolóra, ami segítségével le tudom menteni a felhasználó preferenciáját és adatait. Multiplatform programként egy SQLite, vagy bármilyen másik adatbázis kiépítése problémát jelentett volna, hiszen az operációs rendszerek közt fellelhetők eltérések a fájlrendszerben. A megoldást a ,,Shared\_Prefernces'' plugin \cite{bib_flutter_shared_prefs} jelentette, amely tartós tárba tudja helyezni a primitív típusú adatokat, kulcs-érték párok formájában. Ennek köszönhetően ez a probléma elhárításra került.
 	
 	Az oldal kezdetleges tesztelése alkalmával, a jelszó mezőre kattintva megjelent egy ,,BottomOverflow'' üzenet, ahogy a \ref{img_login}.~képernyőképen látható. Ez az oldal kialakítása miatt történt. Magyarázata egyszerű: a megjelenő billentyűzet eltakarja a UI többi részét. Tekintve, hogy alapértelmezetten a ,,Column'' építőelem nem görgethető (scroll), a megoldást egy ,,SingleChildScrollView'' jelentette, amely gyermek attribútuma a már említett column lett.
 	\begin{figure}[!ht]
@@ -493,10 +539,11 @@
 		\label{img_login}
 	\end{figure}
 	
-	Amennyiben a bejelentkezés sikeres volt, már csak egy dolgot kell tennünk. Ez az oldalak közötti navigáció. A Flutter a navigációt egy veremmel oldja meg. Ez által amikor át akarunk lépni egy másik lapra, kivétel nélkül a ,,Navigator'' osztály használatos. Ez által a vermek szokásos metódusai használhatóak a navigációhoz, kisebb módosítással és bővítéssel. Tekintsük azt az esetet amikor nem akarjuk a felhasználót vissza engedni az előző lapra, ebben az esetben a ,,pushReplacement'' metódus használatos.
+	Amennyiben a bejelentkezés sikeres volt, már csak egy dolgot kell tennünk. Ez az oldalak közötti navigáció. 
 	\chapter{A rendszer tesztelése}
-	\addcontentsline{toc}{chapter}{Összegzés}
+	
 	\chapter*{Összegzés}
+	\addcontentsline{toc}{chapter}{Összegzés}
 \begin{thebibliography}{8}
 	\addcontentsline{toc}{chapter}{Irodalomjegyzék}
 	\bibitem{bib_mongo_sql}A szekció a \href{https://blockchainsimplified.com/blog/mongodb-introduction/}{\color{blue}{Blockchain Simplified}} és a DeepSeek alapján és felhasználásával készült.
