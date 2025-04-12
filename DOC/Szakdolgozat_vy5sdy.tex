@@ -62,6 +62,9 @@
 	emphstyle=\color{purple}\bfseries,
 	moredelim=[is][\color{orange}]{@}{@},
 }
+\lstdefinestyle{Dart}{
+	breaklines=true,
+}
 
 \lstdefinestyle{JavaScript}{
 	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
@@ -121,7 +124,7 @@
 	\label{ch_tech}
 	\section{Eszköz oldalon alkalmazott technológiák}
 	A rendszer sokrétű felépítése eredményeként több technológiát és programot fel kellet kutatnom, valamint ezek használatát minél jobban el kellett sajátítanom.
-	\subsection{Programozási nyelv}
+	\subsection{ESP programozásához használt nyelv}
 	Ahogy később a \aref{ch_esp}.~fejezet \aref{se_espB}.~szekciójában olvasható az ESP32 eszközöket C/C++ nyelveken lehet főképp programozni, ezek mellett script nyelveket is lehet használni.
 	
 	A megoldásban első sorban C++ nyelvet akartam használni, azonban ez a megközelítés felvetett számos problémát a megvalósítás közben (ezekről bővebben a \aref{sub_fejlESP}.~alszekcióban olvashat). A problémák hatására célszerűnek találtam a C++ programozási nyelv leváltását, amelyet a MicroPython váltotta fel.
@@ -149,7 +152,7 @@
 		\end{itemize}
 	\end{enumerate}
 	A bejövő HTTP kérések törzsében rejlő JSON adat feldolgozásának könnyítése érdekében a body-parser könyvtárat használtam.
-	\subsection{Technológiai előnyök} 
+	\subsection{REST API technológiai előnyei} 
 		\begin{itemize}
 			\item Platformfüggetlen. Az API-t bármely eszköz használhatja, legyen az beágyazott eszköz, vagy egy mobil applikáció.
 			\item Teljesítmény. A Node.js által használt I/O műveletek nem blokkolók, így tökéletes az esetlegesen több ezer eszköz kéréseink fogadására.
@@ -240,6 +243,7 @@
 	
 	Flutter applikációt a fent említettek mellett még Windows-on, Linux-on és Web-en is lehet használni.
 	\chapter{Rendszerterv}
+	\label{ch_rendszert}
 	\section{Rendszer célja}
 	A szakdolgozat célja egy moduláris okos otthon rendszer fejlesztése, ahol egy köztes API-val van kapcsolatban minden eszköz. Az eszközöket két csoportba lehet sorolni. Célja egy community alapú rendszer kialakítása, ahol bárki fejleszthet különböző céllal modulokat a rendszerhez. Ez a megközelítés törekszik arra, hogy a rendszer összköltsége alacsony maradjon.
 	\section{Architekturális terv}
@@ -250,6 +254,7 @@
 		\item \textbf{REST API}: A két csoport összekötésére hívatott köztes rendszer, amely lehetővé teszi a kommunikációt a csoportok között.
 	\end{itemize}
 	\section{Követelmények}
+	\label{sec_kovetelmenyek}
 	A szekció a fejlesztés sikeréhez szükséges követelményeket tartalmazza részletesen.
 	\subsection{Felhasználói felület}
 	A felület rendelkezik egy regisztrációs és bejelentkező oldallal, a kettő oldal eléréséhez nem szükséges semmilyen előzetes vizsgálat. A bejelentkező felület fogadja a felhasználót alapértelmezetten.
@@ -327,10 +332,10 @@
 		\caption{Szakdolgozathoz feladatkövetéshez használt GitHub projekt, és állapota [2025.04.10.]}
 		\label{img_git}
 	\end{figure}
-	\chapter{ESP32, az eszköz}
+	\chapter{Az ESP32 mikrovezérlő bemutatása}
 	\label{ch_esp}
 	A projekt kulcsfontosságú része, maga az eszköz, amely lehetővé teszi a modulok vezérlését. A \ref{img_myesp}-es ábrán látható mikrokontrollerhez hasonlót több gyártó is gyárt, azonban egy ESP kifejezetten a benne található processzortól lesz ESP. Az ESP32-ben található Xtensa LX6 processzor két maggal van ellátva és órajele 240 MHz\footnote{Megahertz}.
-	\section{ESP32 bemutatása}
+	\section{ESP32 hardverének és fejlesztői környezetének bemutatása}
 	\label{se_espB}
 	Az ESP32 egy rendkívül sokoldalú és hatékony mikrokontroller, amely számos területen alkalmazható. Két magos processzora, integrált WiFi és Bluetooth képességei, valamint gazdag I/O lehetőségei miatt kiváló választás mind IoT, mind ipari vagy okos otthon alkalmazásokhoz. Az ESP32 fejlesztése egyszerű és gyors, köszönhetően a széles körben elérhető fejlesztői eszközöknek és könyvtáraknak. Ezek a tulajdonságok teszik az ESP32-t az egyik legnépszerűbb mikrokontrollerré a beágyazott rendszerek világában. Mind e mellett az általam választott változat nem szenved RAM, vagy ROM hiányában sem. Az adatlap szerint el van látva 512 KB SPRAM-al, 384 KB ROM-al és változó méretű PSRAM\footnote{Pseudo SRAM}-al. Az utóbbi a használt eszköz esetében 8 Mb, valamint még fel van szerelve 32MB Octal Flash\footnote{Az Octal (xSPI) Flash memória egy gyors memória típus, amely kedvelt beültetett rendszerek között, nagyrészt a memóriáról történő gyors boot-nak köszönhetően. A memória típus 400MB/s olvasási sebességre képes.\cite{bib_esp_octal}} memóriával.
 	
@@ -353,8 +358,8 @@
 	\end{itemize}
 	Ezek a csatlakozók lehetővé teszik különböző érzékelők, kijelzők és egyéb perifériák csatlakoztatását.
 	Ezeket az eszközöket nagyrészt C és C++ nyelven lehet programozni, azonban van lehetőség a MicroPython és Lua script nyelvek használatára.
-	\section{Fejlesztés}
-	Tekintettel az ESP32 működésére a fejlesztés folyamata két részre osztható, a hardver és szoftver szintű fejlesztésre.
+	\section{A rendszer fejlesztésének részletei}
+	A fejlesztés folyamatát szokásos módon két részre bonthatjuk, elsősorban a hardver fejlesztésére, majd a szoftver fejlesztésére.
 	\subsection{Hardver szintű fejlesztés}
 	A projekt megvalósításához szükség volt egy egyedi áramkörre, amivel maximalizálhatom az elérhető portok számát.
 	\begin{figure}[!ht]
@@ -374,7 +379,7 @@
 		\caption{Kapcsolási rajz alapján készült prototípus, egyéb teszteléshez használt komponensekkel.}
 		\label{img_proto}
 	\end{figure}
-	\subsection{Szoftver fejlesztése és feltárt problémák}
+	\subsection{Szoftver fejlesztése és a fejlesztés során felmerült problémák}
 	\label{sub_fejlESP}
 	Fejlesztés elején több probléma is felmerült.
 	\begin{enumerate}
@@ -400,14 +405,14 @@
 	 
 	 A műveletek megvalósítása egy végtelen ciklusban történik, ahol minden iteráció egy a szerver felé irányuló kéréssel kezdődik. A végpont amely kezeli ezt a kérést az egyetemen tanultaktól eltér, a végpontról többet olvashat a \ref{ssec_long_polling}.~szekcióban. Innentől az esetlegesen több feladatot egy a végtelen ciklusba beágyazott \textbf{for} ciklus kezeli, amely törzsében minden egyes feladatot megvizsgálunk.
 	 
-	 A ciklus törzsében található if-elif szerkezet döntéshozó szervként működik. A feladat, mint JSON dokumentum \textit{aditionalInfo} mezőjében található \textit{method} mező rejti a feladat típusát, ezek a típusok és hozzájuk társított folyamatok megtekinthetőek a \ref{ssec_mukodes}.~szekcióban található felsorolásban.
+	 A ciklus törzsében található if-elif szerkezet döntéshozó szervként működik. A feladat, mint JSON dokumentum \textit{aditionalInfo} mezőjében található \textit{method} mező rejti a feladat típusát, ezek a típusok és hozzájuk társított folyamatok megtekinthetőek a \ref{sec_mukodes}.~szekcióban található felsorolásban.
 	 
 	 Ezen folyamatok közül a legnehezebben a ,,run'' volt megvalósítható. Itt a modulhoz társított python fájl azonosítója alapján választjuk ki a tárolt modulok közül a feladatban megadott modult. Minden modulhoz tartozik egy metódus, például a az első számú modulhoz a ,,runa'' metódus tartozik. Ezek a metódusok kivétel nélkül el vannak látva egy dekorátorral, amely feladata a megfelelő áramkör kiválasztása. Ezen metódusok belsejében hívódnak meg a különböző modulok ,,run"" metódusai, amely egy paraméterrel van ellátva. Ez a paraméter tartalmazza a feladat paramétereit.
 	 
 	 
 	 
-	 \subsection{Működése}
-	 \label{ssec_mukodes}
+	 \section{Az eszköz működése}
+	 \label{sec_mukodes}
 	 Az eszköz használata konfigurációval kezdődik, melyet kék fénnyel jelez a felhasználónak. A konfiguráció után megpróbál csatlakozni a megadott hálózathoz eközben az eszközön található LED kék fényről pulzáló zöld fényre vált. Amennyiben a kapcsolódás sikeres az eszköz zöld fénnyel jelzi ezt, ha sikertelen, akkor újraindul a folyamat.
 	 
 	 Sikeres kapcsolódás után önmagát regisztrálja az eszköz a hálózatra. Innentől az eszköz használatra kész és azonnal kérést küld az API-nak a hozzá kapcsolt feladatok iránt érdeklődve. A szerver válasza alapján a következő műveleteket végezheti el az eszköz:
@@ -449,7 +454,7 @@
 	Egy pénzügyileg kedvezőbb megoldás a Polling. Amely HTTP protokollal tökéletesen működik és eleget tesz az \ref{it_elv_1}.~feltételnek és a \ref{it_elv_3}.~kritériumnak is, azonban ebben az esetben az eszköz bizonyos intervallumonként újra kérést fog küldeni a szervernek, ez a \ref{it_elv_2}. pontnak nem felel meg.
 	
 	A Polling egy változata a Long-Polling azonban megfelel az elvárásainknak. A módszer implementálásával, az eszköz addig várakozik a válaszra amíg azt meg nem kapja, majd annak érkezésével végrehajtja az abban kapott feladatot és az esetleges eredményeket vissza is tudja küldeni. 
-	\subsubsection{SSE}
+	\subsubsection{Megfontolt technológia, SSE}
 	\label{sssec_SSE}
 	Az SSE (Server-Sent Events) egy olyan HTTP-alapú technológia, amely lehetővé teszi, hogy a szerver valós időben küldjön adatokat a kliensnek egy egyirányú kommunikációs csatornán keresztül. Az SSE-t gyakran használják valós idejű értesítések, frissítések és adatstreamelés céljaira, ahol a kliensnek folyamatosan frissülő információra van szüksége anélkül, hogy újra és újra lekérdezné a szervert\cite{bib_SSE_spec,bib_SSE}.\\
 	\textbf{Működési elv}\\
@@ -480,7 +485,7 @@
 		\end{tabular}
 	\end{table}
 	\FloatBarrier
-	\subsubsection{MQTT}
+	\subsubsection{MQTT, mint megfontolt protokoll}
 	\label{sssec_MQQTT}
 	Az MQTT egy nyílt, könnyűsúlyú üzenetküldő protokoll, amelyet eredetileg a publisker-előfizet (pub/sub) modellre terveztek az alacsony sávszélességű, magas késleltetésű hálózatok (pl. IoT eszközök) számára. Az MQTT-t ma széles körben használják az Ipari Internet of Things (IIoT), otthoni automatizálás, és valós idejű adatátviteli rendszerek területén. A protokollt az OASIS szabványosította, és a ISO/IEC 20922 szabvány részét képezi\cite{bib_MQTT_iso,bib_MQTT_oasis}.\\
 	\textbf{Történet és fejlődés}
@@ -503,11 +508,26 @@
 	Tekintve, hogy Long-Polling-ot még nem használtam meg kellett ismernem\cite{bib_long_poll1,bib_long_poll_imp}. Ezek mellett praktikusabb példákat is keresnem kellet, hogy jobban megértsem\cite{bib_long_poll_pl}.
 	
 	Implementálás után teszteltem a funkciót, eleinte jól működött, azonban amikor több feladatot is feltöltöttem az API összeomlott és az eszköz kommunikációs hibát dobott. A hiba gyökere az volt, hogy, míg a bejövő request elindította a folyamatot, addig egy másik ismét megtette ezt, így a kapcsolat a response elküldésével lezárult és nem tudta az API elküldeni a másikat. Ennek megoldása ként egy ,,jelenleg futó'' másodlagos lista létrehozása volt szükséges.
-	\lstinputlisting[style=JavaScript,label=lst_polling,caption={Long-Polling és a hozzá tartozó metódusok.}]{sample_of_long-polling.js}
-	\chapter{Frontend fejlesztés}
+	\lstinputlisting[style=JavaScript,label=lst_polling_p1,caption={Long-Polling-hoz tartozó végpontok és tömbök.}]{sample_of_long-polling_p1.js}
+	A kommunikáció hatékony, IoC szerű működésének megvalósításához szükséges végpontok a \ref{lst_polling_p1}.~kódrészleten láthatóak, amelyek feladata az
+	\begin{itemize}
+		\item eszköztől érkező kérések fogadása és megtartása, abban az estben, amikor nem érhető el adat, (Ez a feladat a ,,GET'' végpontra hárul. A végponton belül még szükséges több ellenőrzést elvégezni a megfelelő működés érdekében.)
+		\item a ,,POST'' végpont használatakor egy keresés indul el, amely lehetővé teszi az eszköz kérésére a válasz mihamarabbi megadását, amennyiben a cél eszközhöz társul adat a responses tömbön belül. (Ezzel a megoldással elkerülhető a folyamatos, ciklikus megfigyelés, amely rendkívül költséges lenne.)
+	\end{itemize}
+	A két végpont közt kialakuló rendszerszerűség felfogható egyfajta megfigyelő (Observer) tervezési minta használataként.
+	\lstinputlisting[style=JavaScript,label=lst_polling_p2,caption={Long-Polling működéséhez szükséges metódusok.}]{sample_of_long-polling_p2.js}
+	A \ref{lst_polling_p2}.~kódrészletben található metódusok elősegítik a \ref{lst_polling_p1}.~kódrészletben látható végpontok által megvalósító Long-Polling mechanizmus működését. Tekintettel a metódusok számára a legegyszerűbb áttekintést egy felsorolás adja.
+	\begin{itemize}
+		\item \textbf{checkForData}: A metódus célja egyszerű. Visszaadja az eszközre vonatkozó elem indexét.
+		\item \textbf{getExec}: Célja rendkívül hasonlít a \textit{checkForData}-ra, azonban a jelenleg végrehajtás alatt lévő válaszok listájában keres.
+		\item \textbf{remove}: A Long-Polling által használt két tömbből távolítja el az adatokat, ezzel elkerülve, a feladatok nem kívánt ismétlését és esetleges bejövő feladatok blokkolását.
+		\item \textbf{executeByIndex}: A metódusara a Long-Polling igáslovaként tekinthetünk. Feladata a többi metódus használatával a feladat előállítása és továbbítása az eszköz felé.
+	\end{itemize}
 	
-	\section{Frontend program fejlesztésének menete}
-	Tekintettel a Flutter fejlesztéssel kapcsolatos hiányosságomra, a fejlesztés az alapvető fogalmak és tudás elsajátításával kezdődött. Nem csak a Flutter-t mint keretrendszert, hanem a Dart nyelvet is meg kellett ismernem. Ez különböző ,,crash course'' videók segítségével  történt\cite{bib_flutter_fireship,bib_flutter_traversy,bib_flutter_freecodecamp}. A fejlesztés alatt továbbá ihlet szerzéséhez használtam némelyik forráshoz tartozó repozitóriumokat is \cite{bib_flutter_freecodecamp_repo,bib_flutter_traversy_repo}.
+	\chapter{Frontend program fejlesztése}
+	Tekintettel a Flutter fejlesztéssel kapcsolatos hiányosságomra, a fejlesztés az alapvető fogalmak és tudás elsajátításával kezdődött. Nem csak a Flutter-t mint keretrendszert, hanem a Dart nyelvet is meg kellett ismernem. Ez különböző ,,crash course'' videók segítségével  történt\cite{bib_flutter_fireship,bib_flutter_traversy,bib_flutter_freecodecamp}. Ezen hiányosságok miatt ez a fejezet hosszabb a többinél, ugyanis a technológiával kapcsolatban számos új tapasztalatot szereztem.  A fejlesztés alatt továbbá ihlet szerzéséhez használtam némelyik forráshoz tartozó repozitóriumokat is \cite{bib_flutter_freecodecamp_repo,bib_flutter_traversy_repo}.
+	\section{UI fejlesztés Flutter keretrendszerben}
+	Ezen szekció a felhasználó felület fejlesztése közben szerzett tapasztalatot hívatott összefoglalni.
 	\subsection{Grafikus felhasználói felület fejlesztése Flutter-ben}
 	A Flutter esetében minden UI elem egy Widget ősosztályból származik. A Widgetek kivétel nélkül tartalmaznak egy példányt a  ,,BuildContext'' osztályból, amelyre tapasztalat szerint mindig ,,context'' névvel hivatkozunk.
 	
@@ -518,30 +538,90 @@
 	Az osztályokban általában egy-egy metódust írunk felül. A ,,Test'' osztályban a ,,createState'' és a ''\_TestState''-ben a ,,build'' metódust. Felhasználói felület kialakításánál a build metódusra koncentrálunk, ugyanis ez ad vissza Widget típust.
 	
 	Általánosságban a ,,Scaffold'' Widget használatával kezdünk, amelyben a felületet a body paraméter megadásával kezdjük, amely több egy Widget típusú osztályt fog tartalmazni. Ez bármelyik osztály lehet. Vannak osztályok amelyek egy, vagy, akár  több osztályt képesek befogadni. A Scaffold-nak a body-n kívül még van egy ,,appBar'' paramétere, ez a paraméter egy AppBar osztályt fogad, amelyben cím, háttérszín, egyéb paraméterek és egy ,,actions'' paraméter adható meg. A többesszámból könnyen felismerhető, hogy ez a paraméter több Widget-et is képes fogadni, ezek például lehetnek különböző gombok.
-	\subsection{Navigáció felületek között}
+	\subsection{Navigáció a felületek között}
 	A Flutter a navigációt egy veremmel oldja meg. Ez által amikor át akarunk lépni egy másik lapra, kivétel nélkül a ,,Navigator'' osztály használatos. Ez által a vermek szokásos metódusai használhatóak a navigációhoz, kisebb módosítással és bővítéssel. Tekintsük azt az esetet amikor nem akarjuk a felhasználót vissza engedni az előző lapra, ebben az esetben a ,,pushReplacement'' metódus használatos.
 	
 	A BuildContext-et nem csak felület elemei használják, hanem a navigációhoz szanált osztály metódusai is. Tekintve a visszalépést az előző oldalra (vagy felületre), a vermeknél megismert pop metódust használjuk, Flutter-ben  ennek paramétere midig a kontextus (context). A BuildContext példányára nem csak visszalépés esetén van szükség, amennyiben egy másik felületre szeretnénk átirányítani a felhasználót, például egy gombnyomás esetén, a push metódust kell használnunk, amely egy két paramétert fogadó metódus. Az eddig leírtakból következtetve tudjuk, hogy a kontextusra lesz elsősorban szükségünk, a másik paraméter egy úgynevezett ,,MaterialPageRoute'' osztály, amely tartalmát a builder paraméterrel tudjuk megadni, ez általában a nyíl szintaxis\footnote{()=>} használatával történik.
 	\subsection{A login page fejlesztése közben szerzett tapasztalatok}
-	A fejlesztést a bejelentkező oldal készítésével kezdődött, ahol első sorban kialakításra került a felhasználói interfész. Felismerve, hogy egyes elemeket a fejlesztés során többször használatba fogom venni, célszerűnek találtam egy gyűjtő osztály kialakítását, amely statikus metódusokat tartalmaz a különböző gyakran használt elemek legyártására, mint például a ,,TextField'' Widget.
-	
-	Hasonlóan a UI elemekhez szintén felismertem, hogy egyes folyamatokat több helyen is fogok használni, ezek közé tartozik például a bejelentkezés folyamata. Tekintve, hogy a program tartalmaz egy automatikus bejelentkezés funkciót, ezáltal nem csak azon az egy ponton lesz rá szükségem.
-	A különböző felhasználó által használt beviteli elemekből, mint a már említett ,,TextField''-ből az adatok kinyerése különböző módon történik, mint például egy WidowsForm programban. Flutter esetén szükségünk van egy ,,TextEditingController''-re, amelyt a mező létrehozásánál meg kell adnunk, ezen az osztályon keresztül tudjuk elérni a felhasználó által beírt adatokat.
-	
-	Az automatikus bejelentkezéshez szükségem volt egy tartós tárolóra, ami segítségével le tudom menteni a felhasználó preferenciáját és adatait. Multiplatform programként egy SQLite, vagy bármilyen másik adatbázis kiépítése problémát jelentett volna, hiszen az operációs rendszerek közt fellelhetők eltérések a fájlrendszerben. A megoldást a ,,Shared\_Prefernces'' plugin \cite{bib_flutter_shared_prefs} jelentette, amely tartós tárba tudja helyezni a primitív típusú adatokat, kulcs-érték párok formájában. Ennek köszönhetően ez a probléma elhárításra került.
+	A fejlesztést a bejelentkező oldal készítésével kezdődött, ahol első sorban kialakításra került a grafikus interfész. Felismerve, hogy egyes elemeket a fejlesztés során többször használatba fogom venni, célszerűnek találtam egy gyűjtő osztály kialakítását, amely statikus metódusokat tartalmaz a különböző gyakran használt elemek legyártására, mint például a ,,TextField'' Widget. A különböző felhasználó által használt beviteli elemekből, mint a már említett ,,TextField''-ből az adatok kinyerése különböző módon történik, mint például egy WidowsForm programban. Flutter esetén szükségünk van egy ,,TextEditingController''-re, amelyt a mező létrehozásánál meg kell adnunk, ezen az osztályon keresztül tudjuk elérni a felhasználó által beírt adatokat.
 	
 	Az oldal kezdetleges tesztelése alkalmával, a jelszó mezőre kattintva megjelent egy ,,BottomOverflow'' üzenet, ahogy a \ref{img_login}.~képernyőképen látható. Ez az oldal kialakítása miatt történt. Magyarázata egyszerű: a megjelenő billentyűzet eltakarja a UI többi részét. Tekintve, hogy alapértelmezetten a ,,Column'' építőelem nem görgethető (scroll), a megoldást egy ,,SingleChildScrollView'' jelentette, amely gyermek attribútuma a már említett column lett.
-	\begin{figure}[!ht]
+	\begin{figure}[!h]
 		\centering
 		\includegraphics[height=10cm]{flutter_overflow}
 		\caption{A képernyőre rálógó billentyűzet takarásáról szóló figyelmeztetés.}
 		\label{img_login}
 	\end{figure}
 	
-	Amennyiben a bejelentkezés sikeres volt, már csak egy dolgot kell tennünk. Ez az oldalak közötti navigáció. 
-	\chapter{A rendszer tesztelése}
+	Amennyiben a bejelentkezés sikeres volt, már csak egy dolgot kell tennünk. Ez az oldalak közötti navigáció.
+	\subsection{Listák megjelenítése a Flutter keretrendszerben}
+	Listák megjelenítése történhet statikusan és dinamikusan. Ebben a szekcióban dinamikus megjelenítést és felépítést tárgyaljuk.
 	
+	A dinamikus listák, avagy lista nézetek felépítésénél, szinte minden alkalommal a ,,ListView'' osztály egy külön konstruktorát használjuk. Ez lehet a ,,build'' konstruktor, vagy az általam használt ,,separated''. Ez a konstruktor legalább három paramétert vár.
+	\begin{enumerate}
+		\item ,,separatorBuilder'', amely a lista elemeit szétválasztó Widget-et gyártja le. Ez az én esetemben egy egyszerű Divider Widget volt.
+		\item ,,itemCount'', ezen paraméter értéke útmutatóként szolgál a konstruktornak, hogy mennyi elem lesz a listView-ban.
+		\item ,,itemBuilder'', feladata a lista elemeinek létrehozása. Minden esetben Widget típusú osztály egy példányát hozza létre, ez lehet egy egyszerű Container osztály, de akár az általam használt ListTile is.
+	\end{enumerate}
+	Fontos hogy minden dinamikusan felépített, valamint megjelenített ListView mögött egy lista áll, amely alapján létrehozható az.
+	\subsection{Popup menük és dialógusok használata, megjelenítése}
+	A popup menü használata jelentősen megkönnyítheti egyes felület elérését, vagy egy művelet elvégzését.
+	A menü elkészítéséhez szükség van a ,,PopupMenuButton'' Widget-re, mely paraméterei a menü elemeinek megjelenítésére szánt ,,itemBuilder'' és az ,,onSelected'', amely a menü egyik elemének kiválasztásakor fog lefutni.
+	A builder általánosságban egy ,,PopupMenuEntry'' típusú listát vár, amely tartalma a menü egyes elmei. Esetemben a listában ,,PopupMenuItem'' példányai találhatóak. Minden egyes elemnek tartalmaznia kell egy ,,value'' értéket, amely segítségével a már említett metódus felismerheti a kiválasztott elemet.
+	
+	A dialógusok használhatóak egyszerű értesítéshez, valamint megerősítés kéréséhez is. Elsőnek célszerű a dialógusok elkészítését áttekinteni.
+	
+	A dialógusok megjelenítéséhez a beépített ,,showDialog'' metódus használatos, amely paraméterei rendre a kontextus és a builder, amely felhasználja a kontextust. A builder tapasztalat szerint egy StatelessWidget őssel rendelkező típust hivatott visszaadni, amely esetemben az ,,AlertDialog'' volt. Az osztály egy cím (title) és tartalom (content) paramétereket minden esetben kéri. Ezzel elkészült egy egyszerű értesítéshez használt dialógus.
+	
+	Amennyiben a felhasználó felé valamilyen fajta kérdést szeretnénk feltenni, olyan módon, hogy kötelezzük válaszadásra, érdemes a dialógus ,,barrierDismissible'' paraméterét hamis értékre állítani (alapértelmezetten igaz az értéke), ezzel a kérdést megkerülhetetlenné tudjuk tenni. Az egyes opciókat a sikeres megjelenítés érdekében az ,,actions'' listához kell hozzáadnunk. Tapasztalat szerint, amennyiben gombokat használunk szükséges mindegyik gombhoz egy-egy metódust kapcsolni, amely a gomb ,,onPressed'' eseményéhez kapcsolódik.
+	\begin{megjegyzes}
+		A megjelenített dialógusokat szintén a már említett verem tartalmazza, így fontos, hogy ezeket a Navigator osztály segítségével eltávolítsuk (pop).
+	\end{megjegyzes}
+	\subsection{Eszköz konfigurációja az applikációból}
+	A felhasználónak az eszköz használata előtt konfigurálni kell azt. Ez a lépés megoldható azzal, hogy két egyszerű TextField-et rakunk a felületre, azonban ez nem garantálja azt, hogy a felhasználó nem írja el a hálózat azonosítóját (SSID), vagy egy nem elérhető hálózatot ad meg. Ezen probléma megoldására használható a wifi\_scan\cite{bib_flutter_wifi} csomag, amely segítségével lekérdezhető az összes érzékelhető WiFi hálózat. A csomag által legyűjtött SSID-kat egy ,,DropdownButton'' (dropdown menu) segítségével jelenítjük meg és adjuk meg a lehetőséget a felhasználónak, hogy aggodalom nélkül tudja megadni az eszköznek azt a hálózatot, amelyre szeretné, hogy az eszköz kapcsolódjon.
+	\subsection{Feladat paramétereinek megadása}
+	Az eszköz moduláris voltából nem lehet egyetlen felületet adni a modulok paramétereinek megadására, szükség van egy futás időben definiálható felületre. Ezt sajnos alapértelmezetten a Flutter nem támogatja úgy mint például a python. A csomagkezelőn történt kutatás a megfelelő csomag iránt valamelyest sikeresnek mondható a rfw\cite{bib_flutter_rfw} megtalálásával. Azonban a dokumentációt böngészve nem találtam nyomot arra, hogy mezők létrehozására fel lenne készítve a csomag, valamint használatát rendkívül körülményesnek találtam. A gyorsabb fejlesztés eszméjében egy saját megoldás kifejlesztésének kezdtem, amely igen kezdetleges, de megfelel az elvárásoknak.
+	
+	A felület kialakításának menete a modul tervezője által készített JSON objektum letöltésével kezdődik a google Drive-ról. A bejövő adat egy listát tartalmaz, amely segítségével a megfelelő típusú és mennyiségű Widget-eket tudjuk előállítani. Minden objektum tartalmazza az input nevét, típusát és visszatérő nevét, az utóbbira azért van szükség, hogy a modult fejlesztő személy tudja, hogy milyen néven kell keresnie a paramétereket a modul vezérlő programjában. Az osztály amely ezt a folyamatot megvalósítja a \ref{lst_ui_gen}.~kódrészletben látható.
+	\lstinputlisting[label=lst_ui_gen,language=Dart,caption={Json adatot felhasználói felületté alakító kód.},style=Dart]{task_ui_generator.dart}
+	\section{Az üzleti logika kiépítése és közben szerzett tapasztalatok}
+	\label{sec_busines_logi}
+	Az üzleti logika megvalósításához szükséges a Dart nyelv megismerése.
+	\subsection{A Dart programozási nyelv}
+	A Dart egy modern, objektumorientált, erősen típusos programozási nyelv, amelyet a Google fejleszt.
+	Főbb jellemzői:
+	\begin{itemize}
+		\item Null biztonság (Egy típus nem lehet null amíg ezt expliciten meg nem engedjük. Ez a tulajdonság segít elkerülni a futás időben történő null referencia hibákat)
+		\item Míg erősen típusos, van lehetőség dinamikus típusozásra, valamint típus következtetésre is.
+		\item JIT\footnote{Just in Time} fordítás -- gyors fejlesztési ciklus támogatásához -- és AOT\footnote{Ahead of Time} fordítás -- optimális teljesítmény eléréséhez éles környezetben -- támogatása.
+	\end{itemize}
+	A Dart ezen kívül támogatja a változók késői inicializációját a ,,late'' kulcsszóval, valamint az aszinkron programozást is. Említésre méltó a Dart csomagkezelő rendszere a ,,\href{https://pub.dev/}{\color{blue}{Pub.dev}}''.
+	A Dart sajátosságairól többet olvashat majd példákon és tapasztalatokon keresztül bemutatott funkciókon a \ref{sec_busines_logi}.~szekció fennmaradó részében.
+	\subsection{Egyszerű adatmentés lokálisan}
+	Az automatikus bejelentkezéshez szükségem volt egy tartós tárolóra, ami segítségével le tudom menteni a felhasználó preferenciáját és adatait. Multiplatform programként egy SQLite, vagy bármilyen másik adatbázis kiépítése problémát jelentett volna, hiszen az operációs rendszerek közt fellelhetők eltérések a fájlrendszerben. A megoldást a ,,Shared\_Prefernces'' plugin \cite{bib_flutter_shared_prefs} jelentette, amely tartós tárba tudja helyezni a primitív típusú adatokat, kulcs-érték párok formájában. Ennek köszönhetően ez a probléma elhárításra került.
+	\subsection{Aszinkron programozás Dart-ban és az API-val való kommunikáció}
+	Míg az aszinkron programozás és hálózaton keresztül történő kommunikáció rendkívül közeli téma, érdemes ezeket egyszerűség kedvéért szétválasztani.
+	\subsubsection{Kommunikáció az interneten keresztül}
+	Amennyiben HTTP protokollt tervezünk használni a Dart nyelven íródó programunkban szükséges hozzá a http csomag amely megtalálható a Pub.dev-en\cite{bib_flutter_http}. A http modul használata egyszerű, mindössze aszinkron módon kell hívnunk a modul egyik metódusát, például a post-ot. A metódus paraméterei rendre az uri, amely előállítás az Uri.parse metódussal történik, ezen kívül megadható a headers, amely szinte minden esetben egy Map objektum, amely rendkívüli hasonlóságot mutat a dictionary-vel. Ezen kívül egy másik paraméter a body.
+	\subsubsection{Aszinkron programozás}
+	A Dart-ban a már megszokott ,,async'' és ,,await'' kulcsszavak egyaránt megtalálhatóak, azonban amikor adatot szeretnénk kinyerni egy aszinkron funkcióból különleges osztályokat kell használnunk. Ezek közül az egyik a ,,Future'' generikus osztály, amely akár void értéket is felvehet. A http csomag szintén ezt használja. 
+	\subsubsection{JSON adat megfelelő kezelése modelleken keresztül}
+	Az API-tól megkapott JSON formátumú adatok hatékony használatához érdemes modelleket létrehozni, amely az adat számunkra hasznos elemeit tartalmazza. Manuálisan feldolgozni ezt az rendkívül időigényes, így valamilyen egyéb technológia használatos. A Dart csomagkezelője erre a problémára két csomagot is tartalmaz, amely tökéletesen együttműködik, az egyik a json\_serializable\cite{bib_flutter_json_ser}, míg a másik a build\_runner\cite{bib_flutter_runner}. A build runner csomag segítségével a ,,model.dart'' fájlból generálhatunk egy ,,model.g.dart'' fájlt amely automatikusan képes létrehozni egy példányt a JSON adatból. Ezzel a csomaggal egy rendkívül aprólékos és monoton feladattól tudunk megszabadulni, amely segít a program fejlesztésében.
+	 
+	\chapter{A rendszer tesztelése}
+	A projekt sokoldalúságára tekintettel a tesztek és azok menete videó formájában érhetőek el.
+	\section{Az ESP32-n futó program funkcióinak tesztelése}
+	\section{Az API tesztelése}
+	\section{Az applikáció tesztelése}
+	\section{A rendszer működésének igazolása}
 	\chapter*{Összegzés}
+	A szakdolgozat során sikeresen megvalósítottam az általam kitűzött célokat és követelményeket. Ezen követelményeket részletesen megtekintheti a \ref{ch_rendszert}.~fejezet \ref{sec_kovetelmenyek}.~szekciójában. Sikeresen megvalósítottam az applikáció és okos eszköz közötti kommunikációt az API-on keresztül, valamint a kód tisztán tartásával elértem azt, hogy a későbbi bővítések nagyobb változtatás nélkül létrejöjjenek.
+	\section*{Konklúzió}
+	A projekt fejlesztése során rengeteg új dolgot tanultam, ezek között egy számomra új programozási nyelvet, valamint keretrendszert. Betekintést nyertem a beágyazott rendszerek fejlesztésébe és azok hálózati kommunikációjába. A tény, hogy három projektet kellett fejlesztenem és azokat összehangolni, egy kihívás volt nem csak fejlesztés szempontjából, hanem az egyes projektekre rászánt idő menedzselésében is.
+	
+	A tapasztalat birtokában az eszköz kommunikációját egy virtuális hálózaton működő RPC technológiára cserélném.
+	\section*{Bővítési terv}
+	Első sorban a lehetséges felület típusok gyűjteményét lehet bővíteni, hogy ne csak a kezdetleges szám alapú mező, hanem akár egy ,,slider'' is opció legyen. Mind e mellett az ESP-n futó kód több szálon futó változatának elkészítése is hasznos lenne az eszköz használatának kényelme szempontjából. Továbbá több kommunikáció típus támogatása is hasznos lehet például egy eszközön alapuló kamera rendszerhez.
 	\addcontentsline{toc}{chapter}{Összegzés}
 \begin{thebibliography}{8}
 	\addcontentsline{toc}{chapter}{Irodalomjegyzék}
@@ -596,5 +676,15 @@
 	[Látogatva: 2025.03.31]
 	\bibitem{bib_flutter_shared_prefs} A Shared\_Preferences plugin oldala a pub.dev-en: \url{https://pub.dev/packages/shared_preferences}
 	[Látogatva: 2025.03.31]
+	\bibitem{bib_flutter_http} A http csomag oldala a Pub.dev-en: \url{https://pub.dev/packages/http}
+	[Látogatva: 2025.03.31]
+	\bibitem{bib_flutter_json_ser} A json\_serializable csomag oldala a Pub.dev-en: \url{https://pub.dev/packages/json_serializable}
+	[Látogatva: 2025.04.03]
+	\bibitem{bib_flutter_runner} A build\_runner csomag oldala a Pub.dev-en: \url{https://pub.dev/packages/build_runner}
+	[Látogatva: 2025.04.03]
+	\bibitem{bib_flutter_wifi} A wifi\_scan csomag oldala a Pub.dev-en: \url{https://pub.dev/packages/wifi_scan}
+	[Látogatva: 2025.04.08]
+	\bibitem{bib_flutter_rfw} A rfw csomag oldala: \url{https://pub.dev/packages/rfw}
+	[Látogatva: 2025.04.08]
 \end{thebibliography}
 \end{document}

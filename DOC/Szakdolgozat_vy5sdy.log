@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.19)  11 APR 2025 14:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  12 APR 2025 19:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -263,7 +263,7 @@ LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
 (c:/texlive/2024/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2024/09/18 v24.10 The Babel package
+Package: babel 2024/08/29 v24.9 The Babel package
 \babel@savecnt=\count284
 \U@D=\dimen156
 \l@unhyphenated=\language89
@@ -424,25 +424,25 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 (./Szakdolgozat_vy5sdy.aux)
 \openout1 = `Szakdolgozat_vy5sdy.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-Package hyperref Info: Link coloring OFF on input line 97.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+Package hyperref Info: Link coloring OFF on input line 100.
  (./Szakdolgozat_vy5sdy.out)
 (./Szakdolgozat_vy5sdy.out)
 \@outlinefile=\write3
@@ -483,51 +483,51 @@ Package hyperref Info: Link coloring OFF on input line 97.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 9
-7.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
+00.
 (c:/texlive/2024/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 9
-7.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
+00.
 
 (c:/texlive/2024/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-97.
+100.
 
 (c:/texlive/2024/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-97.
+100.
 
 (c:/texlive/2024/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 97.
+(Font)              <12> on input line 100.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 97.
+(Font)              <8> on input line 100.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 97.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 97.
-
+(Font)              <6> on input line 100.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 100
+.
 
 (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 97.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 100
+.
 
 (c:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 97.
+(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 100.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 97.
+(Font)                  OMX/lmex/m/n --> OMX/cmex/m/n on input line 100.
 
 (c:/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -574,10 +574,10 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
-<eszterhazy-logo-hu.pdf, id=176, 256.07971pt x 88.04292pt>
+<eszterhazy-logo-hu.pdf, id=225, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
-Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 105.
+Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 108.
 (pdftex.def)             Requested size: 256.07907pt x 88.0427pt.
 
 
@@ -605,13 +605,13 @@ thesis-ekf/eszterhazy-logo-hu.pdf>] (./Szakdolgozat_vy5sdy.toc
 [5]
 1. fejezet.
 
-Overfull \hbox (66.33406pt too wide) in paragraph at lines 129--130
+Overfull \hbox (66.33406pt too wide) in paragraph at lines 132--133
 []\T1/lmr/m/n/12 A fej-lesz-tés alap-já-ul a prog-ra-mo-zá-si nyelv vál-to-zá-s
 á-nak ered-mé-nye-ként a ESP32_GENERIC_S3-
  []
 
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-34.
+37.
 (c:/texlive/2024/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -622,7 +622,7 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 [7]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 168.
+nput line 171.
  (./docu.json)
 
 [8] (./user_schema.json
@@ -633,10 +633,10 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
  (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
-<mongo_vs_sql.jpeg, id=327, 1116.17pt x 697.60625pt>
+<mongo_vs_sql.jpeg, id=387, 1116.17pt x 697.60625pt>
 File: mongo_vs_sql.jpeg Graphic file (type jpg)
 <use mongo_vs_sql.jpeg>
-Package pdftex.def Info: mongo_vs_sql.jpeg  used on input line 199.
+Package pdftex.def Info: mongo_vs_sql.jpeg  used on input line 202.
 (pdftex.def)             Requested size: 227.62204pt x 142.26508pt.
 
 
@@ -656,15 +656,15 @@ peg>]
 [14]
 
 [15]
-Overfull \hbox (17.82489pt too wide) in paragraph at lines 311--312
+Overfull \hbox (17.82489pt too wide) in paragraph at lines 316--317
 \T1/lmr/m/n/12 biz-to-sít-ja, hogy fo-lya-ma-to-san fej-l®-dik, új funk-ci-ók-k
 al és op-ti-ma-li-zá-lá-sok-kal gazdagodva[[]]. 
  []
 
-<github_project.jpg, id=402, 848.4197pt x 688.82344pt>
+<github_project.jpg, id=463, 848.4197pt x 688.82344pt>
 File: github_project.jpg Graphic file (type jpg)
 <use github_project.jpg>
-Package pdftex.def Info: github_project.jpg  used on input line 326.
+Package pdftex.def Info: github_project.jpg  used on input line 331.
 (pdftex.def)             Requested size: 426.79134pt x 346.50249pt.
 
 
@@ -672,29 +672,30 @@ Package pdftex.def Info: github_project.jpg  used on input line 326.
 
 [17 <./github_project.jpg>]
 3. fejezet.
-<MyESP32.jpg, id=422, 1328.965pt x 3606.47375pt>
+<MyESP32.jpg, id=482, 1328.965pt x 3606.47375pt>
 File: MyESP32.jpg Graphic file (type jpg)
 <use MyESP32.jpg>
-Package pdftex.def Info: MyESP32.jpg  used on input line 341.
+Package pdftex.def Info: MyESP32.jpg  used on input line 346.
 (pdftex.def)             Requested size: 85.35826pt x 231.62248pt.
 
 
 [18
 
 ]
-<circuit.png, id=436, 2730.2pt x 2168.1pt>
+<circuit.png, id=495, 2730.2pt x 2168.1pt>
 File: circuit.png Graphic file (type png)
 <use circuit.png>
-Package pdftex.def Info: circuit.png  used on input line 362.
+Package pdftex.def Info: circuit.png  used on input line 367.
 (pdftex.def)             Requested size: 284.52756pt x 225.92038pt.
-<korai_prototipus.jpg, id=440, 2260.445pt x 4015.0pt>
-File: korai_prototipus.jpg Graphic file (type jpg)
-<use korai_prototipus.jpg>
-Package pdftex.def Info: korai_prototipus.jpg  used on input line 373.
-(pdftex.def)             Requested size: 160.17885pt x 284.52756pt.
 
 
 [19 <./MyESP32.jpg>]
+<korai_prototipus.jpg, id=508, 2260.445pt x 4015.0pt>
+File: korai_prototipus.jpg Graphic file (type jpg)
+<use korai_prototipus.jpg>
+Package pdftex.def Info: korai_prototipus.jpg  used on input line 378.
+(pdftex.def)             Requested size: 160.17885pt x 284.52756pt.
+
 
 [20 <./circuit.png> <./korai_prototipus.jpg>]
 
@@ -711,12 +712,12 @@ Package pdftex.def Info: korai_prototipus.jpg  used on input line 373.
 ]
 
 [25]
-Underfull \hbox (badness 10000) in paragraph at lines 454--458
+Underfull \hbox (badness 10000) in paragraph at lines 459--463
 
  []
 
 
-Overfull \hbox (46.5626pt too wide) in paragraph at lines 470--481
+Overfull \hbox (46.5626pt too wide) in paragraph at lines 475--486
  [][] 
  []
 
@@ -726,7 +727,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 [26]
-Overfull \hbox (12.29147pt too wide) in paragraph at lines 497--498
+Overfull \hbox (12.29147pt too wide) in paragraph at lines 502--503
 []\T1/lmr/m/n/12 El®fizet® (Subscri-ber): Fel-irat-ko-zik egy té-ma-kör-re, és 
 fo-gad-ja az üze-ne-te-ket (\T1/lmr/m/it/12 subscri-
  []
@@ -734,125 +735,151 @@ fo-gad-ja az üze-ne-te-ket (\T1/lmr/m/it/12 subscri-
 
 
 [27{c:/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
-(./sample_of_long-polling.js
+(./sample_of_long-polling_p1.js
 
-[28])
+[28]) (./sample_of_long-polling_p2.js
 
-[29]
+[29])
+
+[30]
 5. fejezet.
 (./page_creation.dart
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1.
 )
 
-[30
+[31
 
 ]
 
-[31]
-<flutter_overflow.jpg, id=654, 365.86688pt x 670.00313pt>
+[32]
+<flutter_overflow.jpg, id=717, 365.86688pt x 670.00313pt>
 File: flutter_overflow.jpg Graphic file (type jpg)
 <use flutter_overflow.jpg>
-Package pdftex.def Info: flutter_overflow.jpg  used on input line 536.
+Package pdftex.def Info: flutter_overflow.jpg  used on input line 551.
 (pdftex.def)             Requested size: 155.37134pt x 284.52756pt.
 
 
-[32 <./flutter_overflow.jpg>]
-
-[33]
-6. fejezet.
-
-
-[34
-
-]
-
-[35
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 555--557
-[]\T1/lmr/m/n/12 MongoDB fel-hasz-ná-lói fó-rum: []$\T1/lmtt/m/n/12 https : / /
- www . mongodb . com / community /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 555--557
-\T1/lmtt/m/n/12 forums / t / mongoose-[]querying-[]on-[]object-[]id-[]type / 26
-5185$[] \T1/lmr/m/n/12 [Le-tölt-ve/-lá-to-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 557--559
-[]$\T1/lmtt/m/n/12 https : / / developer . mozilla . org / en-[]US / docs / Web
- / API / Server-[]sent _ events$[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 563--565
-[]\T1/lmr/m/n/12 Long-Polling hasz-ná-la-ta Exp-res-sel: []$\T1/lmtt/m/n/12 htt
-ps : / / medium . com / @ignatovich . dm /
+[33 <./flutter_overflow.jpg>]
+Overfull \hbox (2.421pt too wide) in paragraph at lines 574--575
+[]\T1/lmr/m/n/12 A dia-ló-gu-sok meg-je-le-ní-té-sé-hez a be-épí-tett ,,show-Di
+-a-log'' me-tó-dus hasz-ná-la-tos, amely
  []
 
 
 
-[36
+[34] (./task_ui_generator.dart
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 577--579
-[]\T1/lmr/m/n/12 Kotlin Na-tive kér-dé-sek ol-dal: []$\T1/lmtt/m/n/12 https : /
- / discuss . kotlinlang . org / t /
- []
+[35]
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+11.
+ (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+))
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 579--581
-[]\T1/lmr/m/n/12 www.ISSI.com-on ta-lál-ha-tó PDF:[]$\T1/lmtt/m/n/12 https : / 
-/ www . issi . com / WW / pdf /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 581--583
-\T1/lmtt/m/n/12 www . tarlogic . com / news / hidden-[]feature-[]esp32-[]chip-[
-]infect-[]ot-[]devices/$[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 583--584
-[]\T1/lmr/m/n/12 Visual Stu-dio Co-de web-ol-da-la: []$\T1/lmtt/m/n/12 https : 
-/ / code . visualstudio .
- []
-
-
-Underfull \hbox (badness 7064) in paragraph at lines 593--595
-[]\T1/lmr/m/n/12 A [[]]. for-rás-hoz tar-to-zó re-po-zitóri-um. el-ér-he-t®: []
-$\T1/lmtt/m/n/12 https : / / github . com /
- []
-
-
-Underfull \hbox (badness 7064) in paragraph at lines 595--597
-[]\T1/lmr/m/n/12 A [[]]. for-rás-hoz tar-to-zó re-po-zitóri-um. el-ér-he-t®: []
-$\T1/lmtt/m/n/12 https : / / github . com /
+[36]
+Overfull \hbox (2.36784pt too wide) in paragraph at lines 602--602
+[]\T1/lmr/bx/n/14.4 Aszinkron prog-ra-mo-zás Dart-ban és az API-val va-ló kom-
  []
 
 
 
 [37]
 
-[38] (./Szakdolgozat_vy5sdy.aux)
+[38]
+6. fejezet.
+
+
+[39
+
+]
+
+[40
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 635--637
+[]\T1/lmr/m/n/12 MongoDB fel-hasz-ná-lói fó-rum: []$\T1/lmtt/m/n/12 https : / /
+ www . mongodb . com / community /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 635--637
+\T1/lmtt/m/n/12 forums / t / mongoose-[]querying-[]on-[]object-[]id-[]type / 26
+5185$[] \T1/lmr/m/n/12 [Le-tölt-ve/-lá-to-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 637--639
+[]$\T1/lmtt/m/n/12 https : / / developer . mozilla . org / en-[]US / docs / Web
+ / API / Server-[]sent _ events$[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 643--645
+[]\T1/lmr/m/n/12 Long-Polling hasz-ná-la-ta Exp-res-sel: []$\T1/lmtt/m/n/12 htt
+ps : / / medium . com / @ignatovich . dm /
+ []
+
+
+
+[41
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 657--659
+[]\T1/lmr/m/n/12 Kotlin Na-tive kér-dé-sek ol-dal: []$\T1/lmtt/m/n/12 https : /
+ / discuss . kotlinlang . org / t /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 659--661
+[]\T1/lmr/m/n/12 www.ISSI.com-on ta-lál-ha-tó PDF:[]$\T1/lmtt/m/n/12 https : / 
+/ www . issi . com / WW / pdf /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 661--663
+\T1/lmtt/m/n/12 www . tarlogic . com / news / hidden-[]feature-[]esp32-[]chip-[
+]infect-[]ot-[]devices/$[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 663--664
+[]\T1/lmr/m/n/12 Visual Stu-dio Co-de web-ol-da-la: []$\T1/lmtt/m/n/12 https : 
+/ / code . visualstudio .
+ []
+
+
+Underfull \hbox (badness 7064) in paragraph at lines 673--675
+[]\T1/lmr/m/n/12 A [[]]. for-rás-hoz tar-to-zó re-po-zitóri-um. el-ér-he-t®: []
+$\T1/lmtt/m/n/12 https : / / github . com /
+ []
+
+
+Underfull \hbox (badness 7064) in paragraph at lines 675--677
+[]\T1/lmr/m/n/12 A [[]]. for-rás-hoz tar-to-zó re-po-zitóri-um. el-ér-he-t®: []
+$\T1/lmtt/m/n/12 https : / / github . com /
+ []
+
+
+
+[42]
+
+[43] (./Szakdolgozat_vy5sdy.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
 Package rerunfilecheck Info: File `Szakdolgozat_vy5sdy.out' has not changed.
-(rerunfilecheck)             Checksum: E579F489F30BDD28A92CBDAE00C19A54;8837.
+(rerunfilecheck)             Checksum: 85212040AD763A4B1AB09F59DB8530BB;13342.
  ) 
 Here is how much of TeX's memory you used:
- 16230 strings out of 473578
- 256249 string characters out of 5732242
- 735482 words of memory out of 5000000
- 38584 multiletter control sequences out of 15000+600000
- 636077 words of font info for 100 fonts, out of 8000000 for 9000
+ 16460 strings out of 473578
+ 259615 string characters out of 5732242
+ 733699 words of memory out of 5000000
+ 38739 multiletter control sequences out of 15000+600000
+ 636382 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,10n,93p,1184b,2185s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,10n,93p,1184b,2208s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
 /type1/public/lm/lmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
@@ -863,10 +890,10 @@ ri12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texli
 ve/2024/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2024/texmf-dist
 /fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/publi
 c/lm/lmtt12.pfb>
-Output written on Szakdolgozat_vy5sdy.pdf (38 pages, 8395450 bytes).
+Output written on Szakdolgozat_vy5sdy.pdf (43 pages, 8427761 bytes).
 PDF statistics:
- 852 PDF objects out of 1000 (max. 8388607)
- 770 compressed objects within 8 object streams
- 276 named destinations out of 1000 (max. 500000)
- 380 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1022 PDF objects out of 1200 (max. 8388607)
+ 932 compressed objects within 10 object streams
+ 341 named destinations out of 1000 (max. 500000)
+ 476 words of extra memory for PDF output out of 10000 (max. 10000000)
 
