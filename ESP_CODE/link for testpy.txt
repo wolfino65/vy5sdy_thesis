@@ -3,5 +3,3 @@ https://drive.google.com/file/d/1F5GJ0k45eJiRC3-XUQ_f74drGBJRwOTh/view?usp=shari
 https://mega.nz/file/m2IkxZQB#Y-ApKydPsNTGQyZy4pmPGkzbpoCj3Gmcb5ER8VpTY-Q
 
 call method: set_to_red()
-
-dive api key: AIzaSyCof7aLYawxMevJrPAwpgYt9fUxYXMrdZE
