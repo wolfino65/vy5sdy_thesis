@@ -8,7 +8,7 @@ import urequests
 import os
 import neopixel
 
-API_KEY = "AIzaSyCof7aLYawxMevJrPAwpgYt9fUxYXMrdZE"
+API_KEY = "<your api key>"
 def download_file_from_google_drive(file_id, api_key,file):
     url = f"https://www.googleapis.com/drive/v3/files/{file_id}?alt=media&key={api_key}"
     response = urequests.get(url)
