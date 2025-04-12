@@ -56,5 +56,5 @@
 \select@language {magyar} \contentsline {section}{\numberline {6.2}Az API tesztelése}{39}{section.6.2}%
 \select@language {magyar} \contentsline {section}{\numberline {6.3}Az applikáció tesztelése}{39}{section.6.3}%
 \select@language {magyar} \contentsline {section}{\numberline {6.4}A rendszer működésének igazolása}{39}{section.6.4}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{40}{section*.10}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{40}{chapter*.8}%
 \select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{41}{chapter*.11}%

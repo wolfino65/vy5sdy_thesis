@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  12 APR 2025 19:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  12 APR 2025 20:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -601,20 +601,21 @@ thesis-ekf/eszterhazy-logo-hu.pdf>] (./Szakdolgozat_vy5sdy.toc
 [4
 
 ]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
+25.
+ (c:/texlive/2024/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
 
 [5]
 1. fejezet.
 
-Overfull \hbox (66.33406pt too wide) in paragraph at lines 132--133
+Overfull \hbox (66.33406pt too wide) in paragraph at lines 136--137
 []\T1/lmr/m/n/12 A fej-lesz-tés alap-já-ul a prog-ra-mo-zá-si nyelv vál-to-zá-s
 á-nak ered-mé-nye-ként a ESP32_GENERIC_S3-
  []
 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-37.
-(c:/texlive/2024/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
+
 
 [6
 
@@ -622,7 +623,7 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 [7]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 171.
+nput line 175.
  (./docu.json)
 
 [8] (./user_schema.json
@@ -633,10 +634,10 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
  (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
-<mongo_vs_sql.jpeg, id=387, 1116.17pt x 697.60625pt>
+<mongo_vs_sql.jpeg, id=389, 1116.17pt x 697.60625pt>
 File: mongo_vs_sql.jpeg Graphic file (type jpg)
 <use mongo_vs_sql.jpeg>
-Package pdftex.def Info: mongo_vs_sql.jpeg  used on input line 202.
+Package pdftex.def Info: mongo_vs_sql.jpeg  used on input line 206.
 (pdftex.def)             Requested size: 227.62204pt x 142.26508pt.
 
 
@@ -656,15 +657,15 @@ peg>]
 [14]
 
 [15]
-Overfull \hbox (17.82489pt too wide) in paragraph at lines 316--317
+Overfull \hbox (17.82489pt too wide) in paragraph at lines 320--321
 \T1/lmr/m/n/12 biz-to-sít-ja, hogy fo-lya-ma-to-san fej-l®-dik, új funk-ci-ók-k
 al és op-ti-ma-li-zá-lá-sok-kal gazdagodva[[]]. 
  []
 
-<github_project.jpg, id=463, 848.4197pt x 688.82344pt>
+<github_project.jpg, id=465, 848.4197pt x 688.82344pt>
 File: github_project.jpg Graphic file (type jpg)
 <use github_project.jpg>
-Package pdftex.def Info: github_project.jpg  used on input line 331.
+Package pdftex.def Info: github_project.jpg  used on input line 335.
 (pdftex.def)             Requested size: 426.79134pt x 346.50249pt.
 
 
@@ -672,28 +673,28 @@ Package pdftex.def Info: github_project.jpg  used on input line 331.
 
 [17 <./github_project.jpg>]
 3. fejezet.
-<MyESP32.jpg, id=482, 1328.965pt x 3606.47375pt>
+<MyESP32.jpg, id=484, 1328.965pt x 3606.47375pt>
 File: MyESP32.jpg Graphic file (type jpg)
 <use MyESP32.jpg>
-Package pdftex.def Info: MyESP32.jpg  used on input line 346.
+Package pdftex.def Info: MyESP32.jpg  used on input line 350.
 (pdftex.def)             Requested size: 85.35826pt x 231.62248pt.
 
 
 [18
 
 ]
-<circuit.png, id=495, 2730.2pt x 2168.1pt>
+<circuit.png, id=497, 2730.2pt x 2168.1pt>
 File: circuit.png Graphic file (type png)
 <use circuit.png>
-Package pdftex.def Info: circuit.png  used on input line 367.
+Package pdftex.def Info: circuit.png  used on input line 371.
 (pdftex.def)             Requested size: 284.52756pt x 225.92038pt.
 
 
 [19 <./MyESP32.jpg>]
-<korai_prototipus.jpg, id=508, 2260.445pt x 4015.0pt>
+<korai_prototipus.jpg, id=510, 2260.445pt x 4015.0pt>
 File: korai_prototipus.jpg Graphic file (type jpg)
 <use korai_prototipus.jpg>
-Package pdftex.def Info: korai_prototipus.jpg  used on input line 378.
+Package pdftex.def Info: korai_prototipus.jpg  used on input line 382.
 (pdftex.def)             Requested size: 160.17885pt x 284.52756pt.
 
 
@@ -712,12 +713,12 @@ Package pdftex.def Info: korai_prototipus.jpg  used on input line 378.
 ]
 
 [25]
-Underfull \hbox (badness 10000) in paragraph at lines 459--463
+Underfull \hbox (badness 10000) in paragraph at lines 463--467
 
  []
 
 
-Overfull \hbox (46.5626pt too wide) in paragraph at lines 475--486
+Overfull \hbox (46.5626pt too wide) in paragraph at lines 479--490
  [][] 
  []
 
@@ -727,7 +728,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 [26]
-Overfull \hbox (12.29147pt too wide) in paragraph at lines 502--503
+Overfull \hbox (12.29147pt too wide) in paragraph at lines 506--507
 []\T1/lmr/m/n/12 El®fizet® (Subscri-ber): Fel-irat-ko-zik egy té-ma-kör-re, és 
 fo-gad-ja az üze-ne-te-ket (\T1/lmr/m/it/12 subscri-
  []
@@ -753,15 +754,15 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 ]
 
 [32]
-<flutter_overflow.jpg, id=717, 365.86688pt x 670.00313pt>
+<flutter_overflow.jpg, id=719, 365.86688pt x 670.00313pt>
 File: flutter_overflow.jpg Graphic file (type jpg)
 <use flutter_overflow.jpg>
-Package pdftex.def Info: flutter_overflow.jpg  used on input line 551.
+Package pdftex.def Info: flutter_overflow.jpg  used on input line 555.
 (pdftex.def)             Requested size: 155.37134pt x 284.52756pt.
 
 
 [33 <./flutter_overflow.jpg>]
-Overfull \hbox (2.421pt too wide) in paragraph at lines 574--575
+Overfull \hbox (2.421pt too wide) in paragraph at lines 578--579
 []\T1/lmr/m/n/12 A dia-ló-gu-sok meg-je-le-ní-té-sé-hez a be-épí-tett ,,show-Di
 -a-log'' me-tó-dus hasz-ná-la-tos, amely
  []
@@ -778,7 +779,7 @@ File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
 
 [36]
-Overfull \hbox (2.36784pt too wide) in paragraph at lines 602--602
+Overfull \hbox (2.36784pt too wide) in paragraph at lines 606--606
 []\T1/lmr/bx/n/14.4 Aszinkron prog-ra-mo-zás Dart-ban és az API-val va-ló kom-
  []
 
@@ -797,25 +798,25 @@ Overfull \hbox (2.36784pt too wide) in paragraph at lines 602--602
 [40
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 635--637
+Underfull \hbox (badness 10000) in paragraph at lines 645--647
 []\T1/lmr/m/n/12 MongoDB fel-hasz-ná-lói fó-rum: []$\T1/lmtt/m/n/12 https : / /
  www . mongodb . com / community /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 635--637
+Underfull \hbox (badness 10000) in paragraph at lines 645--647
 \T1/lmtt/m/n/12 forums / t / mongoose-[]querying-[]on-[]object-[]id-[]type / 26
 5185$[] \T1/lmr/m/n/12 [Le-tölt-ve/-lá-to-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 637--639
+Underfull \hbox (badness 10000) in paragraph at lines 647--649
 []$\T1/lmtt/m/n/12 https : / / developer . mozilla . org / en-[]US / docs / Web
  / API / Server-[]sent _ events$[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 643--645
+Underfull \hbox (badness 10000) in paragraph at lines 653--655
 []\T1/lmr/m/n/12 Long-Polling hasz-ná-la-ta Exp-res-sel: []$\T1/lmtt/m/n/12 htt
 ps : / / medium . com / @ignatovich . dm /
  []
@@ -825,37 +826,37 @@ ps : / / medium . com / @ignatovich . dm /
 [41
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 657--659
+Underfull \hbox (badness 10000) in paragraph at lines 667--669
 []\T1/lmr/m/n/12 Kotlin Na-tive kér-dé-sek ol-dal: []$\T1/lmtt/m/n/12 https : /
  / discuss . kotlinlang . org / t /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 659--661
+Underfull \hbox (badness 10000) in paragraph at lines 669--671
 []\T1/lmr/m/n/12 www.ISSI.com-on ta-lál-ha-tó PDF:[]$\T1/lmtt/m/n/12 https : / 
 / www . issi . com / WW / pdf /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--663
+Underfull \hbox (badness 10000) in paragraph at lines 671--673
 \T1/lmtt/m/n/12 www . tarlogic . com / news / hidden-[]feature-[]esp32-[]chip-[
 ]infect-[]ot-[]devices/$[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 663--664
+Underfull \hbox (badness 10000) in paragraph at lines 673--674
 []\T1/lmr/m/n/12 Visual Stu-dio Co-de web-ol-da-la: []$\T1/lmtt/m/n/12 https : 
 / / code . visualstudio .
  []
 
 
-Underfull \hbox (badness 7064) in paragraph at lines 673--675
+Underfull \hbox (badness 7064) in paragraph at lines 683--685
 []\T1/lmr/m/n/12 A [[]]. for-rás-hoz tar-to-zó re-po-zitóri-um. el-ér-he-t®: []
 $\T1/lmtt/m/n/12 https : / / github . com /
  []
 
 
-Underfull \hbox (badness 7064) in paragraph at lines 675--677
+Underfull \hbox (badness 7064) in paragraph at lines 685--687
 []\T1/lmr/m/n/12 A [[]]. for-rás-hoz tar-to-zó re-po-zitóri-um. el-ér-he-t®: []
 $\T1/lmtt/m/n/12 https : / / github . com /
  []
@@ -869,14 +870,21 @@ $\T1/lmtt/m/n/12 https : / / github . com /
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
-Package rerunfilecheck Info: File `Szakdolgozat_vy5sdy.out' has not changed.
-(rerunfilecheck)             Checksum: 85212040AD763A4B1AB09F59DB8530BB;13342.
+
+
+Package rerunfilecheck Warning: File `Szakdolgozat_vy5sdy.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Szakdolgozat_vy5sdy.out':
+(rerunfilecheck)             Before: 85212040AD763A4B1AB09F59DB8530BB;13342
+(rerunfilecheck)             After:  5807B43B1F757596C1C691512E2EECB1;13341.
  ) 
 Here is how much of TeX's memory you used:
- 16460 strings out of 473578
- 259615 string characters out of 5732242
+ 16462 strings out of 473578
+ 259671 string characters out of 5732242
  733699 words of memory out of 5000000
- 38739 multiletter control sequences out of 15000+600000
+ 38741 multiletter control sequences out of 15000+600000
  636382 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,10n,93p,1184b,2208s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -890,10 +898,10 @@ ri12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texli
 ve/2024/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2024/texmf-dist
 /fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/publi
 c/lm/lmtt12.pfb>
-Output written on Szakdolgozat_vy5sdy.pdf (43 pages, 8427761 bytes).
+Output written on Szakdolgozat_vy5sdy.pdf (43 pages, 8428137 bytes).
 PDF statistics:
- 1022 PDF objects out of 1200 (max. 8388607)
- 932 compressed objects within 10 object streams
+ 1024 PDF objects out of 1200 (max. 8388607)
+ 934 compressed objects within 10 object streams
  341 named destinations out of 1000 (max. 500000)
  476 words of extra memory for PDF output out of 10000 (max. 10000000)
 
