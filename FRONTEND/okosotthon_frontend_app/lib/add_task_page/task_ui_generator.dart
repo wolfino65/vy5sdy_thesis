@@ -11,7 +11,7 @@ import 'package:okosotthon_frontend_app/shared/InputFields.dart';
 class TaskUiGenerator {
 
   static Future<Ui> fetchUi(String googleFileId) async{
-    String apiKey="AIzaSyCof7aLYawxMevJrPAwpgYt9fUxYXMrdZE";
+    String apiKey="<your api key>";
     Uri url = Uri.parse("https://www.googleapis.com/drive/v3/files/$googleFileId?alt=media&key=$apiKey");
     final response = await http.get(url);
     if (response.statusCode == 200) {
