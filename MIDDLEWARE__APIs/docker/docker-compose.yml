@@ -1,0 +1,12 @@
+version: 
+
+services:
+  api:
+    build: .
+    container_name: node-api
+    restart: unless-stopped
+    ports:
+      - "4500:4500"
+    volumes:
+      - .:/app
+      - /app/node_modules

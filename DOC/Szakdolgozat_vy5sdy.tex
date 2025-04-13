@@ -106,6 +106,15 @@
 	\city{Eger}
 	\date{2025}
 	\maketitle
+	\chapter*{Köszönetnyilvánítás}
+	Szeretném kifejezni legmélyebb hálámat és őszinte köszönetemet konzulensemnek, Dr.~Geda Gábornak, aki szakmai hozzáértésével, segítőkészségével és türelmével végigkísért a szakdolgozat elkészítésének teljes folyamatán. Minden alkalommal számíthattam az iránymutatására, értékes tanácsaira és építő jellegű visszajelzéseire, amelyek nagyban hozzájárultak munkám színvonalához. Köszönöm, hogy mindig nyitott volt a kérdéseimre, és bátorított az önálló gondolkodásra.
+	
+	Külön köszönet illeti a családomat, akik végig támogattak tanulmányaim során. Nélkülük nem lett volna lehetséges eljutni idáig. Köszönöm a türelmüket, megértésüket, és azt a biztonságot és szeretetet, amelyet mindig érezhettem a háttérben. Ők jelentették számomra a stabil pontot minden nehezebb pillanatban.
+	
+	Hálás vagyok a barátaimnak is, akik nemcsak lelkileg támogattak, hanem gyakorlati segítséget is nyújtottak, amikor szükségem volt rá. Köszönöm a sok bátorítást, a motiváló beszélgetéseket, és hogy mindig tudtam, számíthatok rájuk.
+	
+	Végül köszönet illeti mindazokat, akik bármilyen formában hozzájárultak e dolgozat elkészültéhez – akár tudásmegosztással, inspirációval, akár csak egy jó szóval a megfelelő pillanatban.
+	
 	\tableofcontents
 	\chapter*{Bevezetés}
 	\addcontentsline{toc}{chapter}{Bevezetés}
@@ -336,6 +345,11 @@
 		\caption{Szakdolgozathoz feladatkövetéshez használt GitHub projekt, és állapota [2025.04.10.]}
 		\label{img_git}
 	\end{figure}
+	\subsection{Egyéb használt eszközök}
+	\begin{itemize}
+		\item \textbf{MongoDB Compass}: Grafikus felületet nyújtó program az adatbázis könnyű kezeléséhez.
+		\item \textbf{Postman}: API teszteléshez használt eszköz.
+	\end{itemize}
 	\chapter{Az ESP32 mikrovezérlő bemutatása}
 	\label{ch_esp}
 	A projekt kulcsfontosságú része, maga az eszköz, amely lehetővé teszi a modulok vezérlését. A \ref{img_myesp}-es ábrán látható mikrokontrollerhez hasonlót több gyártó is gyárt, azonban egy ESP kifejezetten a benne található processzortól lesz ESP. Az ESP32-ben található Xtensa LX6 processzor két maggal van ellátva és órajele 240 MHz\footnote{Megahertz}.

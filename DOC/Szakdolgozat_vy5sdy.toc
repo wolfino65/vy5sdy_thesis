@@ -1,60 +1,61 @@
-\select@language {magyar} \contentsline {chapter}{Bevezetés}{4}{chapter*.2}%
-\select@language {magyar} \contentsline {chapter}{\numberline {1}Technológiai áttekintés}{6}{chapter.1}%
-\select@language {magyar} \contentsline {section}{\numberline {1.1}Eszköz oldalon alkalmazott technológiák}{6}{section.1.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {1.1.1}ESP programozásához használt nyelv}{6}{subsection.1.1.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {1.1.2}Integrált fejlesztői környezet, IDE}{6}{subsection.1.1.2}%
-\select@language {magyar} \contentsline {section}{\numberline {1.2}A REST API technológia háttere}{7}{section.1.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {1.2.1}Kulcstechnológiák és Döntések}{7}{subsection.1.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {1.2.2}REST API technológiai előnyei}{7}{subsection.1.2.2}%
-\select@language {magyar} \contentsline {section}{\numberline {1.3}Adatbázis}{8}{section.1.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {1.3.1}MongoDB struktúrája}{10}{subsection.1.3.1}%
-\select@language {magyar} \contentsline {section}{\numberline {1.4}Frontend technológia}{11}{section.1.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {1.4.1}Miért Flutter?}{11}{subsection.1.4.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {1.4.2}Flutter ismertetése}{12}{subsection.1.4.2}%
-\select@language {magyar} \contentsline {chapter}{\numberline {2}Rendszerterv}{13}{chapter.2}%
-\select@language {magyar} \contentsline {section}{\numberline {2.1}Rendszer célja}{13}{section.2.1}%
-\select@language {magyar} \contentsline {section}{\numberline {2.2}Architekturális terv}{13}{section.2.2}%
-\select@language {magyar} \contentsline {section}{\numberline {2.3}Követelmények}{13}{section.2.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.3.1}Felhasználói felület}{14}{subsection.2.3.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.3.2}Eszköz követelményei}{15}{subsection.2.3.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.3.3}API, összekötő réteg követelményei}{15}{subsection.2.3.3}%
-\select@language {magyar} \contentsline {section}{\numberline {2.4}Használt fejlesztői eszközök}{15}{section.2.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.4.1}Visual Studio Code}{15}{subsection.2.4.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.4.2}Thonny IDE}{16}{subsection.2.4.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.4.3}Git, Github}{16}{subsection.2.4.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {3}Az ESP32 mikrovezérlő bemutatása}{18}{chapter.3}%
-\select@language {magyar} \contentsline {section}{\numberline {3.1}ESP32 hardverének és fejlesztői környezetének bemutatása}{18}{section.3.1}%
-\select@language {magyar} \contentsline {section}{\numberline {3.2}A rendszer fejlesztésének részletei}{19}{section.3.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Hardver szintű fejlesztés}{19}{subsection.3.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Szoftver fejlesztése és a fejlesztés során felmerült problémák}{21}{subsection.3.2.2}%
-\select@language {magyar} \contentsline {section}{\numberline {3.3}Az eszköz működése}{22}{section.3.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {4}A REST API fejlesztése}{24}{chapter.4}%
-\select@language {magyar} \contentsline {section}{\numberline {4.1}Adatbázis kezelése}{24}{section.4.1}%
-\select@language {magyar} \contentsline {section}{\numberline {4.2}Végpontok}{25}{section.4.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Mi felel meg az elvárásoknak?}{25}{subsection.4.2.1}%
-\select@language {magyar} \contentsline {subsubsection}{Megfontolt technológia, SSE}{26}{section*.3}%
-\select@language {magyar} \contentsline {subsubsection}{MQTT, mint megfontolt protokoll}{27}{section*.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.2.2}Long-Polling megvalósítása}{28}{subsection.4.2.2}%
-\select@language {magyar} \contentsline {chapter}{\numberline {5}Frontend program fejlesztése}{31}{chapter.5}%
-\select@language {magyar} \contentsline {section}{\numberline {5.1}UI fejlesztés Flutter keretrendszerben}{31}{section.5.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.1.1}Grafikus felhasználói felület fejlesztése Flutter-ben}{31}{subsection.5.1.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.1.2}Navigáció a felületek között}{32}{subsection.5.1.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.1.3}A login page fejlesztése közben szerzett tapasztalatok}{33}{subsection.5.1.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.1.4}Listák megjelenítése a Flutter keretrendszerben}{34}{subsection.5.1.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.1.5}Popup menük és dialógusok használata, megjelenítése}{34}{subsection.5.1.5}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.1.6}Eszköz konfigurációja az applikációból}{35}{subsection.5.1.6}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.1.7}Feladat paramétereinek megadása}{35}{subsection.5.1.7}%
-\select@language {magyar} \contentsline {section}{\numberline {5.2}Az üzleti logika kiépítése és közben szerzett tapasztalatok}{36}{section.5.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.2.1}A Dart programozási nyelv}{37}{subsection.5.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.2.2}Egyszerű adatmentés lokálisan}{37}{subsection.5.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.2.3}Aszinkron programozás Dart-ban és az API-val való kommunikáció}{37}{subsection.5.2.3}%
-\select@language {magyar} \contentsline {subsubsection}{Kommunikáció az interneten keresztül}{37}{section*.5}%
-\select@language {magyar} \contentsline {subsubsection}{Aszinkron programozás}{38}{section*.6}%
-\select@language {magyar} \contentsline {subsubsection}{JSON adat megfelelő kezelése modelleken keresztül}{38}{section*.7}%
-\select@language {magyar} \contentsline {chapter}{\numberline {6}A rendszer tesztelése}{39}{chapter.6}%
-\select@language {magyar} \contentsline {section}{\numberline {6.1}Az ESP32-n futó program funkcióinak tesztelése}{39}{section.6.1}%
-\select@language {magyar} \contentsline {section}{\numberline {6.2}Az API tesztelése}{39}{section.6.2}%
-\select@language {magyar} \contentsline {section}{\numberline {6.3}Az applikáció tesztelése}{39}{section.6.3}%
-\select@language {magyar} \contentsline {section}{\numberline {6.4}A rendszer működésének igazolása}{39}{section.6.4}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{40}{chapter*.8}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{41}{chapter*.11}%
+\select@language {magyar} \contentsline {chapter}{Bevezetés}{5}{chapter*.3}%
+\select@language {magyar} \contentsline {chapter}{\numberline {1}Technológiai áttekintés}{7}{chapter.1}%
+\select@language {magyar} \contentsline {section}{\numberline {1.1}Eszköz oldalon alkalmazott technológiák}{7}{section.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.1.1}ESP programozásához használt nyelv}{7}{subsection.1.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.1.2}Integrált fejlesztői környezet, IDE}{7}{subsection.1.1.2}%
+\select@language {magyar} \contentsline {section}{\numberline {1.2}A REST API technológia háttere}{8}{section.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.2.1}Kulcstechnológiák és Döntések}{8}{subsection.1.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.2.2}REST API technológiai előnyei}{8}{subsection.1.2.2}%
+\select@language {magyar} \contentsline {section}{\numberline {1.3}Adatbázis}{9}{section.1.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.3.1}MongoDB struktúrája}{11}{subsection.1.3.1}%
+\select@language {magyar} \contentsline {section}{\numberline {1.4}Frontend technológia}{12}{section.1.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.4.1}Miért Flutter?}{12}{subsection.1.4.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {1.4.2}Flutter ismertetése}{13}{subsection.1.4.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {2}Rendszerterv}{14}{chapter.2}%
+\select@language {magyar} \contentsline {section}{\numberline {2.1}Rendszer célja}{14}{section.2.1}%
+\select@language {magyar} \contentsline {section}{\numberline {2.2}Architekturális terv}{14}{section.2.2}%
+\select@language {magyar} \contentsline {section}{\numberline {2.3}Követelmények}{14}{section.2.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.3.1}Felhasználói felület}{15}{subsection.2.3.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.3.2}Eszköz követelményei}{16}{subsection.2.3.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.3.3}API, összekötő réteg követelményei}{16}{subsection.2.3.3}%
+\select@language {magyar} \contentsline {section}{\numberline {2.4}Használt fejlesztői eszközök}{16}{section.2.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.4.1}Visual Studio Code}{16}{subsection.2.4.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.4.2}Thonny IDE}{17}{subsection.2.4.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.4.3}Git, Github}{17}{subsection.2.4.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.4.4}Egyéb használt eszközök}{18}{subsection.2.4.4}%
+\select@language {magyar} \contentsline {chapter}{\numberline {3}Az ESP32 mikrovezérlő bemutatása}{19}{chapter.3}%
+\select@language {magyar} \contentsline {section}{\numberline {3.1}ESP32 hardverének és fejlesztői környezetének bemutatása}{19}{section.3.1}%
+\select@language {magyar} \contentsline {section}{\numberline {3.2}A rendszer fejlesztésének részletei}{20}{section.3.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Hardver szintű fejlesztés}{20}{subsection.3.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Szoftver fejlesztése és a fejlesztés során felmerült problémák}{22}{subsection.3.2.2}%
+\select@language {magyar} \contentsline {section}{\numberline {3.3}Az eszköz működése}{23}{section.3.3}%
+\select@language {magyar} \contentsline {chapter}{\numberline {4}A REST API fejlesztése}{25}{chapter.4}%
+\select@language {magyar} \contentsline {section}{\numberline {4.1}Adatbázis kezelése}{25}{section.4.1}%
+\select@language {magyar} \contentsline {section}{\numberline {4.2}Végpontok}{26}{section.4.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Mi felel meg az elvárásoknak?}{26}{subsection.4.2.1}%
+\select@language {magyar} \contentsline {subsubsection}{Megfontolt technológia, SSE}{27}{section*.4}%
+\select@language {magyar} \contentsline {subsubsection}{MQTT, mint megfontolt protokoll}{28}{section*.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2.2}Long-Polling megvalósítása}{29}{subsection.4.2.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {5}Frontend program fejlesztése}{32}{chapter.5}%
+\select@language {magyar} \contentsline {section}{\numberline {5.1}UI fejlesztés Flutter keretrendszerben}{32}{section.5.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.1.1}Grafikus felhasználói felület fejlesztése Flutter-ben}{32}{subsection.5.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.1.2}Navigáció a felületek között}{33}{subsection.5.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.1.3}A login page fejlesztése közben szerzett tapasztalatok}{34}{subsection.5.1.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.1.4}Listák megjelenítése a Flutter keretrendszerben}{35}{subsection.5.1.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.1.5}Popup menük és dialógusok használata, megjelenítése}{35}{subsection.5.1.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.1.6}Eszköz konfigurációja az applikációból}{36}{subsection.5.1.6}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.1.7}Feladat paramétereinek megadása}{36}{subsection.5.1.7}%
+\select@language {magyar} \contentsline {section}{\numberline {5.2}Az üzleti logika kiépítése és közben szerzett tapasztalatok}{37}{section.5.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.2.1}A Dart programozási nyelv}{38}{subsection.5.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.2.2}Egyszerű adatmentés lokálisan}{38}{subsection.5.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.2.3}Aszinkron programozás Dart-ban és az API-val való kommunikáció}{38}{subsection.5.2.3}%
+\select@language {magyar} \contentsline {subsubsection}{Kommunikáció az interneten keresztül}{38}{section*.6}%
+\select@language {magyar} \contentsline {subsubsection}{Aszinkron programozás}{39}{section*.7}%
+\select@language {magyar} \contentsline {subsubsection}{JSON adat megfelelő kezelése modelleken keresztül}{39}{section*.8}%
+\select@language {magyar} \contentsline {chapter}{\numberline {6}A rendszer tesztelése}{40}{chapter.6}%
+\select@language {magyar} \contentsline {section}{\numberline {6.1}Az ESP32-n futó program funkcióinak tesztelése}{40}{section.6.1}%
+\select@language {magyar} \contentsline {section}{\numberline {6.2}Az API tesztelése}{40}{section.6.2}%
+\select@language {magyar} \contentsline {section}{\numberline {6.3}Az applikáció tesztelése}{40}{section.6.3}%
+\select@language {magyar} \contentsline {section}{\numberline {6.4}A rendszer működésének igazolása}{40}{section.6.4}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{41}{chapter*.9}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{42}{chapter*.12}%
