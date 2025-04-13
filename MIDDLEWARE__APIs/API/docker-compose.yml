@@ -1,11 +1,11 @@
+version: '3.3'
+
 services:
   api:
-    build: .
-    container_name: node-api
-    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: api
+    restart: always
     ports:
       - "4500:4500"
-    volumes:
-      - ./:/app
-      - /app/node_modules
-    working_dir: /app
