@@ -42,7 +42,7 @@ class _AddModuleState extends State<AddModule>{
 
   Future<List> _fetchModules() async{
     final resp= await http.get(
-      Uri.parse("http://192.168.1.82:4500/module/allModules"),
+      Uri.parse("http://158.180.52.252:4500/module/allModules"),
     );
 
     final List<dynamic> jsonList = json.decode(resp.body);

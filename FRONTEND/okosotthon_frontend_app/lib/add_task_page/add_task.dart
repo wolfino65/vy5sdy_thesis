@@ -59,7 +59,7 @@ class _AddTaskState extends State<AddTask> {
   }
 
   Future<void> _loadUI() async {
-    Ui ui = await TaskUiGenerator.fetchUi("1gyaxlV7jkxz9EwRzCJsff0ZkGerB_I71");
+    Ui ui = await TaskUiGenerator.fetchUi(mod.frontID);
     FinalUiDefinition uidef = TaskUiGenerator.buildUi(ui, context);
     setState(() {
       finalUiDef = uidef;

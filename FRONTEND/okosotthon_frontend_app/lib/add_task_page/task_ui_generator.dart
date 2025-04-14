@@ -9,10 +9,11 @@ import 'package:okosotthon_frontend_app/models/ui.dart';
 import 'package:okosotthon_frontend_app/shared/InputFields.dart';
 
 class TaskUiGenerator {
-
-  static Future<Ui> fetchUi(String googleFileId) async{
-    String apiKey="<your api key>";
-    Uri url = Uri.parse("https://www.googleapis.com/drive/v3/files/$googleFileId?alt=media&key=$apiKey");
+  static Future<Ui> fetchUi(String googleFileId) async {
+    String apiKey = "AIzaSyCof7aLYawxMevJrPAwpgYt9fUxYXMrdZE";
+    Uri url = Uri.parse(
+      "https://www.googleapis.com/drive/v3/files/$googleFileId?alt=media&key=$apiKey",
+    );
     final response = await http.get(url);
     if (response.statusCode == 200) {
       return Ui.fromJson(json.decode(response.body));
@@ -20,7 +21,8 @@ class TaskUiGenerator {
       throw Exception('Failed to load UI data');
     }
   }
-  static FinalUiDefinition buildUi(Ui ui,BuildContext context)  {
+
+  static FinalUiDefinition buildUi(Ui ui, BuildContext context) {
     List<Widget> widgets = [];
     List<String> returnNames = [];
     List<TextEditingController> controllers = [];
@@ -30,7 +32,15 @@ class TaskUiGenerator {
         case "number_input":
           TextEditingController tec = TextEditingController();
           controllers.add(tec);
-          widgets.add(InputFields.buildSimpleTextField(tec, TextInputType.number,"", element.name, MediaQuery.sizeOf(context).width * 0.8));
+          widgets.add(
+            InputFields.buildSimpleTextField(
+              tec,
+              TextInputType.number,
+              "",
+              element.name,
+              MediaQuery.sizeOf(context).width * 0.8,
+            ),
+          );
           returnNames.add(element.respName);
           break;
         default:

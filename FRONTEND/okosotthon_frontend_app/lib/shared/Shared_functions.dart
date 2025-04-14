@@ -10,7 +10,7 @@ class Shared {
     String pw,
   ) async {
     final resp = await http.post(
-      Uri.parse("http://192.168.1.82:4500/user/login"),
+      Uri.parse("http://158.180.52.252:4500/user/login"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -37,7 +37,7 @@ class Shared {
 
   static Future<Module> getModuleById(String id) async {
     final resp = await http.get(
-      Uri.parse("http://192.168.1.82:4500/module/getModuleById"),
+      Uri.parse("http://158.180.52.252:4500/module/getModuleById"),
       headers: <String, String>{"module_id": id},
     );
     if (resp.statusCode != 200) {
@@ -54,7 +54,7 @@ class Shared {
     Map<String, dynamic> params,
   ) async {
     final resp = await http.post(
-      Uri.parse("http://192.168.1.82:4500/task/addTask"),
+      Uri.parse("http://158.180.52.252:4500/task/addTask"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -68,18 +68,38 @@ class Shared {
     );
   }
 
-
-  static void buildChoiceDialog(BuildContext context,String title, String content, Function yesFunc,Function noFunc){
-    AlertDialog question = AlertDialog(title: Text(title), content: Text(content),
+  static void buildChoiceDialog(
+    BuildContext context,
+    String title,
+    String content,
+    Function yesFunc,
+    Function noFunc,
+  ) {
+    AlertDialog question = AlertDialog(
+      title: Text(title),
+      content: Text(content),
       actions: [
-        TextButton(onPressed: (){yesFunc();}, child: Text("Yes")),
-        TextButton(onPressed: (){noFunc();}, child: Text("No"))
+        TextButton(
+          onPressed: () {
+            yesFunc();
+          },
+          child: Text("Yes"),
+        ),
+        TextButton(
+          onPressed: () {
+            noFunc();
+          },
+          child: Text("No"),
+        ),
       ],
-      );
+    );
 
-      showDialog(context: context, barrierDismissible: false, builder: (BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
         return question;
-      });
-
+      },
+    );
   }
 }

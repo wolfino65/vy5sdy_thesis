@@ -5,22 +5,22 @@ import 'package:okosotthon_frontend_app/models/device.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 
-class UpdateDevice extends StatefulWidget{
-  Device dev=Device.empty();
+class UpdateDevice extends StatefulWidget {
+  Device dev = Device.empty();
 
-  UpdateDevice(Device dev){
-    this.dev=dev;
+  UpdateDevice(Device dev) {
+    this.dev = dev;
   }
 
   @override
   State<StatefulWidget> createState() => _UpdateDeviceState(dev);
 }
 
-class _UpdateDeviceState extends State<UpdateDevice>{
+class _UpdateDeviceState extends State<UpdateDevice> {
   Device dev = Device.empty();
 
-  _UpdateDeviceState(Device dev){
-    this.dev=dev;
+  _UpdateDeviceState(Device dev) {
+    this.dev = dev;
   }
 
   TextEditingController name = TextEditingController();
@@ -28,52 +28,64 @@ class _UpdateDeviceState extends State<UpdateDevice>{
 
   @override
   Widget build(BuildContext context) {
-    name.text=dev.deviceName;
-    loc.text=dev.location;
+    name.text = dev.deviceName;
+    loc.text = dev.location;
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Update device details"),
-          backgroundColor: Colors.deepOrangeAccent.shade100,
-        ),
-        body: SingleChildScrollView(child: 
-        SizedBox(
+      appBar: AppBar(
+        title: Text("Update device details"),
+        backgroundColor: Colors.deepOrangeAccent.shade100,
+      ),
+      body: SingleChildScrollView(
+        child: SizedBox(
           width: double.infinity,
           child: Column(
             children: [
               SizedBox(height: 50),
-              InputFields.buildSimpleTextField(name, TextInputType.text,"Device name","",MediaQuery.sizeOf(context).width*0.8),
+              InputFields.buildSimpleTextField(
+                name,
+                TextInputType.text,
+                "Device name",
+                "",
+                MediaQuery.sizeOf(context).width * 0.8,
+              ),
               SizedBox(height: 100),
-              InputFields.buildSimpleTextField(loc, TextInputType.text,"Device location","",MediaQuery.sizeOf(context).width*0.8),
+              InputFields.buildSimpleTextField(
+                loc,
+                TextInputType.text,
+                "Device location",
+                "",
+                MediaQuery.sizeOf(context).width * 0.8,
+              ),
               SizedBox(height: 50),
-              InputFields.buildCustomizedButton("Update", Colors.lightGreen.shade600, Colors.white, ()=>_handleUpdate())
+              InputFields.buildCustomizedButton(
+                "Update",
+                Colors.lightGreen.shade600,
+                Colors.white,
+                () => _handleUpdate(),
+              ),
             ],
           ),
         ),
-        ),
+      ),
     );
   }
 
-  void _handleUpdate(){
+  void _handleUpdate() {
     _handleUpdateAsync(name.text, loc.text);
 
-    Navigator.pop(context,[name.text,loc.text]);
+    Navigator.pop(context, [name.text, loc.text]);
   }
 
-  Future<void> _handleUpdateAsync(String name, String loc) async{
-    final resp= await http.put(Uri.parse("http://192.168.1.82:4500/device/updateDevice"),
-    headers:  <String, String>{
+  Future<void> _handleUpdateAsync(String name, String loc) async {
+    final resp = await http.put(
+      Uri.parse("http://158.180.52.252:4500/device/updateDevice"),
+      headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode( <String,dynamic>{
-        "dev_id":dev.id,
-        "newInfo":{
-          "device_name":name,
-          "location":loc
-        }
-      }
-      )
+      body: jsonEncode(<String, dynamic>{
+        "dev_id": dev.id,
+        "newInfo": {"device_name": name, "location": loc},
+      }),
     );
   }
-
-
 }

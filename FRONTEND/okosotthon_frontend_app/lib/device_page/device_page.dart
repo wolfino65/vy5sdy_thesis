@@ -75,10 +75,17 @@ class _DevicePageState extends State<DevicePage> {
                           child: Text(modules[0].name),
                         ),
                       ),
-                      onTap: () => {
-                        if(modules[0].name !="Unused")
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[0])))
-                      },
+                      onTap:
+                          () => {
+                            if (modules[0].name != "Unused")
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => AddTask(dev, modules[0]),
+                                ),
+                              ),
+                          },
                     ),
                     GestureDetector(
                       child: SizedBox(
@@ -89,10 +96,17 @@ class _DevicePageState extends State<DevicePage> {
                           child: Text(modules[1].name),
                         ),
                       ),
-                      onTap: () => {
-                        if(modules[1].name !="Unused")
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[1])))
-                      },
+                      onTap:
+                          () => {
+                            if (modules[1].name != "Unused")
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => AddTask(dev, modules[1]),
+                                ),
+                              ),
+                          },
                     ),
                   ],
                 ),
@@ -108,10 +122,17 @@ class _DevicePageState extends State<DevicePage> {
                           child: Text(modules[2].name),
                         ),
                       ),
-                      onTap: () => {
-                        if(modules[2].name !="Unused")
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[2])))
-                      },
+                      onTap:
+                          () => {
+                            if (modules[2].name != "Unused")
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => AddTask(dev, modules[2]),
+                                ),
+                              ),
+                          },
                     ),
                     GestureDetector(
                       child: SizedBox(
@@ -122,10 +143,17 @@ class _DevicePageState extends State<DevicePage> {
                           child: Text(modules[3].name),
                         ),
                       ),
-                      onTap: () => {
-                        if(modules[3].name !="Unused")
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AddTask(dev,modules[3])))
-                      },
+                      onTap:
+                          () => {
+                            if (modules[3].name != "Unused")
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => AddTask(dev, modules[3]),
+                                ),
+                              ),
+                          },
                     ),
                   ],
                 ),
@@ -135,23 +163,29 @@ class _DevicePageState extends State<DevicePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ()  {
-          bool hasUnused=false;
-            for (Module module in modules) {
-              if(module.name=="Unused"){
-                hasUnused=true;
-                break;
-              }
+        onPressed: () {
+          bool hasUnused = false;
+          for (Module module in modules) {
+            if (module.name == "Unused") {
+              hasUnused = true;
+              break;
             }
-            if(hasUnused){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>AddModule(dev)));
-            }
-            else{
-              Shared.showCustomDialog(context, "Error", "Your device does not have any available ports.\n"+
-              "If you have just disconnected a device please reload this page by exiting to the previous page.");
-              return;
-            }
-          },
+          }
+          if (hasUnused) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddModule(dev)),
+            );
+          } else {
+            Shared.showCustomDialog(
+              context,
+              "Error",
+              "Your device does not have any available ports.\n" +
+                  "If you have just disconnected a device please reload this page by exiting to the previous page.",
+            );
+            return;
+          }
+        },
         child: Icon(Icons.add),
       ),
     );
@@ -177,7 +211,7 @@ class _DevicePageState extends State<DevicePage> {
 
   Future<void> _deleteDevice() async {
     final resp = await http.delete(
-      Uri.parse("http://192.168.1.82:4500/device/deleteDevice"),
+      Uri.parse("http://158.180.52.252:4500/device/deleteDevice"),
       headers: <String, String>{"dev_id": dev.id},
     );
     final prefs = await SharedPreferences.getInstance();

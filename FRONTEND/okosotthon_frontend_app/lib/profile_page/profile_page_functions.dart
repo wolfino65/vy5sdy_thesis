@@ -19,7 +19,8 @@ class ProfilePageFunctions {
 
   static Future<void> handleAccountDelete(SharedPreferences prefs) async {
     String userId = prefs.getString("id") as String;
-    List<Device> devices = await DeviceFetcher.getDevicesByOwner() as List<Device>;
+    List<Device> devices =
+        await DeviceFetcher.getDevicesByOwner() as List<Device>;
     for (Device device in devices) {
       await Shared.scheduleTask(
         device.id,
@@ -28,15 +29,14 @@ class ProfilePageFunctions {
         userId,
         {},
       );
-      await http.delete(Uri.parse("http://192.168.1.82:4500/device/deleteDevice"),
-      headers: <String,String>{
-        "dev_id":device.id
-      }
+      await http.delete(
+        Uri.parse("http://158.180.52.252:4500/device/deleteDevice"),
+        headers: <String, String>{"dev_id": device.id},
       );
     }
 
     final resp = await http.delete(
-      Uri.parse("http://192.168.1.82:4500/user/deleteUser"),
+      Uri.parse("http://158.180.52.252:4500/user/deleteUser"),
       headers: <String, String>{"user_id": userId},
     );
     if (resp.statusCode != 200) {
@@ -54,7 +54,7 @@ class ProfilePageFunctions {
     }
     pw = sha256.convert(utf8.encode(pw)).toString();
     final resp = await http.put(
-      Uri.parse("http://192.168.1.82:4500/user/updateUser"),
+      Uri.parse("http://158.180.52.252:4500/user/updateUser"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -73,7 +73,7 @@ class ProfilePageFunctions {
     SharedPreferences prefs,
   ) async {
     final resp = await http.put(
-      Uri.parse("http://192.168.1.82:4500/user/updateUser"),
+      Uri.parse("http://158.180.52.252:4500/user/updateUser"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -82,14 +82,17 @@ class ProfilePageFunctions {
         "newInfo": {"email": email},
       }),
     );
-    if(resp.statusCode != 200){
+    if (resp.statusCode != 200) {
       throw Exception("We could not change your e-mail address.");
     }
   }
 
-  static Future<void> handleUsernameChange(String username,SharedPreferences prefs)async{
+  static Future<void> handleUsernameChange(
+    String username,
+    SharedPreferences prefs,
+  ) async {
     final resp = await http.put(
-      Uri.parse("http://192.168.1.82:4500/user/updateUser"),
+      Uri.parse("http://158.180.52.252:4500/user/updateUser"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -98,7 +101,7 @@ class ProfilePageFunctions {
         "newInfo": {"username": username},
       }),
     );
-    if(resp.statusCode != 200){
+    if (resp.statusCode != 200) {
       throw Exception("We could not change your username.");
     }
     prefs.setString("uname", username);
