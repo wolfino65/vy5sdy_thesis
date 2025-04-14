@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  14 APR 2025 19:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  14 APR 2025 23:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -587,12 +587,6 @@ Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 108.
 {c:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2024/
 texmf-dist/fonts/enc/dvips/lm/lm-ec.enc} <c:/texlive/2024/texmf-dist/tex/latex/
 thesis-ekf/eszterhazy-logo-hu.pdf>]
-Overfull \hbox (10.55466pt too wide) in paragraph at lines 110--111
-\T1/lmr/m/n/12 Szeretn�m ki-fe-jez-ni leg-m�-lyebb h�-l�-mat �s �szin-te k�-sz�
--ne-te-met kon-zu-len-sem-nek, Dr. Ge-
- []
-
-
 
 [2
 
@@ -619,12 +613,6 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 [6]
 1. fejezet.
-
-Overfull \hbox (66.33406pt too wide) in paragraph at lines 145--146
-[]\T1/lmr/m/n/12 A fej-lesz-t�s alap-j�-ul a prog-ra-mo-z�-si nyelv v�l-to-z�-s
-�-nak ered-m�-nye-k�nt a ESP32_GENERIC_S3-
- []
-
 
 
 [7
@@ -876,8 +864,52 @@ $\T1/lmtt/m/n/12 https : / / github . com /
 
 
 [44]
+<nyilatkozat/kitöltött_nyilatkozat.pdf, id=939, 597.23125pt x 845.1575pt>
+File: nyilatkozat/kitöltött_nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat/kitöltött_nyilatkozat.pdf>
+Package pdftex.def Info: nyilatkozat/kitöltött_nyilatkozat.pdf  used on input
+ line 730.
+(pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
+File: nyilatkozat/kitöltött_nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat/kitöltött_nyilatkozat.pdf>
+Package pdftex.def Info: nyilatkozat/kitöltött_nyilatkozat.pdf  used on input
+ line 730.
+(pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
+<nyilatkozat/kitöltött_nyilatkozat.pdf, id=942, page=1, 597.23125pt x 845.157
+5pt>
+File: nyilatkozat/kitöltött_nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat/kitöltött_nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat/kitöltött_nyilatkozat.pdf , page1 used o
+n input line 730.
+(pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
+File: nyilatkozat/kitöltött_nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat/kitöltött_nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat/kitöltött_nyilatkozat.pdf , page1 used o
+n input line 730.
+(pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 
-[45] (./Szakdolgozat_vy5sdy.aux)
+
+[45]
+File: nyilatkozat/kitöltött_nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat/kitöltött_nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat/kitöltött_nyilatkozat.pdf , page1 used o
+n input line 730.
+(pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
+File: nyilatkozat/kitöltött_nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat/kitöltött_nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat/kitöltött_nyilatkozat.pdf , page1 used o
+n input line 730.
+(pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
+
+
+File: nyilatkozat/kitöltött_nyilatkozat.pdf Graphic file (type pdf)
+<use nyilatkozat/kitöltött_nyilatkozat.pdf, page 1>
+Package pdftex.def Info: nyilatkozat/kitöltött_nyilatkozat.pdf , page1 used o
+n input line 730.
+(pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
+[46
+
+ <./nyilatkozat/kitöltött_nyilatkozat.pdf>] (./Szakdolgozat_vy5sdy.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
@@ -886,13 +918,13 @@ Package rerunfilecheck Info: File `Szakdolgozat_vy5sdy.out' has not changed.
 (rerunfilecheck)             Checksum: 89C7258A3F5D535E4982BA8C6CED8763;16195.
  ) 
 Here is how much of TeX's memory you used:
- 16483 strings out of 473578
- 259993 string characters out of 5732242
+ 16496 strings out of 473578
+ 260612 string characters out of 5732242
  733796 words of memory out of 5000000
- 38750 multiletter control sequences out of 15000+600000
+ 38762 multiletter control sequences out of 15000+600000
  636382 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,10n,93p,1184b,2208s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,17n,93p,1184b,2208s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2024
 /texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2024/texmf-dist/fonts
 /type1/public/lm/lmr10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lm
@@ -903,10 +935,10 @@ ri12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texli
 ve/2024/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2024/texmf-dist
 /fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/publi
 c/lm/lmtt12.pfb>
-Output written on Szakdolgozat_vy5sdy.pdf (45 pages, 8435357 bytes).
+Output written on Szakdolgozat_vy5sdy.pdf (46 pages, 8792133 bytes).
 PDF statistics:
- 1085 PDF objects out of 1200 (max. 8388607)
- 993 compressed objects within 10 object streams
- 353 named destinations out of 1000 (max. 500000)
- 540 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1095 PDF objects out of 1200 (max. 8388607)
+ 997 compressed objects within 10 object streams
+ 354 named destinations out of 1000 (max. 500000)
+ 560 words of extra memory for PDF output out of 10000 (max. 10000000)
 
