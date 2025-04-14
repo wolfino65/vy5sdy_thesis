@@ -8,7 +8,7 @@ import urequests
 import os
 import neopixel
 
-API_KEY = "<your api key>"
+API_KEY = "AIzaSyCof7aLYawxMevJrPAwpgYt9fUxYXMrdZE"
 def download_file_from_google_drive(file_id, api_key,file):
     url = f"https://www.googleapis.com/drive/v3/files/{file_id}?alt=media&key={api_key}"
     response = urequests.get(url)
@@ -22,7 +22,7 @@ def download_file_from_google_drive(file_id, api_key,file):
         print("Response:", response.text)
     response.close()
 
-def connect_new_module(fid):
+def connect_new_module(fid,mod_id):
     if False not in populated:
         return 
     while True:
@@ -31,8 +31,9 @@ def connect_new_module(fid):
             if p.value() == 1 and populated[i] == False :
                 populated[i]=True
                 file_ids[i]=fid
+                module_ids[i]=mod_id
                 download_file_from_google_drive(fid,API_KEY,module_controlfile_names[i])
-                write_state(populated,file_ids)
+                write_state(populated,file_ids,module_ids)
                 return 
 def read_state():
     temp=[]
@@ -49,7 +50,7 @@ def read_fids():
         for i in line.split(','):
             temp.append(None if i=='' else i)
     return temp 
-def write_state(populated_in, ids_in):
+def write_state(populated_in, ids_in,mod_ids_in):
     with open("state.txt","w") as f:
             for i in range(0,len(populated_in)):
                 if i == len(populated_in)-1:
@@ -65,6 +66,14 @@ def write_state(populated_in, ids_in):
                     f.write('')
                 else:
                     f.write(ids_in[i])
+            f.write("\n")
+            for i in range(0,len(mod_ids_in)):
+                if i !=0:
+                    f.write(',')
+                if mod_ids_in[i] == None:
+                    f.write('')
+                else:
+                    f.write(mod_ids_in[i])
 
 def selector(f):
     def wraper(params,pin):
@@ -99,17 +108,18 @@ def disconnect_module():
             if p.value() == 0 and populated[i] == True:
                 populated[i] = False
                 file_ids[i]= None
+                module_ids[i]=None 
                 return
 
 def reset_state():
     with open('state.txt','w') as f:
-        f.write('False,False,False,False\n,,,')
+        f.write('False,False,False,False\n,,,\n,,,')
 def get_owner():
     with open("owner.txt","r") as f:
         return f.readline().strip()
 def report_state():
     stringifyedState=[]
-    for i in file_ids:
+    for i in module_ids:
         if i is None :
             stringifyedState.append("Unused")
         else:
@@ -117,12 +127,21 @@ def report_state():
     json_data = {
     'dev_id': ID,
     'newInfo': {
-        'additionalInfo': {
+        'aditionalInfo': {
             'connected': stringifyedState
         }
     }
 }
     urequests.put("http://"+serverip+":4500/device/updateDevice",json = json_data)
+def get_module_ids():
+    temp=[]
+    with open("state.txt","r") as f:
+        f.readline()
+        f.readline()
+        mod_ids=f.readline().strip().split(",")
+        for i in mod_ids:
+            temp.append(None if i=='' else i)
+    return temp
 npxl = neopixel.NeoPixel(machine.Pin(38),1)
 #----------------------
 populated=read_state()#module connections
@@ -132,10 +151,11 @@ circuit_controller_pins=[4,5,6,7]#*        v2
 file_ids=read_fids()
 module_controlfile_names = ["a.py","b.py","c.py","d.py"]
 ownerId=get_owner()
+module_ids = get_module_ids()
 #----------------------
 #connect_new_module(FILE_ID)
 #b.set_to_red()
-serverip="192.168.1.82"
+serverip="158.180.52.252"
 def D(s):
     print("DEBUG: "+s)
 #-------------------------------------------------------------------------
@@ -146,7 +166,7 @@ while True :
     for resp in response:
         if resp["aditionalInfo"]["method"] == "add_new":
             module_resp=urequests.get("http://"+serverip+":4500/module/getModuleById",headers={'module_id':resp['module_id']}).json()
-            connect_new_module(module_resp['py_id'])
+            connect_new_module(module_resp['py_id'],module_resp["_id"])
             new_file_flag=True
             report_state()
         elif resp["aditionalInfo"]["method"] == "remove":

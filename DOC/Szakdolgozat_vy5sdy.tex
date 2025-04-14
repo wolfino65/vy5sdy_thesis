@@ -317,7 +317,7 @@
 	Az eszköznek a beérkezett feladatról azonnal információt kell kapnia.
 	\subsection{API, összekötő réteg követelményei}
 	Az API köteles az összes táblára, vagy azzal egyen értékű szerkezethez kötődő műveletek megvalósítására. Azaz képes legyen ellátni azon szerkezet tartalmának műveleteit, mint egység az olvasása, létrehozása, frissítése, valamint törlése. Ezek mellett köteles egy modern, skálázható, könnyen kezelhető adatbázissal kapcsolatot létesítenie, amelyeken a fent említett műveleteket elvégezheti.
-	\section{Használt fejlesztői eszközök}
+	\section{Alkalmazott fejlesztői eszközök}
 	A rendszer fejlesztésének és üzemeltetésének folyamatát számos eszköz segítette elő.
 	\subsection{Visual Studio Code}
 	A Visual Studio Code (VS Code) egy modern, nyílt forráskódú kódszerkesztő, amelyet a Microsoft fejlesztett és 2015-ben adott ki. Azóta az egyik legnépszerűbb fejlesztői eszközzé vált, köszönhetően gyorsaságának, rugalmasságának és a gazdag funkcionalitásnak. Ingyenesen használható, és támogatja a Windows, macOS és Linux operációs rendszereket is, így széles körben elterjedt a fejlesztők körében.
@@ -345,7 +345,7 @@
 		\caption{Szakdolgozathoz feladatkövetéshez használt GitHub projekt, és állapota [2025.04.10.]}
 		\label{img_git}
 	\end{figure}
-	\subsection{Egyéb használt eszközök}
+	\subsection{További eszközök szerepe a fejlesztés folyamatában}
 	\begin{itemize}
 		\item \textbf{MongoDB Compass}: Grafikus felületet nyújtó program az adatbázis könnyű kezeléséhez.
 		\item \textbf{Postman}: API teszteléshez használt eszköz.
@@ -627,9 +627,10 @@
 	Az API-tól megkapott JSON formátumú adatok hatékony használatához érdemes modelleket létrehozni, amely az adat számunkra hasznos elemeit tartalmazza. Manuálisan feldolgozni ezt az rendkívül időigényes, így valamilyen egyéb technológia használatos. A Dart csomagkezelője erre a problémára két csomagot is tartalmaz, amely tökéletesen együttműködik, az egyik a json\_serializable\cite{bib_flutter_json_ser}, míg a másik a build\_runner\cite{bib_flutter_runner}. A build runner csomag segítségével a ,,model.dart'' fájlból generálhatunk egy ,,model.g.dart'' fájlt amely automatikusan képes létrehozni egy példányt a JSON adatból. Ezzel a csomaggal egy rendkívül aprólékos és monoton feladattól tudunk megszabadulni, amely segít a program fejlesztésében.
 	 
 	\chapter{A rendszer tesztelése}
-	A projekt sokoldalúságára tekintettel a tesztek és azok menete videó formájában érhetőek el.
+	A projekt sokoldalúságára tekintettel a tesztek és azok menete videó formájában érhetőek el. A tesztelés alatt a \ref{sec_API_test}.~szekció kivételével minden hálózati kommunikációt az Oracle Cloud szerverén konténerben futó API bonyolított le.
 	\section{Az ESP32-n futó program funkcióinak tesztelése}
 	\section{Az API tesztelése}
+	\label{sec_API_test}
 	\subsection{Device végpontok tesztelése}
 	\url{https://youtu.be/u5j98C3UBKs}
 	\subsection{Module végpontok tesztelése}
@@ -639,6 +640,13 @@
 	\subsection{Task végpontok tesztelése}
 	\url{https://youtu.be/mK9jvi0kY_c}
 	\section{Az applikáció tesztelése}
+	\subsection{Bejelentkezés, regisztráció és automatikus bejelentkezés tesztelése}
+	\url{https://youtu.be/r-VOdy7V8qA}
+	\subsection{Felhasználónév, jelszó és e-mail cím cserjének és fiók törlésének tesztelése}
+	\url{https://youtu.be/mIYw4e9SnnA}\footnote{
+	A videóban említett hibát a Navigator osztály pushReplacement metódusának helytelen használata okozta. A már említett verem felső elemét cseréljük ki a pushReplacement metódussal, azonban így további elemeket lehet találni a veremben, ezáltal automatikusan megjelenik a ,,vissza'' gomb az oldal AppBar mezőjében. Hogy ezt a hibát kiküszöböljük  a pushReplacement metódust le kell cserélnünk a pushAndRemoveUntil-ra, amely paramétere a ,,(Route<dynamic> route) => false'' sor kóddal bővül.}
+	\subsection{Eszközzel kapcsolatos funkciók tesztelése (adat változatát, törlés)}
+	\url{https://youtu.be/vF6Nqtj49bU}
 	\section{A rendszer működésének igazolása}
 	\chapter*{Összegzés}
 	\addcontentsline{toc}{chapter}{Összegzés}
@@ -647,7 +655,7 @@
 	A projekt fejlesztése során rengeteg új dolgot tanultam, ezek között egy számomra új programozási nyelvet, valamint keretrendszert. Betekintést nyertem a beágyazott rendszerek fejlesztésébe és azok hálózati kommunikációjába. A tény, hogy három projektet kellett fejlesztenem és azokat összehangolni, egy kihívás volt nem csak fejlesztés szempontjából, hanem az egyes projektekre rászánt idő menedzselésében is.
 	
 	A tapasztalat birtokában az eszköz kommunikációját egy virtuális hálózaton működő RPC technológiára cserélném.
-	\section*{Bővítési terv}
+	\section*{Továbbfejlesztés lehetőségei}
 	
 	Első sorban a lehetséges felület típusok gyűjteményét lehet bővíteni, hogy ne csak a kezdetleges szám alapú mező, hanem akár egy ,,slider'' is opció legyen. Mind e mellett az ESP-n futó kód több szálon futó változatának elkészítése is hasznos lenne az eszköz használatának kényelme szempontjából. Továbbá több kommunikáció típus támogatása is hasznos lehet például egy eszközön alapuló kamera rendszerhez.
 	\begin{center}

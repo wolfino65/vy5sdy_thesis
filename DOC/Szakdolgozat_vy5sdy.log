@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  14 APR 2025 11:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  14 APR 2025 19:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -574,7 +574,7 @@ Package: inputenc 2024/02/08 v1.3d Input encoding file
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
-<eszterhazy-logo-hu.pdf, id=245, 256.07971pt x 88.04292pt>
+<eszterhazy-logo-hu.pdf, id=257, 256.07971pt x 88.04292pt>
 File: eszterhazy-logo-hu.pdf Graphic file (type pdf)
 <use eszterhazy-logo-hu.pdf>
 Package pdftex.def Info: eszterhazy-logo-hu.pdf  used on input line 108.
@@ -644,7 +644,7 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
  (c:/texlive/2024/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ))
-<mongo_vs_sql.jpeg, id=419, 1116.17pt x 697.60625pt>
+<mongo_vs_sql.jpeg, id=434, 1116.17pt x 697.60625pt>
 File: mongo_vs_sql.jpeg Graphic file (type jpg)
 <use mongo_vs_sql.jpeg>
 Package pdftex.def Info: mongo_vs_sql.jpeg  used on input line 215.
@@ -672,7 +672,7 @@ Overfull \hbox (17.82489pt too wide) in paragraph at lines 329--330
 al és op-ti-ma-li-zá-lá-sok-kal gazdagodva[[]]. 
  []
 
-<github_project.jpg, id=495, 848.4197pt x 688.82344pt>
+<github_project.jpg, id=510, 848.4197pt x 688.82344pt>
 File: github_project.jpg Graphic file (type jpg)
 <use github_project.jpg>
 Package pdftex.def Info: github_project.jpg  used on input line 344.
@@ -683,7 +683,7 @@ Package pdftex.def Info: github_project.jpg  used on input line 344.
 
 [18 <./github_project.jpg>]
 3. fejezet.
-<MyESP32.jpg, id=514, 1328.965pt x 3606.47375pt>
+<MyESP32.jpg, id=529, 1328.965pt x 3606.47375pt>
 File: MyESP32.jpg Graphic file (type jpg)
 <use MyESP32.jpg>
 Package pdftex.def Info: MyESP32.jpg  used on input line 364.
@@ -693,7 +693,7 @@ Package pdftex.def Info: MyESP32.jpg  used on input line 364.
 [19
 
 ]
-<circuit.png, id=528, 2730.2pt x 2168.1pt>
+<circuit.png, id=543, 2730.2pt x 2168.1pt>
 File: circuit.png Graphic file (type png)
 <use circuit.png>
 Package pdftex.def Info: circuit.png  used on input line 385.
@@ -701,7 +701,7 @@ Package pdftex.def Info: circuit.png  used on input line 385.
 
 
 [20 <./MyESP32.jpg>]
-<korai_prototipus.jpg, id=540, 2260.445pt x 4015.0pt>
+<korai_prototipus.jpg, id=555, 2260.445pt x 4015.0pt>
 File: korai_prototipus.jpg Graphic file (type jpg)
 <use korai_prototipus.jpg>
 Package pdftex.def Info: korai_prototipus.jpg  used on input line 396.
@@ -764,7 +764,7 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 ]
 
 [33]
-<flutter_overflow.jpg, id=749, 365.86688pt x 670.00313pt>
+<flutter_overflow.jpg, id=764, 365.86688pt x 670.00313pt>
 File: flutter_overflow.jpg Graphic file (type jpg)
 <use flutter_overflow.jpg>
 Package pdftex.def Info: flutter_overflow.jpg  used on input line 569.
@@ -805,96 +805,91 @@ Overfull \hbox (2.36784pt too wide) in paragraph at lines 620--620
 
 ]
 
-[41
+[41]
+
+[42
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 667--669
+Underfull \hbox (badness 10000) in paragraph at lines 675--677
 []\T1/lmr/m/n/12 MongoDB fel-hasz-ná-lói fó-rum: []$\T1/lmtt/m/n/12 https : / /
  www . mongodb . com / community /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 667--669
+Underfull \hbox (badness 10000) in paragraph at lines 675--677
 \T1/lmtt/m/n/12 forums / t / mongoose-[]querying-[]on-[]object-[]id-[]type / 26
 5185$[] \T1/lmr/m/n/12 [Le-tölt-ve/-lá-to-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 669--671
+Underfull \hbox (badness 10000) in paragraph at lines 677--679
 []$\T1/lmtt/m/n/12 https : / / developer . mozilla . org / en-[]US / docs / Web
  / API / Server-[]sent _ events$[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 675--677
+Underfull \hbox (badness 10000) in paragraph at lines 683--685
 []\T1/lmr/m/n/12 Long-Polling hasz-ná-la-ta Exp-res-sel: []$\T1/lmtt/m/n/12 htt
 ps : / / medium . com / @ignatovich . dm /
  []
 
 
 
-[42
+[43
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 689--691
+Underfull \hbox (badness 10000) in paragraph at lines 697--699
 []\T1/lmr/m/n/12 Kotlin Na-tive kér-dé-sek ol-dal: []$\T1/lmtt/m/n/12 https : /
  / discuss . kotlinlang . org / t /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 691--693
+Underfull \hbox (badness 10000) in paragraph at lines 699--701
 []\T1/lmr/m/n/12 www.ISSI.com-on ta-lál-ha-tó PDF:[]$\T1/lmtt/m/n/12 https : / 
 / www . issi . com / WW / pdf /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 693--695
+Underfull \hbox (badness 10000) in paragraph at lines 701--703
 \T1/lmtt/m/n/12 www . tarlogic . com / news / hidden-[]feature-[]esp32-[]chip-[
 ]infect-[]ot-[]devices/$[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 695--696
+Underfull \hbox (badness 10000) in paragraph at lines 703--704
 []\T1/lmr/m/n/12 Visual Stu-dio Co-de web-ol-da-la: []$\T1/lmtt/m/n/12 https : 
 / / code . visualstudio .
  []
 
 
-Underfull \hbox (badness 7064) in paragraph at lines 705--707
+Underfull \hbox (badness 7064) in paragraph at lines 713--715
 []\T1/lmr/m/n/12 A [[]]. for-rás-hoz tar-to-zó re-po-zitóri-um. el-ér-he-t®: []
 $\T1/lmtt/m/n/12 https : / / github . com /
  []
 
 
-Underfull \hbox (badness 7064) in paragraph at lines 707--709
+Underfull \hbox (badness 7064) in paragraph at lines 715--717
 []\T1/lmr/m/n/12 A [[]]. for-rás-hoz tar-to-zó re-po-zitóri-um. el-ér-he-t®: []
 $\T1/lmtt/m/n/12 https : / / github . com /
  []
 
 
 
-[43]
+[44]
 
-[44] (./Szakdolgozat_vy5sdy.aux)
+[45] (./Szakdolgozat_vy5sdy.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-08-30>
  ***********
-
-
-Package rerunfilecheck Warning: File `Szakdolgozat_vy5sdy.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Szakdolgozat_vy5sdy.out':
-(rerunfilecheck)             Before: DA44CE812BA3332BC714C00818B6320E;14540
-(rerunfilecheck)             After:  F801FA22E7C4CFB3E99BC8698292316E;14542.
+Package rerunfilecheck Info: File `Szakdolgozat_vy5sdy.out' has not changed.
+(rerunfilecheck)             Checksum: 89C7258A3F5D535E4982BA8C6CED8763;16195.
  ) 
 Here is how much of TeX's memory you used:
- 16474 strings out of 473578
- 259858 string characters out of 5732242
- 733719 words of memory out of 5000000
- 38746 multiletter control sequences out of 15000+600000
+ 16483 strings out of 473578
+ 259993 string characters out of 5732242
+ 733796 words of memory out of 5000000
+ 38750 multiletter control sequences out of 15000+600000
  636382 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,10n,93p,1184b,2208s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -908,10 +903,10 @@ ri12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texli
 ve/2024/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2024/texmf-dist
 /fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/publi
 c/lm/lmtt12.pfb>
-Output written on Szakdolgozat_vy5sdy.pdf (44 pages, 8432446 bytes).
+Output written on Szakdolgozat_vy5sdy.pdf (45 pages, 8435357 bytes).
 PDF statistics:
- 1059 PDF objects out of 1200 (max. 8388607)
- 968 compressed objects within 10 object streams
- 348 named destinations out of 1000 (max. 500000)
- 516 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1085 PDF objects out of 1200 (max. 8388607)
+ 993 compressed objects within 10 object streams
+ 353 named destinations out of 1000 (max. 500000)
+ 540 words of extra memory for PDF output out of 10000 (max. 10000000)
 

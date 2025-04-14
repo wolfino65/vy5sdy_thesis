@@ -18,11 +18,11 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {2.3.1}Felhasználói felület}{15}{subsection.2.3.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.3.2}Eszköz követelményei}{16}{subsection.2.3.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.3.3}API, összekötő réteg követelményei}{16}{subsection.2.3.3}%
-\select@language {magyar} \contentsline {section}{\numberline {2.4}Használt fejlesztői eszközök}{16}{section.2.4}%
+\select@language {magyar} \contentsline {section}{\numberline {2.4}Alkalmazott fejlesztői eszközök}{16}{section.2.4}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.4.1}Visual Studio Code}{16}{subsection.2.4.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.4.2}Thonny IDE}{17}{subsection.2.4.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.4.3}Git, Github}{17}{subsection.2.4.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.4.4}Egyéb használt eszközök}{18}{subsection.2.4.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.4.4}További eszközök szerepe a fejlesztés folyamatában}{18}{subsection.2.4.4}%
 \select@language {magyar} \contentsline {chapter}{\numberline {3}Az ESP32 mikrovezérlő bemutatása}{19}{chapter.3}%
 \select@language {magyar} \contentsline {section}{\numberline {3.1}ESP32 hardverének és fejlesztői környezetének bemutatása}{19}{section.3.1}%
 \select@language {magyar} \contentsline {section}{\numberline {3.2}A rendszer fejlesztésének részletei}{20}{section.3.2}%
@@ -59,7 +59,10 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {6.2.2}Module végpontok tesztelése}{40}{subsection.6.2.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {6.2.3}User végpontok tesztelése}{40}{subsection.6.2.3}%
 \select@language {magyar} \contentsline {subsection}{\numberline {6.2.4}Task végpontok tesztelése}{40}{subsection.6.2.4}%
-\select@language {magyar} \contentsline {section}{\numberline {6.3}Az applikáció tesztelése}{40}{section.6.3}%
-\select@language {magyar} \contentsline {section}{\numberline {6.4}A rendszer működésének igazolása}{40}{section.6.4}%
-\select@language {magyar} \contentsline {chapter}{Összegzés}{41}{chapter*.9}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{42}{chapter*.12}%
+\select@language {magyar} \contentsline {section}{\numberline {6.3}Az applikáció tesztelése}{41}{section.6.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {6.3.1}Bejelentkezés, regisztráció és automatikus bejelentkezés tesztelése}{41}{subsection.6.3.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {6.3.2}Felhasználónév, jelszó és e-mail cím cserjének és fiók törlésének tesztelése}{41}{subsection.6.3.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {6.3.3}Eszközzel kapcsolatos funkciók tesztelése (adat változatát, törlés)}{41}{subsection.6.3.3}%
+\select@language {magyar} \contentsline {section}{\numberline {6.4}A rendszer működésének igazolása}{41}{section.6.4}%
+\select@language {magyar} \contentsline {chapter}{Összegzés}{42}{chapter*.9}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{43}{chapter*.12}%

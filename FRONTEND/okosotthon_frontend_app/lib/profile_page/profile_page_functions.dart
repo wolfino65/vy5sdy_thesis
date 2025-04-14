@@ -11,9 +11,10 @@ import 'package:http/http.dart' as http;
 
 class ProfilePageFunctions {
   static void navigateToLogin(BuildContext context) {
-    Navigator.pushReplacement(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => LoginPage()),
+      (Route<dynamic> route) => false,
     );
   }
 
