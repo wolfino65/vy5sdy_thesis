@@ -176,11 +176,14 @@ while True :
             os.remove('ident.txt')
             os.remove('conf.txt')
             reset_state()
+            machine.reset() 
         elif resp["aditionalInfo"]["method"] == "network_reset":
             os.remove('conf.txt')
+            machine.reset() 
         elif resp["aditionalInfo"]["method"] == "module_reset":
             D("in module_reset")
             reset_state()
+            report_state()
         elif resp["aditionalInfo"]["method"] == "run":
             module_resp=urequests.get("http://"+serverip+":4500/module/getModuleById",headers={'module_id':resp['module_id']}).json()
             D("in run")
