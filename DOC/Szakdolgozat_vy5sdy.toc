@@ -55,6 +55,6 @@
 \select@language {magyar} \contentsline {chapter}{\numberline {6}A rendszer tesztelése}{40}{chapter.6}%
 \select@language {magyar} \contentsline {section}{\numberline {6.1}Az ESP32-n futó program funkcióinak tesztelése}{40}{section.6.1}%
 \select@language {magyar} \contentsline {section}{\numberline {6.2}Az API tesztelése}{40}{section.6.2}%
-\select@language {magyar} \contentsline {section}{\numberline {6.3}Az applikáció tesztelése}{40}{section.6.3}%
+\select@language {magyar} \contentsline {section}{\numberline {6.3}Az applikáció tesztelése}{41}{section.6.3}%
 \select@language {magyar} \contentsline {chapter}{Összegzés}{42}{chapter*.9}%
 \select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{43}{chapter*.12}%

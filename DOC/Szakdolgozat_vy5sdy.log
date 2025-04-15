@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  15 APR 2025 00:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.16)  15 APR 2025 12:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -788,11 +788,22 @@ Overfull \hbox (2.36784pt too wide) in paragraph at lines 620--620
 [39]
 6. fejezet.
 
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 647.
+Underfull \hbox (badness 10000) in paragraph at lines 638--638
+[]\T1/lmr/m/n/12 FunkciÛk tesz-te-lÈ-se
+ []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 652--652
+Underfull \hbox (badness 10000) in paragraph at lines 639--639
+[]\T1/lmr/m/n/12 Konfigur·l·s app-li-k·-ci-Ûn
+ []
+
+
+Underfull \hbox (badness 4060) in paragraph at lines 640--640
+[]\T1/lmr/m/n/12 Modul csat-la-koz-ta-t·-sa Ès
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 664--664
 []\T1/lmr/m/n/12 BejelentkezÈs, re-giszt-r·-ciÛ
  []
 
@@ -807,13 +818,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 652--652
 [42
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 685--687
+Underfull \hbox (badness 10000) in paragraph at lines 697--699
 []$\T1/lmtt/m/n/12 https : / / developer . mozilla . org / en-[]US / docs / Web
  / API / Server-[]sent _ events$[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 691--693
+Underfull \hbox (badness 10000) in paragraph at lines 703--705
 []\T1/lmr/m/n/12 Long-Polling hasz-n·-la-ta Exp-res-sel: []$\T1/lmtt/m/n/12 htt
 ps : / / medium . com / @ignatovich . dm /
  []
@@ -823,31 +834,31 @@ ps : / / medium . com / @ignatovich . dm /
 [43
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 705--707
+Underfull \hbox (badness 10000) in paragraph at lines 717--719
 []\T1/lmr/m/n/12 Kotlin Na-tive kÈr-dÈ-sek ol-dal: []$\T1/lmtt/m/n/12 https : /
  / discuss . kotlinlang . org / t /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 707--709
+Underfull \hbox (badness 10000) in paragraph at lines 719--721
 []\T1/lmr/m/n/12 www.ISSI.com-on ta-l·l-ha-tÛ PDF:[]$\T1/lmtt/m/n/12 https : / 
 / www . issi . com / WW / pdf /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 709--711
+Underfull \hbox (badness 10000) in paragraph at lines 721--723
 \T1/lmtt/m/n/12 www . tarlogic . com / news / hidden-[]feature-[]esp32-[]chip-[
 ]infect-[]ot-[]devices/$[]
  []
 
 
-Underfull \hbox (badness 7064) in paragraph at lines 721--723
+Underfull \hbox (badness 7064) in paragraph at lines 733--735
 []\T1/lmr/m/n/12 A [[]]. for-r·s-hoz tar-to-zÛ re-po-zitÛri-um. el-Èr-he-tÆ: []
 $\T1/lmtt/m/n/12 https : / / github . com /
  []
 
 
-Underfull \hbox (badness 7064) in paragraph at lines 723--725
+Underfull \hbox (badness 7064) in paragraph at lines 735--737
 []\T1/lmr/m/n/12 A [[]]. for-r·s-hoz tar-to-zÛ re-po-zitÛri-um. el-Èr-he-tÆ: []
 $\T1/lmtt/m/n/12 https : / / github . com /
  []
@@ -855,33 +866,33 @@ $\T1/lmtt/m/n/12 https : / / github . com /
 
 
 [44]
-Underfull \hbox (badness 1648) in paragraph at lines 735--737
+Underfull \hbox (badness 1648) in paragraph at lines 747--749
 []\T1/lmr/m/n/12 A rfw cso-mag ol-da-la: []$\T1/lmtt/m/n/12 https : / / pub . d
 ev / packages / rfw$[] \T1/lmr/m/n/12 [Utol-sÛ be-te-kin-tÈs:
  []
 
-<nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf, id=898, 597.23125pt x 845.1575pt>
+<nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf, id=902, 597.23125pt x 845.1575pt>
 File: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf>
 Package pdftex.def Info: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf  used on input
- line 738.
+ line 750.
 (pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
 File: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf>
 Package pdftex.def Info: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf  used on input
- line 738.
+ line 750.
 (pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
-<nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf, id=901, page=1, 597.23125pt x 845.157
+<nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf, id=905, page=1, 597.23125pt x 845.157
 5pt>
 File: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf, page 1>
 Package pdftex.def Info: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf , page1 used o
-n input line 738.
+n input line 750.
 (pdftex.def)             Requested size: 597.22978pt x 845.15544pt.
 File: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf, page 1>
 Package pdftex.def Info: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf , page1 used o
-n input line 738.
+n input line 750.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 
 
@@ -889,19 +900,19 @@ n input line 738.
 File: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf, page 1>
 Package pdftex.def Info: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf , page1 used o
-n input line 738.
+n input line 750.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 File: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf, page 1>
 Package pdftex.def Info: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf , page1 used o
-n input line 738.
+n input line 750.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 
 
 File: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf Graphic file (type pdf)
 <use nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf, page 1>
 Package pdftex.def Info: nyilatkozat/kit√∂lt√∂tt_nyilatkozat.pdf , page1 used o
-n input line 738.
+n input line 750.
 (pdftex.def)             Requested size: 597.25711pt x 845.19412pt.
 [46
 
@@ -931,10 +942,10 @@ ri12.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texli
 ve/2024/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/texlive/2024/texmf-dist
 /fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2024/texmf-dist/fonts/type1/publi
 c/lm/lmtt12.pfb>
-Output written on Szakdolgozat_vy5sdy.pdf (46 pages, 8791778 bytes).
+Output written on Szakdolgozat_vy5sdy.pdf (46 pages, 8792904 bytes).
 PDF statistics:
- 1053 PDF objects out of 1200 (max. 8388607)
- 955 compressed objects within 10 object streams
+ 1057 PDF objects out of 1200 (max. 8388607)
+ 959 compressed objects within 10 object streams
  346 named destinations out of 1000 (max. 500000)
  496 words of extra memory for PDF output out of 10000 (max. 10000000)
 
